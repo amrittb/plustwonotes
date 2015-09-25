@@ -22,9 +22,12 @@ elixir(function(mix) {
     });
 
     mix.scripts([
-    	'jquery/dist/jquery.js'
+    	'jquery/dist/jquery.js',
+        'material-design-lite/material.js'
     ],'./resources/assets/js/framework.js','./bower_components')
-    .scriptsIn('resources/assets/js','public/js/app.js');
+        .scripts([
+            'framework.js','app.js'
+    ],'./public/js/app.js');
 
     mix.version(['css/app.css','js/app.js']);
 });
