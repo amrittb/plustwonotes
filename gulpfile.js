@@ -11,6 +11,20 @@ var elixir = require('laravel-elixir');
  |
  */
 
+var paths = {
+	mdl : './bower_components/material-design-lite',
+	jquery: './bower_components/jquery'
+};
+
 elixir(function(mix) {
-    mix.less('app.less');
+    mix.sass('app.scss',null,{
+    	includePaths: paths.mdl + '/src'
+    });
+
+    mix.scripts([
+    	'jquery/dist/jquery.js'
+    ],'./resources/assets/js/framework.js','./bower_components')
+    .scriptsIn('resources/assets/js','public/js/app.js');
+
+    mix.version(['css/app.css','js/app.js']);
 });
