@@ -1,6 +1,10 @@
+/.idea
+/.features
 /vendor
 /node_modules
 /bower_components
-/.features
+/public/build
+/public/css
+/public/js
 .env
 .env.example
