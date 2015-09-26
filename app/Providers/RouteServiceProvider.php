@@ -1,7 +1,9 @@
 <?php namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -24,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-		//
+		$this->bindCategory($router);
 	}
 
 	/**
@@ -38,6 +40,24 @@ class RouteServiceProvider extends ServiceProvider {
 		$router->group(['namespace' => $this->namespace], function($router)
 		{
 			require app_path('Http/routes.php');
+		});
+	}
+
+	/**
+	 * Bind a \App\Models\Category Model to the route.
+	 *
+	 * @param Router $router
+	 */
+	public function bindCategory(Router $router)
+	{
+		$router->bind('category', function ($category) {
+			$category = Category::where('category_slug', $category)->first();
+
+			if($category == null){
+				throw new NotFoundHttpException();
+			}
+
+			return $category;
 		});
 	}
 

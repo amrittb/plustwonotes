@@ -2,11 +2,21 @@
 
 namespace App\Repositories;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
 
+/**
+ * Class PostRepository
+ * @package App\Repositories
+ */
 class PostRepository implements PostRepositoryInterface{
 
+    /**
+     * Limit to posts for pagination.
+     *
+     * @var int
+     */
     protected $postLimit = 25;
 
     /**
@@ -35,11 +45,11 @@ class PostRepository implements PostRepositoryInterface{
     /**
      * Get all posts for certain category;
      *
-     * @param $category
+     * @param \App\Models\Category $category
      * @return mixed
      */
-    public function getForCategory($category){
-        $posts = Post::where('category_id',$category)->published()->paginate($this->postLimit);
+    public function getForCategory(Category $category){
+        $posts = Post::where('category_id',$category->id)->published()->paginate($this->postLimit);
 
         return $posts;
     }

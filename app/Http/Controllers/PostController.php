@@ -1,12 +1,16 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 
 use App\Repositories\Contracts\PostRepositoryInterface;
 use Illuminate\Http\Request;
 
+/**
+ * Class PostController
+ * @package App\Http\Controllers
+ */
 class PostController extends Controller {
 
     /**
@@ -26,20 +30,26 @@ class PostController extends Controller {
     }
 
     /**
-     * Displays a list of posts.
+     * Displays a list of all posts.
      *
-     * @param $category
      * @return \Illuminate\View\View
      */
-    public function index($category = null){
-        if($category != null){
-            $posts = $this->repo->getForCategory($category);
+    public function index(){
+        $posts = $this->repo->allUntrashed();
 
-            return view('posts.index',compact('posts'));
-        } else {
-            $posts = $this->repo->allUntrashed();
+        return view('posts.admin.index', compact('posts'));
+    }
 
-            return view('posts.admin.index', compact('posts'));
-        }
+    /**
+     * Displays a list of posts for a category
+     *
+     * @param Category $category
+     * @return \Illuminate\View\View
+     */
+    public function listCategory(Category $category)
+    {
+        $posts = $this->repo->getForCategory($category);
+
+        return view('posts.index', compact('posts'));
     }
 }

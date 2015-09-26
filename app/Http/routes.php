@@ -6,4 +6,4 @@ Route::get('about',['uses' => 'HomeController@about', 'as' => 'about']);
 
 Route::resource('posts','PostController');
 
-Route::get('/{category}',['uses' => 'PostController@index','as' => 'posts.index.category']);
+Route::get('/{category}',['uses' => 'PostController@listCategory','as' => 'posts.index.category']);
