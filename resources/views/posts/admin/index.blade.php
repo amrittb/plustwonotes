@@ -7,9 +7,12 @@
 @section('content')
     <h4>Post List</h4>
 
-    @foreach($posts as $post)
-        <div>
-            Post Number
-        </div>
-    @endforeach
+    <div class="mdl-typography__text-left">
+        @foreach($posts as $post)
+            <div>
+                <h6>{{ $post->post_title }}</h6>
+                <p>{{ $post->post_body }}</p>
+            </div>
+        @endforeach
+    </div>
 @stop

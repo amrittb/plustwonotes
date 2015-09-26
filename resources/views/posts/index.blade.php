@@ -6,7 +6,13 @@
 
 @section('content')
     <h4>Post List</h4>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur ducimus harum ut? A ad consequuntur cum dignissimos ea molestiae, molestias mollitia nihil officiis praesentium quaerat repellat repellendus rerum sit veritatis?
-    </p>
+
+    <div class="mdl-typography__text-left">
+        @foreach($posts as $post)
+            <div>
+                <h6>{{ $post->post_title }}</h6>
+                <p>{{ $post->post_body }}</p>
+            </div>
+        @endforeach
+    </div>
 @stop
