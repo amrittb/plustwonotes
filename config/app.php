@@ -145,6 +145,14 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		/*
+		 * Third-party Service Providers...
+		 */
+		'Robbo\Presenter\PresenterServiceProvider',
+
+		/*
+		 * Application Providers...
+		 */
 		'App\Repositories\Providers\PostRepositoryProvider'
 	],
 
