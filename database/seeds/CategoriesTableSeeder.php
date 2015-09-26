@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Pluralizer;
+
 class CategoriesTableSeeder extends \Illuminate\Database\Seeder
 {
     /**
@@ -9,20 +12,22 @@ class CategoriesTableSeeder extends \Illuminate\Database\Seeder
      */
     public function run()
     {
-        \App\Models\Category::create([
-            'category_name' => 'Note',
-            'category_slug' => 'notes'
-        ]);
+        $categories = [
+            [
+                'category_name' => 'Note',
+                'category_slug' => str_slug(Pluralizer::plural('Note'))
+            ],
+            [
+                'category_name' => 'Syllabus',
+                'category_slug' => str_slug(Pluralizer::plural('Syllabus'))
+            ],
+            [
+                'category_name' => 'Blog',
+                'category_slug' => str_slug(Pluralizer::plural('Blog'))
+            ]
+        ];
 
-        \App\Models\Category::create([
-            'category_name' => 'Syllabus',
-            'category_slug' => 'syllabus'
-        ]);
-
-        \App\Models\Category::create([
-            'category_name' => 'Blog',
-            'category_slug' => 'blog'
-        ]);
+        DB::table('categories')->insert($categories);
     }
 
 }

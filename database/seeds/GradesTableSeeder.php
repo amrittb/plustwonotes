@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 class GradesTableSeeder extends \Illuminate\Database\Seeder
 {
     /**
@@ -9,13 +11,16 @@ class GradesTableSeeder extends \Illuminate\Database\Seeder
      */
     public function run()
     {
-        \App\Models\Grade::create([
-            'grade_name' => '11'
-        ]);
+        $grades = [
+            [
+                'grade_name' => '11'
+            ],
+            [
+                'grade_name' => '12'
+            ]
+        ];
 
-        \App\Models\Grade::create([
-            'grade_name' => '12'
-        ]);
+        DB::table('grades')->insert($grades);
     }
 
 }

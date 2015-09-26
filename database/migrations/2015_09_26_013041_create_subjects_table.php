@@ -15,10 +15,10 @@ class CreateSubjectsTable extends Migration {
 		Schema::create('subjects',function(Blueprint $table){
 			$table->increments('id');
 			$table->string('subject_name');
-			$table->integer('faculty_id')->unsigned();
+			$table->integer('grade_id')->unsigned();
 
-			$table->foreign('faculty_id')
-				->references('id')->on('faculties')
+			$table->foreign('grade_id')
+				->references('id')->on('grades')
 				->onDelete('cascade');
 		});
 	}

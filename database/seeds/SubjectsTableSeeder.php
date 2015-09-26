@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 class SubjectsTableSeeder extends \Illuminate\Database\Seeder
 {
     /**
@@ -9,20 +11,27 @@ class SubjectsTableSeeder extends \Illuminate\Database\Seeder
      */
     public function run()
     {
-        \App\Models\Subject::create([
-            'subject_name' => 'Physics',
-            'faculty_id' => 1
-        ]);
+        $subjects = [
+            ['subject_name' => 'Physics','grade_id' => 1],
+            ['subject_name' => 'Chemistry','grade_id' => 1],
+            ['subject_name' => 'Biology','grade_id' => 1],
+            ['subject_name' => 'Maths','grade_id' => 1],
+            ['subject_name' => 'English','grade_id' => 1],
+            ['subject_name' => 'Computer','grade_id' => 1],
+            ['subject_name' => 'Business Maths','grade_id' => 1],
+            ['subject_name' => 'Economics','grade_id' => 1],
+            ['subject_name' => 'Accountancy','grade_id' => 1],
+            ['subject_name' => 'Physics','grade_id' => 2],
+            ['subject_name' => 'Chemistry','grade_id' => 2],
+            ['subject_name' => 'Biology','grade_id' => 2],
+            ['subject_name' => 'Maths','grade_id' => 2],
+            ['subject_name' => 'English','grade_id' => 2],
+            ['subject_name' => 'Computer','grade_id' => 2],
+            ['subject_name' => 'Business Maths','grade_id' => 2],
+            ['subject_name' => 'Economics','grade_id' => 2]
+        ];
 
-        \App\Models\Subject::create([
-            'subject_name' => 'Chemistry',
-            'faculty_id' => 1
-        ]);
-
-        \App\Models\Subject::create([
-            'subject_name' => 'Physics',
-            'faculty_id' => 3
-        ]);
+        DB::table('subjects')->insert($subjects);
     }
 
 }
