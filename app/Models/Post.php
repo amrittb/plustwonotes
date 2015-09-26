@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model{
+
+    use SoftDeletes;
 
     /**
      * Status of post when published.
@@ -18,7 +22,8 @@ class Post extends Model{
      * @var array
      */
     protected $dates = [
-        'published_at'
+        'published_at',
+        'deleted_at'
     ];
 
     /**
