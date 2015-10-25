@@ -53,4 +53,23 @@ class PostRepository implements PostRepositoryInterface{
 
         return $posts;
     }
+
+    /**
+     * Saves a post to the database.
+     *
+     * @param $input
+     * @return bool
+     */
+    public function savePost($input){
+        $post = new Post();
+        $post->post_title = $input['post_title'];
+        $post->post_slug = ($input['post_slug'] == "" || $input['post_slug'] == null) ? str_slug($post->post_title) : $input['post_slug'];
+        $post->post_body = $input['post_body'];
+        $post->published_at = Carbon::now();
+        $post->status_id = 1;
+        $post->user_id = 1;
+        $post->category_id = 3;
+
+        return $post->save();
+    }
 }
