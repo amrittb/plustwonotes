@@ -17,8 +17,9 @@ class CreatePostsTable extends Migration {
 			$table->engine = "MyISAM";
 
 			$table->increments('id');
-			$table->string('post_title',1000);
+			$table->string('post_title',200);
 			$table->longText('post_body');
+			$table->string('post_slug',50);
 			$table->integer('subject_id')->nullable();
 			$table->integer('category_id')->unsigned();
 			$table->timestamps();

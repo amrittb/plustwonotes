@@ -26,9 +26,12 @@ class PostsTableSeeder extends Seeder
                 $subject_id = $faker->numberBetween(1,$subjectsCount);
             }
 
+            $title = $faker->realText(50);
+
             \App\Models\Post::create([
-                'post_title' => $faker->realText(100),
+                'post_title' => $title,
                 'post_body' => $faker->text(1000),
+                'post_slug' => str_slug($title),
                 'published_at' => \Carbon\Carbon::now(),
                 'category_id' => $category_id,
                 'subject_id' => $subject_id,
