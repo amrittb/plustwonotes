@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -27,6 +28,8 @@ class RouteServiceProvider extends ServiceProvider {
 		parent::boot($router);
 
 		$this->bindCategory($router);
+
+		$this->bindPost($router);
 	}
 
 	/**
@@ -51,13 +54,19 @@ class RouteServiceProvider extends ServiceProvider {
 	public function bindCategory(Router $router)
 	{
 		$router->bind('category', function ($category) {
-			$category = Category::where('category_slug', $category)->first();
+			return Category::where('category_slug', $category)->firstOrFail();;
+		});
+	}
 
-			if($category == null){
-				throw new NotFoundHttpException();
-			}
-
-			return $category;
+	/**
+	 * Bind a \App\Models\Post Model to the route.
+	 *
+	 * @param Router $router
+	 */
+	public function bindPost(Router $router)
+	{
+		$router->bind('posts', function ($post) {
+			return Post::where('post_slug', $post)->published()->firstOrFail();
 		});
 	}
 
