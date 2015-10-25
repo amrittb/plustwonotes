@@ -15,8 +15,8 @@
 
         @yield('postnav')
 
-        <main class="mdl-layout__content mdl-typography--text-center">
-            <div class="container">
+        <main class="mdl-layout__content">
+            <div class="page-content section--center mdl-grid">
                 @yield('content')
             </div>
 
