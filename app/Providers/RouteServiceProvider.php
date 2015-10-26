@@ -66,6 +66,9 @@ class RouteServiceProvider extends ServiceProvider {
 	public function bindPost(Router $router)
 	{
 		$router->bind('posts', function ($post) {
+			if(is_numeric($post)){
+				return Post::findOrFail($post);
+			}
 			return Post::where('post_slug', $post)->published()->firstOrFail();
 		});
 	}
