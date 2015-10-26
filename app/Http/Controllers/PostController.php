@@ -49,8 +49,7 @@ class PostController extends Controller {
      * @param Category $category
      * @return \Illuminate\View\View
      */
-    public function listCategory(Category $category)
-    {
+    public function listCategory(Category $category){
         $posts = $this->repo->getForCategory($category);
 
         return view('posts.index', compact('posts'));
@@ -90,6 +89,52 @@ class PostController extends Controller {
             return redirect(route('posts.index'))->with('message','Post Created!!');
         } else {
             return redirect()->back()->withInput()->with('message','Something went wrong!');
+        }
+    }
+
+    /**
+     * Display a form to edit a post.
+     *
+     * @param Post $post
+     * @return \Illuminate\View\View
+     */
+    public function edit(Post $post){
+        return view('posts.admin.edit',compact('post'));
+    }
+
+    /**
+     * Updates a post in the database.
+     *
+     * @param Post $post
+     * @param SavePostRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Post $post,SavePostRequest $request){
+        $input = $request->all();
+
+        $result = $this->repo->savePost($input,$post);
+
+        if($result){
+            return redirect()->back()->with('message','Post Updated!');
+        } else {
+            return redirect()->back()->withInput()->with('message','Something went wrong!');
+        }
+    }
+
+    /**
+     * Soft deletes a post.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(Post $post){
+        $result = $post->delete();
+
+        if($result){
+            return redirect(route('posts.index'))->with('message','Post moved to trash!');
+        } else {
+            return redirect()->back()->with('message','Something went wrong!');
         }
     }
 }
