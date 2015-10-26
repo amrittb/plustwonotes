@@ -26,7 +26,7 @@ class PostRepository implements PostRepositoryInterface{
      */
     public function allPublished()
     {
-        $posts = Post::published()->paginate($this->postLimit);
+        $posts = Post::published()->latest()->paginate($this->postLimit);
 
         return $posts;
     }
@@ -37,7 +37,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function allUntrashed(){
-        $posts = Post::paginate($this->postLimit);
+        $posts = Post::latest()->paginate($this->postLimit);
 
         return $posts;
     }
@@ -49,7 +49,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function getForCategory(Category $category){
-        $posts = Post::where('category_id',$category->id)->published()->paginate($this->postLimit);
+        $posts = Post::where('category_id',$category->id)->published()->latest()->paginate($this->postLimit);
 
         return $posts;
     }
@@ -58,17 +58,21 @@ class PostRepository implements PostRepositoryInterface{
      * Saves a post to the database.
      *
      * @param $input
+     * @param Post $post
      * @return bool
      */
-    public function savePost($input){
-        $post = new Post();
+    public function savePost($input,Post $post = null){
+        if(is_null($post)){
+            $post = new Post();
+            $post->published_at = Carbon::now();
+            $post->status_id = 1;
+            $post->user_id = 1;
+            $post->category_id = 3;
+        }
+
         $post->post_title = $input['post_title'];
         $post->post_slug = ($input['post_slug'] == "" || $input['post_slug'] == null) ? str_slug($post->post_title) : $input['post_slug'];
         $post->post_body = $input['post_body'];
-        $post->published_at = Carbon::now();
-        $post->status_id = 1;
-        $post->user_id = 1;
-        $post->category_id = 3;
 
         return $post->save();
     }

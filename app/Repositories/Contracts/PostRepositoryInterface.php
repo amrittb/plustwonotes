@@ -2,6 +2,9 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Models\Category;
+use App\Models\Post;
+
 interface PostRepositoryInterface
 {
     /*
@@ -14,5 +17,5 @@ interface PostRepositoryInterface
     /*
      * Setters for posts.
      */
-    public function savePost($input);
+    public function savePost($input,Post $post = null);
 }
