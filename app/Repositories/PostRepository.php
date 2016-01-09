@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Category;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
+use Carbon\Carbon;
 
 /**
  * Class PostRepository
@@ -71,8 +72,9 @@ class PostRepository implements PostRepositoryInterface{
         }
 
         $post->post_title = $input['post_title'];
-        $post->post_slug = ($input['post_slug'] == "" || $input['post_slug'] == null) ? str_slug($post->post_title) : $input['post_slug'];
+        $post->post_slug = ($input['post_slug'] == "" || $input['post_slug'] == null) ? str_slug($post->post_title) : str_slug($input['post_slug']);
         $post->post_body = $input['post_body'];
+        $post->published_at = Carbon::parse($input['published_at']);
 
         return $post->save();
     }
