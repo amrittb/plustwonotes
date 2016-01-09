@@ -13,17 +13,21 @@ var elixir = require('laravel-elixir');
 
 var paths = {
 	mdl : './bower_components/material-design-lite',
-	jquery: './bower_components/jquery'
+	jquery: './bower_components/jquery',
+    pickadate: './bower_components/pickadate'
 };
 
 elixir(function(mix) {
     mix.sass('app.scss',null,{
-    	includePaths: paths.mdl + '/src'
+    	includePaths: [].concat(paths.mdl + '/src',paths.pickadate + '/lib/themes')
     });
 
     mix.scripts([
     	'jquery/dist/jquery.js',
-        'material-design-lite/material.js'
+        'material-design-lite/material.js',
+        'pickadate/lib/picker.js',
+        'pickadate/lib/picker.date.js',
+        'pickadate/lib/picker.time.js'
     ],'./resources/assets/js/framework.js','./bower_components')
         .scripts([
             'framework.js','app.js'

@@ -26,5 +26,10 @@
     </div>
 
     <script type="text/javascript" src="{{ elixir('js/app.js') }}"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("input[name='published_at']").pickadate();
+        });
+    </script>
 </body>
 </html>

@@ -1,1 +1,61 @@
+/*
+*
+*   App Color definations
+*
+*/
+@import "color-definitions";
+@import "mixins";
+
+$color-primary: $palette-orange-A400;
+$color-primary-dark: $palette-orange-A700;
+$color-accent: $palette-teal-500;
+$color-primary-contrast:$palette-grey-100;
+$color-accent-contrast: $palette-grey-200;
+
+$layout-header-text-color: unquote("rgb(#{$palette-grey-700})");
+
+// Date Picker
+$datepicker-weekday-bg: unquote("rgb(#{$palette-teal-700})") !default;
+$datepicker-date-bg: unquote("rgb(#{$color-accent})") !default;
+$datepicker-year: rgba(255, 255, 255, .4) !default;
+$datepicker-focus: rgba(0,0,0, .05) !default;
+$datepicker-selected: unquote("rgb(#{$color-accent})") !default;
+$datepicker-selected-outfocus: unquote("rgb(#{$palette-teal-300})") !default;
+
+/*
+*
+*   Pickadate themes
+*
+*/
+@import "default";
+@import "default.date";
+@import "default.time";
+@import "datepicker";
+
+/*
+*
+*   Material Design Lite import
+*
+*/
 @import "material-design-lite";
+
+$max-width: 860px;
+
+.app-layout .section--center{
+    max-width: $max-width;
+}
+
+.app-navigation{
+    a{
+        color: $layout-header-text-color;
+    }
+}
+
+/*
+.mdl-layout__header{
+    background: unquote("rgb(#{$palette-grey-100})");
+}*/
+
+/*.mdl-navigation__link:hover{
+    color: unquote("rgb(#{$palette-orange-500})");
+}*/
