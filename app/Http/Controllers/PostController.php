@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 /**
@@ -33,14 +34,25 @@ class PostController extends Controller {
     }
 
     /**
-     * Displays a list of all posts.
+     * Displays a list of all published posts.
      *
      * @return \Illuminate\View\View
      */
     public function index(){
-        $posts = $this->repo->allUntrashed();
+        $posts = $this->repo->allPublished();
 
         return view('posts.index', compact('posts'));
+    }
+
+    /**
+     * Displays a list of all posts.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function indexAll(){
+        $posts = $this->repo->allUntrashed();
+
+        return view('posts.index',compact('posts'));
     }
 
     /**
@@ -71,6 +83,9 @@ class PostController extends Controller {
      * @return \Illuminate\View\View
      */
     public function show(Post $post){
+        if(!$post->isPublished()){
+            throw new ModelNotFoundException();
+        }
         return view('posts.show',compact('post'));
     }
 

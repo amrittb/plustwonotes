@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -46,5 +47,30 @@ class Post extends Model{
     public function scopeUnpublished(Builder $query){
         return $query->where('published_at','=',null)
                     ->where('status_id','!=',Post::STATUS_PUBLISHED);
+    }
+
+    /**
+     * Accessor for published_at attribute.
+     *
+     * @param $value
+     * @return string
+     */
+    public function getPublishedAtAttribute($value){
+        $date = new Carbon($value);
+
+        return $date->format('Y-m-d');
+    }
+
+    /**
+     * Checks if the post is published.
+     *
+     * @return bool
+     */
+    public function isPublished(){
+        if($this->published_at != null && $this->published_at <= Carbon::now()){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
