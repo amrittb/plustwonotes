@@ -155,7 +155,8 @@ return [
 		 * Application Providers...
 		 */
 		'App\Repositories\Providers\PostRepositoryProvider',
-		'App\Repositories\Providers\CategoryRepositoryProvider'
+		'App\Repositories\Providers\CategoryRepositoryProvider',
+		'App\Repositories\Providers\SubjectRepositoryProvider'
 	],
 
 	/*
