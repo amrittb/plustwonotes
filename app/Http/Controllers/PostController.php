@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 
 use App\Models\Post;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -22,15 +23,24 @@ class PostController extends Controller {
      *
      * @var PostRepositoryInterface
      */
-    protected $repo;
+    protected $postRepo;
+
+    /**
+     * A CategoryRepository instance.
+     *
+     * @var CategoryRepositoryInterface
+     */
+    protected $categoryRepo;
 
     /**
      * Initializes fields and registers middlewares.
      *
-     * @param PostRepositoryInterface $repo
+     * @param PostRepositoryInterface $postRepo
+     * @param CategoryRepositoryInterface $categoryRepo
      */
-    public function __construct(PostRepositoryInterface $repo){
-        $this->repo = $repo;
+    public function __construct(PostRepositoryInterface $postRepo,CategoryRepositoryInterface $categoryRepo){
+        $this->postRepo = $postRepo;
+        $this->categoryRepo = $categoryRepo;
     }
 
     /**
@@ -39,7 +49,7 @@ class PostController extends Controller {
      * @return \Illuminate\View\View
      */
     public function index(){
-        $posts = $this->repo->allPublished();
+        $posts = $this->postRepo->allPublished();
 
         return view('posts.index', compact('posts'));
     }
@@ -50,7 +60,7 @@ class PostController extends Controller {
      * @return \Illuminate\View\View
      */
     public function indexAll(){
-        $posts = $this->repo->allUntrashed();
+        $posts = $this->postRepo->allUntrashed();
 
         return view('posts.index',compact('posts'));
     }
@@ -62,7 +72,7 @@ class PostController extends Controller {
      * @return \Illuminate\View\View
      */
     public function listCategory(Category $category){
-        $posts = $this->repo->getForCategory($category);
+        $posts = $this->postRepo->getForCategory($category);
 
         return view('posts.index', compact('posts'));
     }
@@ -73,7 +83,9 @@ class PostController extends Controller {
      * @return \Illuminate\View\View
      */
     public function create(){
-        return view('posts.admin.create');
+        $categories = $this->categoryRepo->allForSelect();
+
+        return view('posts.admin.create',compact('categories'));
     }
 
     /**
@@ -98,7 +110,7 @@ class PostController extends Controller {
     public function store(SavePostRequest $request){
         $input = $request->all();
 
-        $result = $this->repo->savePost($input);
+        $result = $this->postRepo->savePost($input);
 
         if($result){
             return redirect(route('posts.index'))->with('message','Post Created!!');
@@ -127,7 +139,7 @@ class PostController extends Controller {
     public function update(Post $post,SavePostRequest $request){
         $input = $request->all();
 
-        $result = $this->repo->savePost($input,$post);
+        $result = $this->postRepo->savePost($input,$post);
 
         if($result){
             return redirect()->back()->with('message','Post Updated!');
