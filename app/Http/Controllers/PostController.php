@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\PostRepositoryInterface;
+use App\Repositories\Contracts\SubjectRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -33,14 +34,23 @@ class PostController extends Controller {
     protected $categoryRepo;
 
     /**
+     * A SubjectRepository instance.
+     *
+     * @var SubjectRepositoryInterface
+     */
+    protected $subjectRepo;
+
+    /**
      * Initializes fields and registers middlewares.
      *
      * @param PostRepositoryInterface $postRepo
      * @param CategoryRepositoryInterface $categoryRepo
+     * @param SubjectRepositoryInterface $subjectRepo
      */
-    public function __construct(PostRepositoryInterface $postRepo,CategoryRepositoryInterface $categoryRepo){
+    public function __construct(PostRepositoryInterface $postRepo,CategoryRepositoryInterface $categoryRepo,SubjectRepositoryInterface $subjectRepo){
         $this->postRepo = $postRepo;
         $this->categoryRepo = $categoryRepo;
+        $this->subjectRepo = $subjectRepo;
     }
 
     /**
@@ -83,9 +93,7 @@ class PostController extends Controller {
      * @return \Illuminate\View\View
      */
     public function create(){
-        $categories = $this->categoryRepo->allForSelect();
-
-        return view('posts.admin.create',compact('categories'));
+        return view('posts.admin.create');
     }
 
     /**

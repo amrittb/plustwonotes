@@ -154,6 +154,9 @@ return [
 		/*
 		 * Application Providers...
 		 */
+
+		'App\Providers\ViewComposerServiceProvider',
+
 		'App\Repositories\Providers\PostRepositoryProvider',
 		'App\Repositories\Providers\CategoryRepositoryProvider',
 		'App\Repositories\Providers\SubjectRepositoryProvider'
