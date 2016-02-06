@@ -75,6 +75,8 @@ class PostRepository implements PostRepositoryInterface{
         $post->post_slug = ($input['post_slug'] == "" || $input['post_slug'] == null) ? str_slug($post->post_title) : str_slug($input['post_slug']);
         $post->post_body = $input['post_body'];
         $post->published_at = Carbon::parse($input['published_at']);
+        $post->category_id = (intval($input['category_id']))?:null;
+        $post->subject_id = (intval($input['subject_id']) != 0 && $post->category_id != Category::BLOG)?intval($input['subject_id']):null;
 
         return $post->save();
     }

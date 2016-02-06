@@ -22,10 +22,21 @@
 
 <br />
 
+<!-- Category Input -->
 <div>
     {!! Form::label('category_id','Category',['class' =>'mdl-textfield__label']) !!}
     {!! Form::select('category_id',$categories) !!}
 </div>
+
+<br />
+
+<!-- Subject Input -->
+<div>
+    {!! Form::label('subject_id','Subject',['class' =>'mdl-textfield__label']) !!}
+    {!! Form::select('subject_id',$subjects) !!}
+</div>
+
+<br />
 
 <!-- Post Body Input -->
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
