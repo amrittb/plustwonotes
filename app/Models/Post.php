@@ -3,12 +3,15 @@
 namespace App\Models;
 
 
+use App\Presenters\PostPresenter;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Robbo\Presenter\PresentableInterface;
+use Robbo\Presenter\Robbo;
 
-class Post extends Model{
+class Post extends Model implements PresentableInterface{
 
     use SoftDeletes;
 
@@ -57,8 +60,7 @@ class Post extends Model{
      */
     public function getPublishedAtAttribute($value){
         $date = new Carbon($value);
-
-        return $date->format('Y-m-d');
+        return $date;
     }
 
     /**
@@ -66,11 +68,49 @@ class Post extends Model{
      *
      * @return bool
      */
-    public function isPublished(){
-        if($this->published_at != null && $this->published_at <= Carbon::now()){
+    public function isPublished()
+    {
+        if ($this->published_at != null && $this->published_at <= Carbon::now()) {
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * Defines a relationship with subject model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function subject(){
+        return $this->belongsTo('\App\Models\Subject');
+    }
+
+    /**
+     * Defines a relationship with Category model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category(){
+        return $this->belongsTo('\App\Models\Category');
+    }
+
+    /**
+     * Defines a relationship with User model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(){
+        //  Add when migration is created.
+        //return $this->belongsTo('\App\Models\User');
+    }
+
+    /**
+     * Return a created presenter.
+     *
+     * @return Robbo\Presenter\Presenter
+     */
+    public function getPresenter(){
+        return new PostPresenter($this);
     }
 }
