@@ -72,7 +72,7 @@ class PostController extends Controller {
     public function indexAll(){
         $posts = $this->postRepo->allUntrashed();
 
-        return view('posts.index',compact('posts'));
+        return view('posts.admin.index',compact('posts'));
     }
 
     /**
@@ -149,10 +149,12 @@ class PostController extends Controller {
 
         $result = $this->postRepo->savePost($input,$post);
 
+        //  Do not redirect back
+        //  Instead redirect to the edit form as when slug changes we redirect to correct edit page
         if($result){
-            return redirect()->back()->with('message','Post Updated!');
+            return redirect()->route('posts.edit',['posts' => $post->post_slug])->with('message','Post Updated!');
         } else {
-            return redirect()->back()->withInput()->with('message','Something went wrong!');
+            return redirect()->route('posts.edit',['posts' => $post->post_slug])->withInput()->with('message','Something went wrong!');
         }
     }
 
