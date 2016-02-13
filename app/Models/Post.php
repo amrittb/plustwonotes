@@ -21,6 +21,21 @@ class Post extends Model implements PresentableInterface{
     const STATUS_PUBLISHED = 1;
 
     /**
+     * Status of post when content is ready to be published but not yet published.
+     */
+    const STATUS_CONTENT_READY = 2;
+
+    /**
+     * Status of post when content is being created and drafted.
+     */
+    const STATUS_DRAFT = 3;
+
+    /**
+     * Status of post when it is moved to trash.
+     */
+    const STATUS_TRASHED = 4;
+
+    /**
      * Dates for Post model.
      *
      * @var array
