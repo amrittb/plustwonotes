@@ -121,7 +121,7 @@ class PostController extends Controller {
         $result = $this->postRepo->savePost($input);
 
         if($result){
-            return redirect(route('posts.index'))->with('message','Post Created!!');
+            return redirect(route('posts.create'))->with('message','Post Created!!');
         } else {
             return redirect()->back()->withInput()->with('message','Something went wrong!');
         }
