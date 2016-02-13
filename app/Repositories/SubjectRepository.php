@@ -15,7 +15,7 @@ class SubjectRepository implements SubjectRepositoryInterface{
      * @return array
      */
     public function allForSelect($hasNA = false){
-        $subjects = Subject::all();
+        $subjects = Subject::with('grade')->get();
 
         $subjectIds = array();
         $subjectNames = array();
@@ -27,7 +27,7 @@ class SubjectRepository implements SubjectRepositoryInterface{
 
         foreach($subjects as $subject){
             array_push($subjectIds,$subject->id);
-            array_push($subjectNames,$subject->subject_name);
+            array_push($subjectNames,'Grade '.$subject->grade->grade_name.' '.$subject->subject_name);
         }
 
         return array_combine($subjectIds,$subjectNames);
