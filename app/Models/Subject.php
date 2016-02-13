@@ -14,4 +14,13 @@ class Subject extends Model {
     public function grade(){
         return $this->belongsTo('\App\Models\Grade');
     }
+
+    /**
+     * Defines the relationship with Post Model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts(){
+        return $this->hasMany('\App\Models\Post');
+    }
 }

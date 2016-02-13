@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use App\Presenters\PostPresenter;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
