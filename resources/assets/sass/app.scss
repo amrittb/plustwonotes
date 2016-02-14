@@ -39,7 +39,9 @@ $datepicker-selected-outfocus: unquote("rgb(#{$palette-teal-300})") !default;
 */
 @import "material-design-lite";
 
-$max-width: 860px;
+@import "components/pagination";
+
+$max-width: 960px;
 
 .app-layout .section--center{
     max-width: $max-width;
@@ -49,6 +51,11 @@ $max-width: 860px;
     a{
         color: $layout-header-text-color;
     }
+}
+
+.mdl-data-table--responsive{
+    max-width:100%;
+    white-space: normal;
 }
 
 /*
