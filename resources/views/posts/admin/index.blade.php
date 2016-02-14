@@ -37,16 +37,7 @@
                     @endforeach
                 </tbody>
             </table>
-
-            {!! $posts->render() !!}
-
-            <ul class="pagination">
-                <li><a href="#!" class="pagination__link mdl-js-ripple-effect mdl-js-button mdl-button">&laquo;</a></li>
-                <li><a href="#" class="pagination__link mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">1</a></li>
-                <li><a href="#" class="pagination__link mdl-button mdl-js-button mdl-js-ripple-effect">2</a></li>
-                <li><a href="#" class="pagination__link mdl-button mdl-js-button mdl-js-ripple-effect">3</a></li>
-                <li><a href="#!" class="pagination__link mdl-button mdl-js-button mdl-js-ripple-effect">&raquo;</a></li>
-            </ul>
+            {!! with(new \App\Presenters\Pagination\MdlPresenter($posts))->render() !!}
         </div>
     @else
         No Posts Found
