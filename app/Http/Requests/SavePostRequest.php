@@ -1,7 +1,5 @@
 <?php namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class SavePostRequest extends Request {
 
 	/**
@@ -23,7 +21,8 @@ class SavePostRequest extends Request {
 	{
 		return [
 			'post_title' => 'required|min:3|max:100',
-			'post_body' => 'required'
+			'post_body' => 'required',
+			'category_id' => 'required'
 		];
 	}
 

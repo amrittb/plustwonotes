@@ -67,15 +67,18 @@ class PostRepository implements PostRepositoryInterface{
         if(is_null($post)){
             $post = new Post();
             $post->published_at = Carbon::now();
-            $post->status_id = 1;
+            $post->status_id = Post::STATUS_DRAFT;
             $post->user_id = 1;
-            $post->category_id = 3;
         }
 
         $post->post_title = Str::title($input['post_title']);
         $post->post_slug = ($input['post_slug'] == "" || $input['post_slug'] == null) ? str_slug($post->post_title) : str_slug($input['post_slug']);
         $post->post_body = $input['post_body'];
-        $post->published_at = Carbon::parse($input['published_at']);
+
+        if(!is_null($input['published_at'])){
+            $post->published_at = Carbon::parse($input['published_at']);
+        }
+
         $post->category_id = (intval($input['category_id']))?:null;
         $post->subject_id = (intval($input['subject_id']) != 0 && $post->category_id != Category::BLOG)?intval($input['subject_id']):null;
 

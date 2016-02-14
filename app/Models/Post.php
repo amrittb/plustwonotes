@@ -82,9 +82,8 @@ class Post extends Model implements PresentableInterface{
      *
      * @return bool
      */
-    public function isPublished()
-    {
-        if ($this->published_at != null && $this->published_at <= Carbon::now()) {
+    public function isPublished(){
+        if ($this->status_id == Post::STATUS_PUBLISHED && $this->published_at != null && $this->published_at <= Carbon::now()) {
             return true;
         } else {
             return false;
