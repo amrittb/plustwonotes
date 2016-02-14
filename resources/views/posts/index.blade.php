@@ -11,7 +11,7 @@
         @foreach($posts as $post)
             <div>
                 <h6>{{ $post->post_title }}</h6> <a class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect mdl-button--raised" href="{{ route('posts.show',[str_slug($post->post_slug)]) }}">Read More</a>
-                <p>{{ $post->post_body }}</p>
+                <p>{{ $post->post_body_preview }}</p>
             </div>
         @endforeach
     </div>

@@ -86,4 +86,13 @@ class PostPresenter extends Presenter{
                 break;
         }
     }
+
+    /**
+     * Presents preview of post text.
+     *
+     * @return string
+     */
+    public function presentPostBodyPreview(){
+        return Str::words(strip_tags($this->post_body,50));
+    }
 }
