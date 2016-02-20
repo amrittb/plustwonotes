@@ -91,6 +91,19 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Checks if the post is not a blog.
+     *
+     * @return bool
+     */
+    public function isNotBlog(){
+        if($this->category_id != Category::BLOG){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Defines a relationship with subject model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
