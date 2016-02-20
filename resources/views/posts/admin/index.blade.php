@@ -8,8 +8,10 @@
     <h3>Post List</h3>
 
     @if(count($posts) > 0)
+        @include('_partials.posts.stat')
+
         <div class="mdl-typography__text-left">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive">
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp">
                 <thead>
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Post Title</th>
@@ -37,7 +39,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! with(new \App\Presenters\Pagination\MdlPresenter($posts))->render() !!}
+            @include('_partials.posts.pagination')
         </div>
     @else
         No Posts Found

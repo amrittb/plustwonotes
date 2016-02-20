@@ -9,15 +9,14 @@
 
     @include('_partials.posts.breadcrumb')
 
+    @include('_partials.posts.stat')
+
     <div class="post-preview-container mdl-grid">
         @foreach($posts as $post)
             @include('_partials.posts.card')
         @endforeach
     </div>
 
-    <div>
-        {!! $posts->render() !!}
-    </div>
-
+    @include('_partials.posts.pagination')
 
 @stop
