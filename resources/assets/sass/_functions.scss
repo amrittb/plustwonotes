@@ -1,5 +1,5 @@
 @function color($palette){
-    @return unquote("rbg(#{$palette})");
+    @return unquote("rgb(#{$palette})");
 }
 
 @function color-alpha($palette,$alpha){
