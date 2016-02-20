@@ -5,18 +5,19 @@
 @stop
 
 @section('content')
-    <h4>Post List</h4>
+    <h3>Posts</h3>
 
-    <div class="mdl-typography__text-left">
+    @include('_partials.posts.breadcrumb')
+
+    <div class="post-preview-container mdl-grid">
         @foreach($posts as $post)
-            <div>
-                <h6>{{ $post->post_title }}</h6> <a class="mdl-button mdl-js-button mdl-button--accent mdl-js-ripple-effect mdl-button--raised" href="{{ route('posts.show',[str_slug($post->post_slug)]) }}">Read More</a>
-                <p>{{ $post->post_body_preview }}</p>
-            </div>
+            @include('_partials.posts.card')
         @endforeach
     </div>
 
     <div>
         {!! $posts->render() !!}
     </div>
+
+
 @stop

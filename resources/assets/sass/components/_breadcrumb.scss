@@ -1,0 +1,12 @@
+.breadcrumb{
+    text-transform: uppercase;
+
+    &__link{
+        color: $breadcrumb-text-color;
+        text-decoration: none;
+    }
+
+    &__link:hover{
+        color: $breadcrumb-text-color-hover;
+    }
+}

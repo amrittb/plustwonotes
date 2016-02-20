@@ -5,15 +5,13 @@
 @stop
 
 @section('content')
-    <div class="mdl-cell mdl-cell--12-col">
-        <h5>Create a new Post</h5>
+    <h3>Create a new Post</h3>
 
-        @include('_partials.bags.messagebag')
+    @include('_partials.bags.messagebag')
 
-        @include('_partials.bags.errorbag')
+    @include('_partials.bags.errorbag')
 
-        {!! Form::open(['route' => 'posts.store']) !!}
-            @include('_partials.posts.save')
-        {!! Form::close() !!}
-    </div>
+    {!! Form::open(['route' => 'posts.store']) !!}
+        @include('_partials.posts.save')
+    {!! Form::close() !!}
 @stop

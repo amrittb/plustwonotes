@@ -1,0 +1,7 @@
+@function color($palette){
+    @return unquote("rbg(#{$palette})");
+}
+
+@function color-alpha($palette,$alpha){
+    @return unquote("rgba(#{$palette},#{$alpha})");
+}

@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h4>Post List</h4>
+    <h3>Post List</h3>
 
     @if(count($posts) > 0)
         <div class="mdl-typography__text-left">

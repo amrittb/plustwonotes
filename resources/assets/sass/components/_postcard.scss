@@ -1,0 +1,21 @@
+.post-card{
+    max-width: $post-card-width;
+    position: relative;
+
+    &__media{
+        background-color: unquote("rgb(#{$color-accent-contrast})");
+        height: $post-card-media-height;
+    }
+
+    &__post-detail{
+        font-size:$post-detail-font-size;
+        text-transform: uppercase;
+        color: $post-detail-text-color;
+    }
+
+    &__action{
+        position: absolute;
+        right:20px;
+        top: $post-card-media-height - $button-fab-size-mini / 2;
+    }
+}

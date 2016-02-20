@@ -5,9 +5,30 @@
 @stop
 
 @section('content')
-    <h4>{{ $post->post_title }}</h4>
+    <div class="post mdl-shadow--2dp">
+        <span class="post__date">
+            {{ $post->published_at->diffForHumans() }} | {{ $post->published_at->format('M dS, Y') }}
+        </span>
 
-    <div>
-        {{ $post->post_body }}
+        <h3 class="post__title">{{ $post->post_title }}</h3>
+
+        <div class="post__detail">
+            <span class="post__category">
+                {{ $post->category->category_name }}
+            </span>
+            @if($post->isNotBlog())
+                | <span class="post__grade-subject">
+                    {{ $post->grade_subject }}
+                </span>
+            @endif
+        </div>
+
+        <div class="post__breadcrumb">
+            @include('_partials.posts.breadcrumb')
+        </div>
+
+        <div class="post__body">
+            {!! $post->post_body !!}
+        </div>
     </div>
 @stop

@@ -1,0 +1,27 @@
+.post{
+    padding: $post-body-gutter-size/2 $post-body-gutter-size;
+
+    &__date{
+        text-transform: uppercase;
+        color: $post-detail-text-color;
+        font-weight: bold;
+    }
+
+    &__title{
+        margin:0;
+    }
+
+    &__detail{
+        font-size: $post-detail-font-size;
+        color: $post-detail-text-color;
+        text-transform: uppercase;
+    }
+
+    &__breadcrumb{
+        margin: $post-body-gutter-size/2 0;
+    }
+    
+    &__body{
+        text-align: justify;
+    }
+}

@@ -16,8 +16,10 @@
         @yield('postnav')
 
         <main class="mdl-layout__content">
-            <div class="page-content section--center mdl-grid">
-                @yield('content')
+            <div class="page-content section--center mdl-typography--text-left mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    @yield('content')
+                </div>
             </div>
 
             @include('_partials.footer')

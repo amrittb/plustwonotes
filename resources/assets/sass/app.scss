@@ -5,6 +5,7 @@
 */
 @import "color-definitions";
 @import "mixins";
+@import "functions";
 
 $color-primary: $palette-orange-A400;
 $color-primary-dark: $palette-orange-A700;
@@ -39,7 +40,11 @@ $datepicker-selected-outfocus: unquote("rgb(#{$palette-teal-300})") !default;
 */
 @import "material-design-lite";
 
+@import "variables";
 @import "components/pagination";
+@import "components/postcard";
+@import "components/post";
+@import "components/breadcrumb";
 
 $max-width: 960px;
 
