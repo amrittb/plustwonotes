@@ -1,0 +1,14 @@
+.post-stat{
+    background-color: $post-stat-bg-color;
+    padding: $post-stat-gutter-size;
+    margin: $post-stat-gutter-size 0;
+    color: $post-stat-text-color;
+
+    &__page{
+        font-size:18px;
+    }
+
+    &__numeric{
+        color: $post-stat-numeric-color;
+    }
+}

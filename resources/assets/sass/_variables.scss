@@ -7,8 +7,19 @@
 */
 $post-body-gutter-size: 60px;
 
+/*
+*   Post Detail
+*/
 $post-detail-font-size: 12px;
 $post-detail-text-color: rgba(#000,0.5);
+
+/*
+*   Post Stat
+*/
+$post-stat-gutter-size: 20px;
+$post-stat-bg-color: color($color-accent);
+$post-stat-text-color: color($color-white);
+$post-stat-numeric-color: color-alpha($color-white,0.6);
 
 /*
 *   Post Card

@@ -42,8 +42,9 @@ $datepicker-selected-outfocus: unquote("rgb(#{$palette-teal-300})") !default;
 
 @import "variables";
 @import "components/pagination";
-@import "components/postcard";
-@import "components/post";
+@import "components/post/post";
+@import "components/post/card";
+@import "components/post/stat";
 @import "components/breadcrumb";
 
 $max-width: 960px;
