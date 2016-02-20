@@ -84,7 +84,7 @@ class PostController extends Controller {
     public function listCategory(Category $category){
         $posts = $this->postRepo->getForCategory($category);
 
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts','category'));
     }
 
     /**
