@@ -29,7 +29,7 @@
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric">{!! link_to_route('posts.edit',$post->post_title_truncated,['posts' => $post->post_slug]) !!}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->category->category_name }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $post->grade_and_subject }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $post->grade_subject }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->created_at->diffForHumans() }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->published_at->diffForHumans() }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->user_id }}</td>
