@@ -45,6 +45,16 @@ class Post extends Model implements PresentableInterface{
     ];
 
     /**
+     * Fillable columns for the model.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'post_title',
+        'post_body'
+    ];
+
+    /**
      * Get published posts.
      *
      * @param Builder $query

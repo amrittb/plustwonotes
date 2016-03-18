@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Repositories;
+<?php namespace App\Repositories;
 
 use App\Models\Category;
 use App\Models\Post;
@@ -8,10 +6,6 @@ use App\Repositories\Contracts\PostRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
-/**
- * Class PostRepository
- * @package App\Repositories
- */
 class PostRepository implements PostRepositoryInterface{
 
     /**
@@ -47,7 +41,7 @@ class PostRepository implements PostRepositoryInterface{
     /**
      * Get all posts for certain category;
      *
-     * @param \App\Models\Category $category
+     * @param Category $category
      * @return mixed
      */
     public function getForCategory(Category $category){
@@ -65,9 +59,7 @@ class PostRepository implements PostRepositoryInterface{
      */
     public function savePost($input,Post $post = null){
         if(is_null($post)){
-            $post = new Post();
-            $post->published_at = Carbon::now();
-            $post->status_id = Post::STATUS_DRAFT;
+            $post = $this->createPost($post);
             $post->user_id = 1;
         }
 
@@ -83,5 +75,19 @@ class PostRepository implements PostRepositoryInterface{
         $post->subject_id = (intval($input['subject_id']) != 0 && $post->category_id != Category::BLOG)?intval($input['subject_id']):null;
 
         return $post->save();
+    }
+
+    /**
+     *  Stubs out an initial post for a post creation.
+     *
+     * @return Post
+     * @internal param Post $post
+     */
+    protected function createPost(){
+        $post = new Post();
+        $post->published_at = Carbon::now();
+        $post->status_id = Post::STATUS_DRAFT;
+
+        return $post;
     }
 }
