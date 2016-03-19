@@ -15,24 +15,6 @@ $color-accent-contrast: $palette-grey-200;
 
 $layout-header-text-color: unquote("rgb(#{$palette-grey-700})");
 
-// Date Picker
-$datepicker-weekday-bg: unquote("rgb(#{$palette-teal-700})") !default;
-$datepicker-date-bg: unquote("rgb(#{$color-accent})") !default;
-$datepicker-year: rgba(255, 255, 255, .4) !default;
-$datepicker-focus: rgba(0,0,0, .05) !default;
-$datepicker-selected: unquote("rgb(#{$color-accent})") !default;
-$datepicker-selected-outfocus: unquote("rgb(#{$palette-teal-300})") !default;
-
-/*
-*
-*   Pickadate themes
-*
-*/
-@import "default";
-@import "default.date";
-@import "default.time";
-@import "datepicker";
-
 /*
 *
 *   Material Design Lite import
