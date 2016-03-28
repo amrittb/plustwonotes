@@ -85,9 +85,65 @@ class PostRepository implements PostRepositoryInterface{
      */
     protected function createPost(){
         $post = new Post();
-        $post->published_at = Carbon::now();
-        $post->status_id = Post::STATUS_DRAFT;
+
+        $this->draftPost($post);
 
         return $post;
+    }
+
+    /**
+     * Deletes the post.
+     *
+     * @param Post $post
+     * @return bool|null|void
+     * @throws \Exception
+     */
+    public function deletePost(Post $post){
+        if($post->isDeleted()){
+            // Forces permanent deleted if the post is already soft deleted.
+            return $post->forceDelete();
+        }
+
+        // Updating post status for deleting the post.
+        Post::deleted(function($post){
+            // This ensures that the model gets updated instead of getting inserted.
+            $post->exists = true;
+
+            $post->status_id = Post::STATUS_TRASHED;
+            $post->save();
+
+            // Resets the existence.
+            $post->exists = false;
+        });
+
+        return $post->delete();
+    }
+
+    /**
+     * Publishes a post.
+     *
+     * @param Post $post
+     * @return bool
+     */
+    public function publishPost(Post $post){
+        if($post->isPublishable()){
+            $post->status_id = Post::STATUS_PUBLISHED;
+            return $post->save();
+        }
+        return false;
+    }
+
+    /**
+    * Drafts a post.
+    *
+    * @param Post $post
+    * @return bool
+    */
+    public function draftPost(Post $post){
+        if($post->isDraftable()){
+            $post->status_id = Post::STATUS_DRAFT;
+            return $post->save();
+        }
+        return false;
     }
 }

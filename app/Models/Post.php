@@ -93,11 +93,16 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isPublished(){
-        if ($this->status_id == Post::STATUS_PUBLISHED && $this->published_at != null && $this->published_at <= Carbon::now()) {
-            return true;
-        } else {
-            return false;
-        }
+        return ($this->status_id == Post::STATUS_PUBLISHED && $this->published_at != null && $this->published_at <= Carbon::now());
+    }
+
+    /**
+     * Checks if the post is deleted.
+     *
+     * @return bool
+     */
+    public function isDeleted(){
+        return ($this->status_id == Post::STATUS_TRASHED && $this->trashed());
     }
 
     /**
@@ -111,6 +116,60 @@ class Post extends Model implements PresentableInterface{
         } else {
             return false;
         }
+    }
+
+    /**
+     * Checks if the post is readable.
+     *
+     * @return bool
+     */
+    public function isReadable(){
+        return $this->isPublished();
+    }
+
+    /**
+     * Checks if the post is editable.
+     *
+     * @return bool
+     */
+    public function isEditable(){
+        return true;
+    }
+
+    /**
+     * Checks if the post is publishable.
+     *
+     * @return bool
+     */
+    public function isPublishable(){
+        return ! ($this->isPublished() || $this->isDeleted());
+    }
+
+    /**
+     * Checks if the post is draftable.
+     *
+     * @return bool
+     */
+    public function isDraftable(){
+        return $this->isPublished();
+    }
+
+    /**
+     * Checks if the post is soft deleteable.
+     *
+     * @return bool
+     */
+    public function isSoftDeleteable(){
+        return ! $this->isDeleted();
+    }
+
+    /**
+     * Checks if the post is hard deleteable.
+     *
+     * @return bool
+     */
+    public function isHardDeleteable(){
+        return $this->isDeleted();
     }
 
     /**

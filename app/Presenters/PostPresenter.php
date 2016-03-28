@@ -95,4 +95,58 @@ class PostPresenter extends Presenter{
     public function presentPostBodyPreview(){
         return Str::words(strip_tags($this->post_body,50));
     }
+
+    /**
+     * Presents curd post actions.
+     *
+     * @return string
+     */
+    public function presentActions(){
+        return view("_partials.posts.admin.actions",['post' => $this])->render();
+    }
+
+    /**
+     * Presents post reading url.
+     *
+     * @return string
+     */
+    public function presentReadUrl(){
+        return route('posts.show',['posts' => $this->post_slug]);
+    }
+
+    /**
+     * Presents post editing url.
+     *
+     * @return string
+     */
+    public function presentEditUrl(){
+        return route('posts.edit',['posts' => $this->post_slug]);
+    }
+
+    /**
+     * Presents post deleting url.
+     *
+     * @return string
+     */
+    public function presentDeleteUrl(){
+        return route('posts.destroy',['posts' => $this->post_slug]);
+    }
+
+    /**
+     * Presents post publish url.
+     *
+     * @return string
+     */
+    public function presentPublishUrl(){
+        return route('posts.publish',['posts' => $this->post_slug]);
+    }
+
+    /**
+     * Presents post draft url.
+     *
+     * @return string
+     */
+    public function presentDraftUrl(){
+        return route('posts.draft',['posts' => $this->post_slug]);
+    }
 }

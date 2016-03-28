@@ -166,10 +166,42 @@ class PostController extends Controller {
      * @throws \Exception
      */
     public function destroy(Post $post){
-        $result = $post->delete();
+        $result = $this->postRepo->deletePost($post);
 
         if($result){
-            return redirect(route('posts.index'))->with('message','Post moved to trash!');
+            return redirect()->back()->with('message','Post deleted!');
+        } else {
+            return redirect()->back()->with('message','Something went wrong!');
+        }
+    }
+
+    /**
+     * Publishes a post.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function publish(Post $post){
+        $result = $this->postRepo->publishPost($post);
+
+        if($result){
+            return redirect()->back()->with('message','Post published!');
+        } else {
+            return redirect()->back()->with('message','Something went wrong!');
+        }
+    }
+
+    /**
+     * Drafts a post.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function draft(Post $post){
+        $result = $this->postRepo->draftPost($post);
+
+        if($result){
+            return redirect()->back()->with('message','Post drafted!');
         } else {
             return redirect()->back()->with('message','Something went wrong!');
         }

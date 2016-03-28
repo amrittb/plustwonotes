@@ -11,7 +11,7 @@
         @include('_partials.posts.stat')
 
         <div class="mdl-typography__text-left">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp">
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp post-list">
                 <thead>
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Post Title</th>
@@ -26,14 +26,14 @@
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
-                        <tr>
+                        <tr class="post-list-item">
                             <td class="mdl-data-table__cell--non-numeric">{!! link_to_route('posts.edit',$post->post_title_truncated,['posts' => $post->post_slug]) !!}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->category->category_name }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->grade_subject }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->created_at->diffForHumans() }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->published_at->diffForHumans() }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->user_id }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">Actions</td>
+                            <td class="mdl-data-table__cell--non-numeric">{!! $post->actions !!}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->status_text }}</td>
                         </tr>
                     @endforeach
