@@ -20,7 +20,12 @@
                 </h2>
 
                 <p class="section__briefing">
-                    Plus Two Notes is a website created to help students get HSEB notes and references easily.
+                    <p>
+                    Plus Two Notes is a website created to help students get HSEB notes and references easily.  We provide you with rich, easy and comprehensive notes based on HSEB plus two Syllabus. Also we have other educational materials like HSEB syllabus to help you to study in systematic order.
+                    </p>
+                    <p>
+                        We also provide you with a platform for discussing any questions that you have with fellow students.
+                    </p>
                 </p>
             </div>
         </section>
