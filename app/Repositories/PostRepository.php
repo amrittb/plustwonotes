@@ -146,4 +146,15 @@ class PostRepository implements PostRepositoryInterface{
         }
         return false;
     }
+
+    /**
+     * Returns Recommended posts for the user.
+     *
+     * @return mixed
+     */
+    public function getRecommended() {
+        $posts = Post::published()->latest()->take(3)->get();
+
+        return $posts;
+    }
 }

@@ -3,9 +3,28 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\Category;
+use App\Models\Post;
+use App\Repositories\Contracts\PostRepositoryInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller {
+
+    /**
+     * PostRepository object.
+     *
+     * @var PostRepositoryInterface
+     */
+    protected $postRepo;
+
+    /**
+     * Controller Constructor.
+     *
+     * @param PostRepositoryInterface $postRepo
+     */
+    public function __construct(PostRepositoryInterface $postRepo){
+        $this->postRepo = $postRepo;
+    }
 
     /**
      * Index action for home page.
@@ -13,7 +32,11 @@ class HomeController extends Controller {
      * @return \Illuminate\View\View
      */
 	public function index(){
-        return view('home.index');
+        $recomendations = $this->postRepo->getRecommended();
+//        $recomendations = Post::all()->take(3);
+        $postCategories = Category::all();
+
+        return view('home.index',compact('recomendations','postCategories'));
     }
 
     /**

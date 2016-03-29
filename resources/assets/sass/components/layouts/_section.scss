@@ -1,0 +1,11 @@
+.section{
+    padding:2% 0;
+
+    &__heading{
+        font-weight: 100;
+    }
+    
+    &--categories{
+        background: color($palette-grey-100);
+    }
+}

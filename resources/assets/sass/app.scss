@@ -17,6 +17,7 @@
 @import "variables";
 @import "components/layouts/header";
 @import "components/layouts/hero";
+@import "components/layouts/section";
 @import "components/pagination";
 @import "components/post/post";
 @import "components/post/card";
@@ -26,8 +27,9 @@
 
 $max-width: 960px;
 
-.app-layout .section--center{
+.section--center{
     max-width: $max-width;
+    margin: 0 auto;
 }
 
 .mdl-data-table--responsive{

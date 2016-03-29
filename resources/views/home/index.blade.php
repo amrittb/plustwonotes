@@ -8,9 +8,52 @@
     <div class="hero hero--home">
         <div class="hero__bg-container">
             <div class="hero__bg-container-overlay">
-                <h1>Oh! Hi there.<br />In case you're wondering,<br />We provide you with HSEB Notes &amp; Refrences</h1>
+                <h1>Oh! Hi there.<br />In case you're wondering,<br />We provide you with HSEB Notes &amp; References</h1>
                 <a href="{{ route('posts.index') }}" class="hero__btn mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">Read what we got</a>
             </div>
         </div>
+
+        <section class="section section--intro mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col section--center mdl-typography--text-left">
+                <h2 class="section__heading">
+                    Introducing Plus Two Notes
+                </h2>
+
+                <p class="section__briefing">
+                    Plus Two Notes is a website created to help students get HSEB notes and references easily.
+                </p>
+            </div>
+        </section>
+
+        <section class="section section--categories mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col section--center">
+                <h2 class="section__heading mdl-typography--text-left">
+                    We offer you to read...
+                </h2>
+
+                <div class="mdl-grid post-category">
+                    @foreach($postCategories as $category)
+                        <div class="mdl-cell mdl-cell--4-col post-category"><img src="/img/dog.png" alt="{{ $category->category_name }}" class="post-category__logo">
+                            <h4 class="post-category__title section__heading">{{ $category->category_name }}</h4>
+                            <a href="{{ route('posts.index.category',['category' => $category->category_slug]) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Read 'em</a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <section class="section mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col section--center">
+                <h2 class="section__heading mdl-typography--text-left">
+                    We recommend you to read...
+                </h2>
+
+                <div class="mdl-grid">
+                    @foreach($recomendations as $post)
+                        @include('_partials.posts.card',['post' => $post])
+                    @endforeach
+                </div>
+            </div>
+        </section>
     </div>
 @stop
