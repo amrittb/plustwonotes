@@ -4,7 +4,7 @@
     Plus Two Notes
 @stop
 
-@section('postnav')
+@section('content')
     <div class="hero hero--home">
         <div class="hero__bg-container">
             <div class="hero__bg-container-overlay">
