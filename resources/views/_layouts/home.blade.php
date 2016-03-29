@@ -1,1 +1,1 @@
-@extends('_layouts.main',compact('postCategories'))
+@extends('_layouts.main')
