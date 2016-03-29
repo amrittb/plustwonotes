@@ -15,6 +15,7 @@
 @import "material-design-lite";
 
 @import "variables";
+@import "components/header";
 @import "components/pagination";
 @import "components/post/post";
 @import "components/post/card";
@@ -28,23 +29,8 @@ $max-width: 960px;
     max-width: $max-width;
 }
 
-.app-navigation{
-    a{
-        color: $layout-header-text-color;
-    }
-}
-
 .mdl-data-table--responsive{
     max-width:100%;
     width:100%;
     white-space: normal;
 }
-
-/*
-.mdl-layout__header{
-    background: unquote("rgb(#{$palette-grey-100})");
-}*/
-
-/*.mdl-navigation__link:hover{
-    color: unquote("rgb(#{$palette-orange-500})");
-}*/

@@ -3,7 +3,7 @@
     <div class="mdl-layout__header-row">
         <!-- Title -->
         <span class="mdl-layout-title">
-            <img src="{{ asset('img/header-logo-small.png') }}">
+            <h1 class="header-logo">Plus Two Notes</h1>
         </span>
         <div class="mdl-layout-spacer"></div>
 

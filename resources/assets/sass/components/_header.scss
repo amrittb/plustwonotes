@@ -1,0 +1,15 @@
+$header-height: 40px;
+
+h1.header-logo{
+    background: url('../../img/logo.svg') center left no-repeat;
+    height: $header-height;
+    width: 4.5 * $header-height;
+    color: transparent;
+    font-size:0;
+}
+
+.app-navigation{
+    a{
+        color: $layout-header-text-color;
+    }
+}
