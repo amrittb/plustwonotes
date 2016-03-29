@@ -1,0 +1,22 @@
+.post-list-item{
+    
+    &__actions{
+        form,a{
+            display: inline-block;
+        }
+    }
+    
+    &__action{
+        background: none;
+        border:none;
+        color: color($color-accent);
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+
+        &:hover{
+            cursor: pointer;
+            color: color($color-accent-dark);
+        }
+    }
+}

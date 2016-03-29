@@ -6,15 +6,7 @@
 @import "color-definitions";
 @import "mixins";
 @import "functions";
-
-$color-primary: $palette-orange-A400;
-$color-primary-dark: $palette-orange-A700;
-$color-accent: $palette-teal-500;
-$color-primary-contrast:$palette-grey-100;
-$color-accent-contrast: $palette-grey-200;
-
-$layout-header-text-color: unquote("rgb(#{$palette-grey-700})");
-
+@import "colors";
 /*
 *
 *   Material Design Lite import
@@ -27,6 +19,7 @@ $layout-header-text-color: unquote("rgb(#{$palette-grey-700})");
 @import "components/post/post";
 @import "components/post/card";
 @import "components/post/stat";
+@import "components/post/listitem";
 @import "components/breadcrumb";
 
 $max-width: 960px;
