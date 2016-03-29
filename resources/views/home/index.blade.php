@@ -1,12 +1,15 @@
-@extends ('_layouts.app')
+@extends ('_layouts.home')
 
 @section('title')
     Plus Two Notes
 @stop
 
-@section('content')
-    <h4>Plus Two Notes</h4>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, animi aperiam blanditiis commodi deleniti dolor ducimus esse ex explicabo fugit ipsa laudantium molestiae nisi nostrum odio recusandae voluptatem voluptatum. Asperiores.
-    </p>
+@section('postnav')
+    <div class="hero hero--home">
+        <div class="hero__bg-container">
+            <div class="hero__bg-container-overlay">
+                <h1>Oh! Hi there.<br />In case you're wondering,<br />We provide you with HSEB Notes &amp; Refrences</h1>
+            </div>
+        </div>
+    </div>
 @stop

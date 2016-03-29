@@ -13,3 +13,7 @@ h1.header-logo{
         color: $layout-header-text-color;
     }
 }
+
+.app-layout--transparent{
+    background: url('../../img/sliderbg.jpg') center / cover;
+}
