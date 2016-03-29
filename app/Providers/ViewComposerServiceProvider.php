@@ -13,6 +13,7 @@ class ViewComposerServiceProvider extends ServiceProvider{
      * @return void
      */
     public function boot(){
+        \View::composer('*','App\Http\ViewComposers\PostCategoryComposer');
         \View::composer('_partials.posts.save','App\Http\ViewComposers\SavePostComposer');
     }
 

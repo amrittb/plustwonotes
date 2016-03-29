@@ -1,7 +1,4 @@
-<?php
-
-namespace App\Repositories;
-
+<?php namespace App\Repositories;
 
 use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
@@ -26,5 +23,16 @@ class CategoryRepository implements CategoryRepositoryInterface{
 
         $categoryArray = array_combine($categoryIds,$categoryNames);
         return $categoryArray;
+    }
+
+    /**
+     * Returns all categories.
+     *
+     * @return mixed
+     */
+    public function all() {
+        $categories = Category::all();
+
+        return $categories;
     }
 }

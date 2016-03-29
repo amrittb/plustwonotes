@@ -33,10 +33,8 @@ class HomeController extends Controller {
      */
 	public function index(){
         $recomendations = $this->postRepo->getRecommended();
-//        $recomendations = Post::all()->take(3);
-        $postCategories = Category::all();
 
-        return view('home.index',compact('recomendations','postCategories'));
+        return view('home.index',compact('recomendations'));
     }
 
     /**
