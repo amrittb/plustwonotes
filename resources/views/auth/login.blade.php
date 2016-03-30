@@ -32,6 +32,15 @@
 
                     <br />
 
+                    <div class="checkbox-container">
+                        <label class="checkbox--inverse mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="remember-me">
+                            <input type="checkbox" id="remember-me" class="mdl-checkbox__input" name="remember">
+                            <span class="mdl-checkbox__label">Remember me?</span>
+                        </label>
+                    </div>
+
+                    <br /><br />
+
                     <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" value="Login" />
 
                 {!! Form::close() !!}

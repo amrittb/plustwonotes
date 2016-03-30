@@ -8,3 +8,9 @@ $form-inverse-color: color($palette-grey-100);
     color: $form-inverse-color;
     border-bottom-color: $form-inverse-color;
 }
+
+.checkbox--inverse{
+    .mdl-checkbox__box-outline{
+        border-color: $form-inverse-color;
+    }
+}

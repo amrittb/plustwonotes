@@ -7,6 +7,8 @@
 @import "mixins";
 @import "functions";
 @import "colors";
+@import "variables";
+
 /*
 *
 *   Material Design Lite import
@@ -14,7 +16,6 @@
 */
 @import "material-design-lite";
 
-@import "variables";
 @import "typography";
 @import "components/layouts/header";
 @import "components/layouts/hero";
