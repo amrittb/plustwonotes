@@ -97,6 +97,21 @@ class PostPresenter extends Presenter{
     }
 
     /**
+     * Presents name of the post creator.
+     *
+     * @return string
+     */
+    public function presentCreatorName(){
+        $name = $this->user->first_name.' ';
+
+        $name .= (is_null($this->user->middle_name))?'':$this->user->middle_name.' ';
+
+        $name .= $this->user->last_name;
+
+        return $name;
+    }
+
+    /**
      * Presents curd post actions.
      *
      * @return string

@@ -32,7 +32,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function allUntrashed() {
-        $posts = Post::with('subject.grade','category')->latest()->paginate($this->postLimit);
+        $posts = Post::with('subject.grade','category','user')->latest()->paginate($this->postLimit);
 
         return $posts;
     }
