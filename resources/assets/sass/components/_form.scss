@@ -1,0 +1,10 @@
+$form-inverse-color: color($palette-grey-100);
+
+.label--inverse{
+    color: $form-inverse-color;
+}
+
+.textfield--inverse{
+    color: $form-inverse-color;
+    border-bottom-color: $form-inverse-color;
+}

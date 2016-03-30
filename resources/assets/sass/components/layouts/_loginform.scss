@@ -1,0 +1,19 @@
+.login-form{
+    color:#fff;
+
+    &__bg-container{
+        background-image: url('../../img/logincoverx1200.jpg');
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+    }
+    
+    &__bg-overlay{
+        padding: 5% 0;
+        display: block;
+        background: rgba(0, 0, 0, 0.4);
+        width: 100%;
+        height: 100%;
+    }
+}

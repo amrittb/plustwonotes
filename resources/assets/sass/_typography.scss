@@ -1,0 +1,19 @@
+.text--thin{
+    font-weight: 100;
+}
+
+.text--bold{
+    font-weight: 800;
+}
+
+.text--color-primary{
+    color: color($color-primary);
+}
+
+.text--color-accent{
+    color: color($color-accent);
+}
+
+.text--color-white{
+    color: #fff;
+}
