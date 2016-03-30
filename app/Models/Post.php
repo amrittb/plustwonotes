@@ -197,7 +197,7 @@ class Post extends Model implements PresentableInterface{
      */
     public function user(){
         //  Add when migration is created.
-        //return $this->belongsTo('\App\Models\User');
+        return $this->belongsTo('\App\Models\User');
     }
 
     /**
