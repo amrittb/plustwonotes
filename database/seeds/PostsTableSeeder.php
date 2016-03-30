@@ -1,42 +1,43 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class PostsTableSeeder extends Seeder
-{
+class PostsTableSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $faker = Faker\Factory::create();
 
-        $categoriesCount = Category::count();
-        $subjectsCount = Subject::count();
+        $categories = Category::lists('id');
+        $subjects = Subject::lists('id');
+        $users = User::lists('id');
 
-        for($i = 0;$i < 10;$i++){
+        for($i = 0;$i < 60;$i++){
             $subject_id = null;
-            $category_id = $faker->numberBetween(1,$categoriesCount);
+            $category_id = $faker->randomElement($categories);
 
             if($category_id != 3){
-                $subject_id = $faker->numberBetween(1,$subjectsCount);
+                $subject_id = $faker->randomElement($subjects);
             }
 
-            $title = $faker->realText(50);
+            $title = $faker->text(50);
 
-            \App\Models\Post::create([
+            Post::create([
                 'post_title' => $title,
-                'post_body' => $faker->text(1000),
+                'post_body' => $faker->text(10000),
                 'post_slug' => str_slug($title),
                 'published_at' => \Carbon\Carbon::now(),
                 'category_id' => $category_id,
                 'subject_id' => $subject_id,
-                'user_id' => 1,
-                'status_id' => 1
+                'user_id' => $faker->randomElement($users),
+                'status_id' => $faker->numberBetween(1,3)
             ]);
         }
     }

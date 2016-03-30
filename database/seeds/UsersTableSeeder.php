@@ -11,19 +11,20 @@ class UsersTableSeeder extends Seeder {
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $faker = Faker\Factory::create();
 
-        User::create([
-            'username' => $faker->userName,
-            'first_name' => $faker->firstName,
-            'last_name' => $faker->lastName,
-            'email' => $faker->email,
-            'avatar' => $faker->imageUrl(),
-            'password' => bcrypt('password'),
-            'status_id' => 1
-        ]);
+        for($i = 0; $i < 5; $i++){
+            User::create([
+                'username' => $faker->userName,
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
+                'email' => $faker->email,
+                'avatar' => $faker->imageUrl(),
+                'password' => bcrypt('password'),
+                'status_id' => 1
+            ]);
+        }
     }
 
 }
