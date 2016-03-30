@@ -20,9 +20,8 @@ class PostRepository implements PostRepositoryInterface{
      *
      * @return mixed
      */
-    public function allPublished()
-    {
-        $posts = Post::published()->latest()->paginate($this->postLimit);
+    public function allPublished() {
+        $posts = Post::with('subject.grade','category')->published()->latest()->paginate($this->postLimit);
 
         return $posts;
     }
@@ -32,8 +31,8 @@ class PostRepository implements PostRepositoryInterface{
      *
      * @return mixed
      */
-    public function allUntrashed(){
-        $posts = Post::with('subject.grade','category')->latest()->where('status_id','!=',Post::STATUS_TRASHED)->paginate($this->postLimit);
+    public function allUntrashed() {
+        $posts = Post::with('subject.grade','category')->latest()->paginate($this->postLimit);
 
         return $posts;
     }
@@ -44,7 +43,7 @@ class PostRepository implements PostRepositoryInterface{
      * @param Category $category
      * @return mixed
      */
-    public function getForCategory(Category $category){
+    public function getForCategory(Category $category) {
         $posts = Post::where('category_id',$category->id)->published()->latest()->paginate($this->postLimit);
 
         return $posts;
@@ -57,7 +56,7 @@ class PostRepository implements PostRepositoryInterface{
      * @param Post $post
      * @return bool
      */
-    public function savePost($input,Post $post = null){
+    public function savePost($input,Post $post = null) {
         if(is_null($post)){
             $post = $this->createPost($post);
             $post->user_id = 1;
@@ -83,7 +82,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return Post
      * @internal param Post $post
      */
-    protected function createPost(){
+    protected function createPost() {
         $post = new Post();
 
         $this->draftPost($post);
@@ -98,7 +97,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return bool|null|void
      * @throws \Exception
      */
-    public function deletePost(Post $post){
+    public function deletePost(Post $post) {
         if($post->isDeleted()){
             // Forces permanent deleted if the post is already soft deleted.
             return $post->forceDelete();
@@ -125,7 +124,7 @@ class PostRepository implements PostRepositoryInterface{
      * @param Post $post
      * @return bool
      */
-    public function publishPost(Post $post){
+    public function publishPost(Post $post) {
         if($post->isPublishable()){
             $post->status_id = Post::STATUS_PUBLISHED;
             return $post->save();
@@ -139,7 +138,7 @@ class PostRepository implements PostRepositoryInterface{
     * @param Post $post
     * @return bool
     */
-    public function draftPost(Post $post){
+    public function draftPost(Post $post) {
         if($post->isDraftable()){
             $post->status_id = Post::STATUS_DRAFT;
             return $post->save();
