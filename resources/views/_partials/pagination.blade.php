@@ -1,0 +1,1 @@
+{!! with(new \App\Presenters\Pagination\MdlPresenter($list))->render() !!}

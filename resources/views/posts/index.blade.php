@@ -17,6 +17,6 @@
         @endforeach
     </div>
 
-    @include('_partials.posts.pagination')
+    @include('_partials.pagination',['list' => $posts])
 
 @stop

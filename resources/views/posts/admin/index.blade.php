@@ -39,7 +39,7 @@
                     @endforeach
                 </tbody>
             </table>
-            @include('_partials.posts.pagination')
+            @include('_partials.pagination',['list' => $posts])
         </div>
     @else
         No Posts Found
