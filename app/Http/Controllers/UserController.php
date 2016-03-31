@@ -64,7 +64,7 @@ class UserController extends Controller {
 	 * @return Response
 	 */
 	public function show(User $user) {
-		return $user;
+		return view('users.show',compact('user'));
 	}
 
 	/**

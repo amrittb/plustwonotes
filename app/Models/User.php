@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Robbo\Presenter\PresentableInterface;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, PresentableInterface {
@@ -49,6 +50,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function scopeActive(Builder $query) {
         return $query->where('status_id','=',static::STATUS_ACTIVE);
+    }
+
+    /**
+     * Check if the logged in user is this user.
+     *
+     * @return bool
+     */
+    public function isLoggedIn() {
+        return ($this->id == Auth::user()->id);
     }
 
     /**
