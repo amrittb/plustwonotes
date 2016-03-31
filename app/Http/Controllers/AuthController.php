@@ -12,8 +12,25 @@ class AuthController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
+    /**
+     * Path to redirect after the user is logged in.
+     *
+     * @var string
+     */
     protected $redirectPath = "/";
 
+    /**
+     * Path to redirect to if the user is already logged in and try to access login page.
+     *
+     * @var string
+     */
+    protected $redirectTo = "/";
+
+    /**
+     * Path to redirect to for the user to login.
+     *
+     * @var string
+     */
     protected $loginPath = "/users/login";
 
     /**

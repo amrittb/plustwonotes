@@ -51,6 +51,8 @@ class PostController extends Controller {
         $this->postRepo = $postRepo;
         $this->categoryRepo = $categoryRepo;
         $this->subjectRepo = $subjectRepo;
+
+        $this->middleware('auth',['except' => ['index','show','listCategory']]);
     }
 
     /**
