@@ -12,7 +12,8 @@ Route::patch('/posts/{posts}/draft',['uses' => 'PostController@draft','as' => 'p
 Route::get('/users/posts',['uses' => 'PostController@indexAll','as' => 'user.posts']);
 
 Route::controllers([
-    'users' => 'AuthController'
+    'auth' => 'AuthController'
 ]);
+
 
 Route::get('/{category}',['uses' => 'PostController@listCategory','as' => 'posts.index.category']);

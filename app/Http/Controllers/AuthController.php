@@ -27,13 +27,6 @@ class AuthController extends Controller {
     protected $redirectTo = "/";
 
     /**
-     * Path to redirect to for the user to login.
-     *
-     * @var string
-     */
-    protected $loginPath = "/users/login";
-
-    /**
      * Create a new AuthController instance.
      *
      * @param Guard $auth

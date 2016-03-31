@@ -14,7 +14,7 @@
             @include('_partials.bags.errorbag')
 
             <div class="login-form__container">
-                {!! Form::open(['url' => '/users/login','method' => 'POST']) !!}
+                {!! Form::open(['url' => '/auth/login','method' => 'POST']) !!}
 
                     <!-- Email Input -->
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
