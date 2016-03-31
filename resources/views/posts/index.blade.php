@@ -9,7 +9,7 @@
 
     @include('_partials.posts.breadcrumb')
 
-    @include('_partials.posts.stat')
+    @include('_partials.liststat',['list' => $posts,'entity' => 'posts'])
 
     <div class="post-preview-container mdl-grid">
         @foreach($posts as $post)

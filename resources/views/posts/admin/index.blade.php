@@ -8,7 +8,7 @@
     <h3>Post List</h3>
 
     @if(count($posts) > 0)
-        @include('_partials.posts.stat')
+        @include('_partials.liststat',['list' => $posts,'entity' => 'posts'])
 
         <div class="mdl-typography__text-left">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp post-list">
