@@ -58,7 +58,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @return bool
      */
     public function isLoggedIn() {
-        return ($this->id == Auth::user()->id);
+        return (Auth::check() && $this->id == Auth::user()->id);
     }
 
     /**
