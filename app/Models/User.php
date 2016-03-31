@@ -1,14 +1,22 @@
 <?php namespace App\Models;
 
+use App\Presenters\UserPresenter;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Robbo\Presenter\PresentableInterface;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract{
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, PresentableInterface {
 
     use Authenticatable, CanResetPassword;
+
+    /**
+     * Active status of the user.
+     */
+    const STATUS_ACTIVE = 1;
 
     /**
      * The attributes that are mass assignable.
@@ -31,5 +39,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function posts(){
         return $this->hasMany('\App\Models\Post');
+    }
+
+    /**
+     * Get active users.
+     *
+     * @param Builder $query
+     * @return $this
+     */
+    public function scopeActive(Builder $query) {
+        return $query->where('status_id','=',static::STATUS_ACTIVE);
+    }
+
+    /**
+     * Return a created presenter.
+     *
+     * @return Robbo\Presenter\Presenter
+     */
+    public function getPresenter(){
+        return new UserPresenter($this);
     }
 }

@@ -159,7 +159,8 @@ return [
 
 		'App\Repositories\Providers\PostRepositoryProvider',
 		'App\Repositories\Providers\CategoryRepositoryProvider',
-		'App\Repositories\Providers\SubjectRepositoryProvider'
+		'App\Repositories\Providers\SubjectRepositoryProvider',
+		'App\Repositories\Providers\UserRepositoryProvider'
 	],
 
 	/*

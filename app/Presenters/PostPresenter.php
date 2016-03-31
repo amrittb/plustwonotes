@@ -102,13 +102,7 @@ class PostPresenter extends Presenter{
      * @return string
      */
     public function presentCreatorName(){
-        $name = $this->user->first_name.' ';
-
-        $name .= (is_null($this->user->middle_name))?'':$this->user->middle_name.' ';
-
-        $name .= $this->user->last_name;
-
-        return $name;
+        return $this->user->name;
     }
 
     /**

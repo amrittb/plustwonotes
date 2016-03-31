@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -30,6 +31,8 @@ class RouteServiceProvider extends ServiceProvider {
 		$this->bindCategory($router);
 
 		$this->bindPost($router);
+
+		$this->bindUser($router);
 	}
 
 	/**
@@ -70,6 +73,17 @@ class RouteServiceProvider extends ServiceProvider {
 				return Post::findOrFail($post);
 			}
 			return Post::where('post_slug', $post)->firstOrFail();
+		});
+	}
+
+	/**
+	 * Bind a \App\Models\User Model to the route.
+	 *
+	 * @param Router $router
+     */
+	private function bindUser(Router $router) {
+		$router->bind('users',function($user){
+			return User::where('username',$user)->firstOrFail();
 		});
 	}
 
