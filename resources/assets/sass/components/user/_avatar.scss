@@ -1,0 +1,33 @@
+$avatar-small-thumb-size: 32px;
+
+.avatar{
+    
+    &--img-tiny{
+        width: $avatar-small-thumb-size;
+        height: $avatar-small-thumb-size;
+    }
+    
+    &__container{
+        position: relative;
+        display: inline-block;
+    }
+
+    &__menu-button{
+        background: none;
+        border: none;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    &-menu{
+
+        &__item{
+            a{
+                display: block;
+                text-decoration: none;
+                color: $text-color-primary;
+            }
+        }
+    }
+}
