@@ -21,24 +21,27 @@
             </div>
 
             <div class="avatar__container">
-                <button id="avatar-menu-button" class="avatar__menu-button mdl-button mdl-js-button mdl-button--icon">
-                    @if(Auth::check())
+                @if(Auth::check())
+                    <button id="avatar-menu-button" class="avatar__menu-button mdl-button mdl-js-button mdl-button--icon">
                         <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="avatar--img-tiny img--circular" />
-                    @else
-                        <i class="material-icons">person</i>
-                    @endif
-                </button>
+                    </button>
 
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect avatar-menu"
-                    data-mdl-for="avatar-menu-button">
-                    @if(Auth::check())
-                        <li class="mdl-menu__item avatar-menu__item"><a href="{{ route('users.show',['users' => Auth::user()->username]) }}"><b>{{ Auth::user()->getPresenter()->name }}</b></a></li>
-                        <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/logout') }}">Log Out</a></li>
-                    @else
-                        <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/login') }}">Login</a></li>
-                        <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/register') }}">Register</a></li>
-                    @endif
-                </ul>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect avatar-menu"
+                        data-mdl-for="avatar-menu-button">
+                        @if(Auth::check())
+                            <li class="mdl-menu__item avatar-menu__item"><a href="{{ route('users.show',['users' => Auth::user()->username]) }}"><b>{{ Auth::user()->getPresenter()->name }}</b></a></li>
+                            <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/logout') }}">Log Out</a></li>
+                        @else
+                            <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/login') }}">Login</a></li>
+                            <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/register') }}">Register</a></li>
+                        @endif
+                    </ul>
+                @else
+                    <a href="{{ url('/auth/login') }}"
+                       class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">
+                        Login
+                    </a>
+                @endif
             </div>
         </div>
     </div>

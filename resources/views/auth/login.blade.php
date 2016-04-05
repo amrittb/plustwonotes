@@ -72,7 +72,7 @@
 
                 <br /><br />
 
-                <a href="#" class="text--color-white">Forgot password?</a>   <a href="{{ url('/users/register') }}" class="text--color-white">Don't have an account?</a>
+                <a href="#" class="text--color-white">Forgot password?</a>   <a href="{{ url('/auth/register') }}" class="text--color-white">Don't have an account?</a>
             </div>
         </div>
     </div>
