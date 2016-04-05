@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -32,7 +33,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function allUntrashed() {
-        $posts = Post::with('subject.grade','category','user')->latest()->paginate($this->postLimit);
+        $posts = Post::with('subject.grade','category','user')->orderBy('status_id','desc')->where('status_id','=',1)->orWhere('status_id','=',2)->orWhere('user_id','=', Auth::id())->latest()->paginate($this->postLimit);
 
         return $posts;
     }
@@ -58,8 +59,8 @@ class PostRepository implements PostRepositoryInterface{
      */
     public function savePost($input,Post $post = null) {
         if(is_null($post)){
-            $post = $this->createPost($post);
-            $post->user_id = 1;
+            $post = $this->createPost();
+            $post->user_id = Auth::id();
         }
 
         $post->post_title = Str::title($input['post_title']);
@@ -80,7 +81,6 @@ class PostRepository implements PostRepositoryInterface{
      *  Stubs out an initial post for a post creation.
      *
      * @return Post
-     * @internal param Post $post
      */
     protected function createPost() {
         $post = new Post();
@@ -88,6 +88,20 @@ class PostRepository implements PostRepositoryInterface{
         $this->draftPost($post);
 
         return $post;
+    }
+
+    /**
+     * Drafts a post.
+     *
+     * @param Post $post
+     * @return bool
+     */
+    public function draftPost(Post $post) {
+        if($post->isDraftable()){
+            $post->status_id = Post::STATUS_DRAFT;
+            return $post->save();
+        }
+        return false;
     }
 
     /**
@@ -127,20 +141,6 @@ class PostRepository implements PostRepositoryInterface{
     public function publishPost(Post $post) {
         if($post->isPublishable()){
             $post->status_id = Post::STATUS_PUBLISHED;
-            return $post->save();
-        }
-        return false;
-    }
-
-    /**
-    * Drafts a post.
-    *
-    * @param Post $post
-    * @return bool
-    */
-    public function draftPost(Post $post) {
-        if($post->isDraftable()){
-            $post->status_id = Post::STATUS_DRAFT;
             return $post->save();
         }
         return false;

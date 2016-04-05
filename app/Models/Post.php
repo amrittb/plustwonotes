@@ -151,7 +151,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isDraftable(){
-        return $this->isPublished();
+        return ($this->status_id == null || $this->isPublished());
     }
 
     /**

@@ -32,7 +32,11 @@
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->grade_subject }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->created_at->diffForHumans() }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->published_at->diffForHumans() }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $post->creator_name }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <a href="{{ route('users.show',['users' => $post->user->username]) }}" target="_blank">
+                                    {{ $post->creator_name }}
+                                </a>
+                            </td>
                             <td class="mdl-data-table__cell--non-numeric">{!! $post->actions !!}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->status_text }}</td>
                         </tr>
