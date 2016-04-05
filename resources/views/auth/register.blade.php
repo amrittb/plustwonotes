@@ -66,8 +66,8 @@
 
                 <!-- Re-enter password Input -->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    {!! Form::label('password_confirm','Re-enter password',['class'=>'label--inverse mdl-textfield__label']) !!}
-                    {!! Form::password('password_confirm',['class' => 'textfield--inverse mdl-textfield__input']) !!}
+                    {!! Form::label('password_confirmation','Re-enter password',['class'=>'label--inverse mdl-textfield__label']) !!}
+                    {!! Form::password('password_confirmation',['class' => 'textfield--inverse mdl-textfield__input']) !!}
                 </div>
 
                 <br /><br />

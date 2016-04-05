@@ -1,6 +1,6 @@
 <?php namespace App\Services;
 
-use Illuminate\Contracts\Auth\User;
+use App\Models\User;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
 class Registrar implements RegistrarContract{
@@ -12,8 +12,10 @@ class Registrar implements RegistrarContract{
      * @return \Illuminate\Contracts\Validation\Validator
      */
     public function validator(array $data) {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
+        return \Validator::make($data, [
+            'first_name' => 'required|min:3,max:20',
+            'last_name' => 'required|min:3,max:20',
+            'username' => 'required|min:3,max:20|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -27,9 +29,13 @@ class Registrar implements RegistrarContract{
      */
     public function create(array $data) {
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'middle_name' => (trim($data['middle_name']) != "")?$data['middle_name']:null,
+            'last_name' => $data['last_name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'status_id' => User::STATUS_ACTIVE
         ]);
     }
 }
