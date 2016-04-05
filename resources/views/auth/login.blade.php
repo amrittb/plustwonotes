@@ -5,15 +5,15 @@
 @stop
 
 @section('content')
-    <div class="mdl-typography--text-center login-form login-form__bg-container">
-        <div class="login-form__bg-overlay">
+    <div class="mdl-typography--text-center auth-form auth-form__bg-container">
+        <div class="auth-form__bg-overlay">
             <h3 class="text--thin">Login</h3>
 
             <h4 class="text--thin">Get goodies by logging in to our website!</h4>
 
             @include('_partials.bags.errorbag')
 
-            <div class="login-form__container">
+            <div class="auth-form__container">
                 {!! Form::open(['url' => '/auth/login','method' => 'POST']) !!}
 
                     <!-- Email Input -->
@@ -51,24 +51,7 @@
 
                 <br />
 
-                <a href="#"
-                   class="social-login-button social-login-button--facebook-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                    Login With Facebook
-                </a>
-
-                <br />
-
-                <a href="#"
-                   class="social-login-button social-login-button--google-plus-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                    Login With Google Plus
-                </a>
-
-                <br />
-
-                <a href="#"
-                   class="social-login-button social-login-button--twitter-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                    Login With Twitter
-                </a>
+                @include('_partials.auth.social',['text' => 'Login'])
 
                 <br /><br />
 
