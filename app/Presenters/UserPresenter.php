@@ -44,4 +44,22 @@ class UserPresenter extends Presenter {
                 break;
         }
     }
+
+    /**
+     * Presents large avatar url.
+     *
+     * @return string
+     */
+    public function presentAvatarLarge() {
+        return ($this->avatar != null) ? $this->avatar : '/img/empty_avatar.jpg';
+    }
+
+    /**
+     * Presents tiny avatar url.
+     *
+     * @return string
+     */
+    public function presentAvatarSmall() {
+        return ($this->avatar != null) ? $this->avatar : '/img/empty_avatar_small.jpg';
+    }
 }

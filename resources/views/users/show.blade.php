@@ -11,7 +11,7 @@
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--3-col">
                         <div class="user-profile__avatar-container mdl-typography--text-center">
-                            <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="user-profile__avatar-img img--circular" />
+                            <img src="{{ $user->avatar_large }}" alt="{{ $user->name }}" class="user-profile__avatar-img img--circular" />
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--9-col">
@@ -26,6 +26,7 @@
                             </small>
                         </h3>
                         <div class="user-profile__details">
+                            Member Type: <span class="user-profile__role">{{ implode(', ',$user->roles->lists('name')) }}</span><br />
                             Email: <span class="user-profile__email">{{ $user->email }}</span><br />
                             Joined: <span class="user-profile__created_at">{{ $user->created_at->diffForHumans() }}</span><br />
                             Status: <span class="user-profile__status">{{ $user->status_text }}</span><br /><br />

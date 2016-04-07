@@ -23,7 +23,7 @@
             <div class="avatar__container">
                 @if(Auth::check())
                     <button id="avatar-menu-button" class="avatar__menu-button mdl-button mdl-js-button mdl-button--icon">
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="avatar--img-tiny img--circular" />
+                        <img src="{{ Auth::user()->getPresenter()->avatar_small }}" alt="{{ Auth::user()->name }}" class="avatar--img-tiny img--circular" />
                     </button>
 
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect avatar-menu"
