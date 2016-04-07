@@ -150,6 +150,7 @@ return [
 		 * Third-party Service Providers...
 		 */
 		'Robbo\Presenter\PresenterServiceProvider',
+		'Laracasts\Generators\GeneratorsServiceProvider',
 
 		/*
 		 * Application Providers...
