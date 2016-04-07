@@ -1,5 +1,6 @@
 <?php namespace App\Services;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
@@ -28,7 +29,7 @@ class Registrar implements RegistrarContract{
      * @return User
      */
     public function create(array $data) {
-        return User::create([
+        $user = User::create([
             'first_name' => $data['first_name'],
             'middle_name' => (trim($data['middle_name']) != "")?$data['middle_name']:null,
             'last_name' => $data['last_name'],
@@ -37,5 +38,10 @@ class Registrar implements RegistrarContract{
             'password' => bcrypt($data['password']),
             'status_id' => User::STATUS_ACTIVE
         ]);
+
+        //  Saving user's default role as a student.
+        $user->roles()->save(Role::where('name','=','Student')->firstOrFail());
+
+        return $user;
     }
 }
