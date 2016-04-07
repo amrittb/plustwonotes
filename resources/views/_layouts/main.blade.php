@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link rel="shortcut icon" sizes="16x16 32x32" href="favicon.ico">
+    <link rel="shortcut icon" sizes="16x16 32x32" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/favicons/favicon-57.png">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/favicons/favicon-57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/favicons/favicon-72.png">
