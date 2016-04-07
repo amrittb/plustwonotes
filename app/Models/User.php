@@ -43,6 +43,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
+     * Defines a relationship with Role model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles() {
+        return $this->belongsToMany('\App\Models\Role','user_role');
+    }
+
+    /**
      * Get active users.
      *
      * @param Builder $query
