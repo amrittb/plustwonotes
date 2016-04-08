@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 
+use App\Acl\HasRoles;
 use App\Presenters\UserPresenter;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,7 +13,7 @@ use Robbo\Presenter\PresentableInterface;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, PresentableInterface {
 
-    use Authenticatable, CanResetPassword;
+    use Authenticatable, CanResetPassword, HasRoles;
 
     /**
      * Active status of the user.
