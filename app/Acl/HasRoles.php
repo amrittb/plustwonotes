@@ -33,6 +33,19 @@ trait HasRoles {
     }
 
     /**
+     * Remove the given role from the user.
+     *
+     * @param string $role
+     */
+    public function removeRole($role){
+        if($this->hasRole($role)){
+            $this->roles()->detach(
+                Role::whereName($role)->firstOrFail()
+            );
+        }
+    }
+
+    /**
      * Checks if the user has a role.
      *
      * @param $role
@@ -44,5 +57,69 @@ trait HasRoles {
         }
 
         return !! $role->intersect($this->roles)->count();
+    }
+
+    /**
+     * Checks if user is student
+     * @return bool
+     */
+    public function isStudent() {
+        return $this->hasRole('Student');
+    }
+
+    /**
+     * Checks if user is student only
+     * @return bool
+     */
+    public function isStudentOnly() {
+        return $this->isStudent() and ($this->roles->count() == 1);
+    }
+
+    /**
+     * Checks if user is content creator
+     * @return bool
+     */
+    public function isContentCreator() {
+        return $this->hasRole('Content Creator');
+    }
+
+    /**
+     * Checks if user is content creator only
+     * @return bool
+     */
+    public function isContentCreatorOnly() {
+        return $this->isContentCreator() and ($this->roles->count() == 1);
+    }
+
+    /**
+     * Checks if user is publisher
+     * @return bool
+     */
+    public function isPublisher() {
+        return $this->hasRole('Publisher');
+    }
+
+    /**
+     * Checks if user is publisher only
+     * @return bool
+     */
+    public function isPublisherOnly() {
+        return $this->isPublisher() and ($this->roles->count() == 1);
+    }
+
+    /**
+     * Checks if user is administrator
+     * @return bool
+     */
+    public function isAdministrator() {
+        return $this->hasRole('Administrator');
+    }
+
+    /**
+     * Checks if user is administrator only
+     * @return bool
+     */
+    public function isAdministratorOnly() {
+        return $this->isAdministrator() and ($this->roles->count() == 1);
     }
 }
