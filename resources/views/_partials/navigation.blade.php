@@ -48,6 +48,6 @@
 </header>
 
 <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Plus Two Notes</span>
+    <span class="mdl-layout-title text--thin">Plus Two Notes</span>
     @include('_partials.navlink')
 </div>

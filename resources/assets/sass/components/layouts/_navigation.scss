@@ -1,0 +1,10 @@
+.divider{
+
+    &--bottom{
+        border-bottom: 1px solid $layout-drawer-border-color;
+    }
+
+    &--top{
+        border-top: 1px solid $layout-drawer-border-color;
+    }
+}
