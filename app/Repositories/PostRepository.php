@@ -33,7 +33,16 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function allUntrashed() {
-        $posts = Post::with('subject.grade','category','user')->orderBy('status_id','desc')->where('status_id','=',1)->orWhere('status_id','=',2)->orWhere('user_id','=', Auth::id())->latest()->paginate($this->postLimit);
+        $posts = Post::with('subject.grade','category','user')
+                ->where('status_id','=',Post::STATUS_PUBLISHED)
+                ->orWhere('status_id','=',Post::STATUS_CONTENT_READY)
+                ->orWhere(function($query){
+                    $query->where('status_id','=',Post::STATUS_DRAFT)
+                          ->where('user_id','=',Auth::id());
+                })
+                ->orderBy('status_id','desc')
+                ->latest()
+                ->paginate($this->postLimit);
 
         return $posts;
     }
