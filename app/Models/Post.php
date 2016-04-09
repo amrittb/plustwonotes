@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Robbo\Presenter\PresentableInterface;
 use Robbo\Presenter\Robbo;
 
@@ -88,6 +89,33 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Checks if the post is not a blog.
+     *
+     * @return bool
+     */
+    public function isNotBlog() {
+        return ($this->category_id != Category::BLOG);
+    }
+
+    /**
+     * Checks if the post is a draft.
+     *
+     * @return bool
+     */
+    public function isDraft() {
+        return ($this->status_id == Post::STATUS_DRAFT);
+    }
+
+    /**
+     * Checks if the post is ready to be published.
+     *
+     * @return bool
+     */
+    public function isContentReady() {
+        return ($this->status_id == Post::STATUS_CONTENT_READY);
+    }
+
+    /**
      * Checks if the post is published.
      *
      * @return bool
@@ -106,19 +134,6 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
-     * Checks if the post is not a blog.
-     *
-     * @return bool
-     */
-    public function isNotBlog(){
-        if($this->category_id != Category::BLOG){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Checks if the post is readable.
      *
      * @return bool
@@ -133,16 +148,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isEditable(){
-        return true;
-    }
-
-    /**
-     * Checks if the post is publishable.
-     *
-     * @return bool
-     */
-    public function isPublishable(){
-        return ! ($this->isPublished() || $this->isDeleted());
+        return ! ($this->isDeleted());
     }
 
     /**
@@ -151,7 +157,25 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isDraftable(){
-        return ($this->status_id == null || $this->isPublished());
+        return $this->status_id == null || $this->isContentReady();
+    }
+
+    /**
+     * Checks if the post is publishable.
+     *
+     * @return bool
+     */
+    public function isPublishable(){
+        return $this->isContentReady();
+    }
+
+    /**
+     * Checks if the post is unpublishable.
+     *
+     * @return bool
+     */
+    public function isUnpublishable() {
+        return $this->isPublished();
     }
 
     /**
@@ -170,6 +194,71 @@ class Post extends Model implements PresentableInterface{
      */
     public function isHardDeleteable(){
         return $this->isDeleted();
+    }
+
+    /**
+     * Checks if the post is deletable.
+     *
+     * @return bool
+     */
+    public function isDeletable() {
+        return $this->isSoftDeleteable() || $this->isHardDeleteable();
+    }
+
+    /**
+     * Checks if the post is editable by the user.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isEditableByUser(User $user) {
+        return $this->isEditable() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
+    }
+
+    /**
+     * Checks if the post is content ready able by the user.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isContentReadyableByUser(User $user) {
+        return $this->isDraft() && $this->isCreatedBy($user);
+    }
+
+    /**
+     * Checks if the post is draftable by the user.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isDraftableByUser(User $user) {
+        return $this->isDraftable() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
+    }
+
+    /**
+     * Checks if the post is deletable by the user.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isDeletableByUser(User $user) {
+        return $this->isDeletable() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
+    }
+
+    /**
+     * Checks if the post is created by the given user.
+     *
+     * @param $user
+     * @return bool
+     */
+    public function isCreatedBy($user) {
+        $id = $user;
+
+        if(!is_numeric($user)){
+            $id = $user->id;
+        }
+
+        return $this->user_id == $id;
     }
 
     /**
