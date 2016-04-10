@@ -133,12 +133,21 @@ class PostPresenter extends Presenter{
     }
 
     /**
-     * Presents post deleting url.
+     * Presents post content ready url.
      *
      * @return string
      */
-    public function presentDeleteUrl(){
-        return route('posts.destroy',['posts' => $this->post_slug]);
+    public function presentContentReadyUrl(){
+        return route('posts.contentready',['posts' => $this->post_slug]);
+    }
+
+    /**
+     * Presents post draft url.
+     *
+     * @return string
+     */
+    public function presentDraftUrl(){
+        return route('posts.draft',['posts' => $this->post_slug]);
     }
 
     /**
@@ -151,11 +160,20 @@ class PostPresenter extends Presenter{
     }
 
     /**
-     * Presents post draft url.
+     * Presents post unpublish url.
      *
      * @return string
      */
-    public function presentDraftUrl(){
-        return route('posts.draft',['posts' => $this->post_slug]);
+    public function presentUnpublishUrl(){
+        return route('posts.unpublish',['posts' => $this->post_slug]);
+    }
+
+    /**
+     * Presents post deleting url.
+     *
+     * @return string
+     */
+    public function presentDeleteUrl(){
+        return route('posts.destroy',['posts' => $this->post_slug]);
     }
 }

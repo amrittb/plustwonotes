@@ -100,6 +100,20 @@ class PostRepository implements PostRepositoryInterface{
     }
 
     /**
+     * Content Ready a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function contentReadyPost(Post $post) {
+        if($post->isContentReadyableByUser(Auth::user())){
+            $post->status_id = Post::STATUS_CONTENT_READY;
+            return $post->save();
+        }
+        return false;
+    }
+
+    /**
      * Drafts a post.
      *
      * @param Post $post
@@ -108,6 +122,34 @@ class PostRepository implements PostRepositoryInterface{
     public function draftPost(Post $post) {
         if($post->isDraftable()){
             $post->status_id = Post::STATUS_DRAFT;
+            return $post->save();
+        }
+        return false;
+    }
+
+    /**
+     * Publishes a post.
+     *
+     * @param Post $post
+     * @return bool
+     */
+    public function publishPost(Post $post) {
+        if($post->isPublishable()){
+            $post->status_id = Post::STATUS_PUBLISHED;
+            return $post->save();
+        }
+        return false;
+    }
+
+    /**
+     * Unpublishes a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function unpublishPost(Post $post) {
+        if($post->isUnpublishable()){
+            $post->status_id = Post::STATUS_CONTENT_READY;
             return $post->save();
         }
         return false;
@@ -139,20 +181,6 @@ class PostRepository implements PostRepositoryInterface{
         });
 
         return $post->delete();
-    }
-
-    /**
-     * Publishes a post.
-     *
-     * @param Post $post
-     * @return bool
-     */
-    public function publishPost(Post $post) {
-        if($post->isPublishable()){
-            $post->status_id = Post::STATUS_PUBLISHED;
-            return $post->save();
-        }
-        return false;
     }
 
     /**

@@ -194,6 +194,22 @@ class PostController extends Controller {
     }
 
     /**
+     * Unpublishes a post.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unpublish(Post $post){
+        $result = $this->postRepo->unpublishPost($post);
+
+        if($result){
+            return redirect()->back()->with('message','Post unpublished!');
+        } else {
+            return redirect()->back()->with('message','Something went wrong!');
+        }
+    }
+
+    /**
      * Drafts a post.
      *
      * @param Post $post
@@ -204,6 +220,22 @@ class PostController extends Controller {
 
         if($result){
             return redirect()->back()->with('message','Post drafted!');
+        } else {
+            return redirect()->back()->with('message','Something went wrong!');
+        }
+    }
+
+    /**
+     * Content Ready a post.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function contentReady(Post $post){
+        $result = $this->postRepo->contentReadyPost($post);
+
+        if($result){
+            return redirect()->back()->with('message','Post ready to be reviewed!');
         } else {
             return redirect()->back()->with('message','Something went wrong!');
         }

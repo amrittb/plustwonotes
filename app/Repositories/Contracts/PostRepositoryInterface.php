@@ -44,4 +44,44 @@ interface PostRepositoryInterface {
      * @return mixed
      */
     public function getRecommended();
+
+    /**
+     * Content Ready a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function contentReadyPost(Post $post);
+
+    /**
+     * Drafts a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function draftPost(Post $post);
+
+    /**
+     * Publishes a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function publishPost(Post $post);
+
+    /**
+     * Unpublishes a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function unpublishPost(Post $post);
+
+    /**
+     * Deletes a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function deletePost(Post $post);
 }

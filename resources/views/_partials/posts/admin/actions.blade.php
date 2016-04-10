@@ -21,9 +21,11 @@
     <!-- Content Ready Action -->
     @haspermission('post.create')
         @if($post->isContentReadyableByUser(Auth::user()))
-            <a href="#" class="post-list-item__action">
-                <i class="material-icons">check_circle</i>
-            </a>
+                {!! Form::open(['url' => $post->content_ready_url,'method' => 'PATCH']) !!}
+                <button type="submit" class="post-list-item__action">
+                    <i class="material-icons">check_circle</i>
+                </button>
+                {!! Form::close() !!}
         @endif
     @endhaspermission
 
@@ -52,7 +54,7 @@
     <!-- UnPublish Action -->
     @haspermission('post.publish')
         @if($post->isUnpublishable())
-            {!! Form::open(['url' => $post->publish_url,'method' => 'PATCH']) !!}
+            {!! Form::open(['url' => $post->unpublish_url,'method' => 'PATCH']) !!}
             <button type="submit" class="post-list-item__action">
                 <i class="material-icons">vertical_align_bottom</i>
             </button>

@@ -175,7 +175,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isUnpublishable() {
-        return $this->isPublished();
+        return $this->status_id == Post::STATUS_PUBLISHED;
     }
 
     /**
