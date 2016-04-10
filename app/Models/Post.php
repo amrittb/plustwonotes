@@ -232,7 +232,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isDraftableByUser(User $user) {
-        return $this->isDraftable() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
+        return $this->isDraftable() && ($user->isContentCreator()?$this->isCreatedBy($user):true);
     }
 
     /**
