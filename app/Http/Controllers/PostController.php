@@ -53,6 +53,7 @@ class PostController extends Controller {
         $this->subjectRepo = $subjectRepo;
 
         $this->middleware('auth',['except' => ['index','show','listCategory']]);
+        $this->middleware('acl',['except' => ['index','show','listCategory']]);
     }
 
     /**
@@ -73,6 +74,7 @@ class PostController extends Controller {
      */
     public function indexAll(){
         $posts = $this->postRepo->allUntrashed();
+
 
         return view('posts.admin.index',compact('posts'));
     }

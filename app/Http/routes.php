@@ -4,12 +4,107 @@ Route::get('/',['uses' => 'HomeController@index','as' => 'home']);
 
 Route::get('about',['uses' => 'HomeController@about', 'as' => 'about']);
 
-Route::resource('posts','PostController');
+//  /posts group
+Route::group(['prefix' => 'posts'], function(){
+    Route::get('/',[
+        'uses' => 'PostController@index',
+        'as' => 'posts.index'
+    ]);
 
-Route::patch('/posts/{posts}/publish',['uses' => 'PostController@publish','as' => 'posts.publish']);
-Route::patch('/posts/{posts}/draft',['uses' => 'PostController@draft','as' => 'posts.draft']);
+    Route::get('/create',[
+        'uses' => 'PostController@create',
+        'as' => 'posts.create',
+        'acl' => [
+            'User:hasPermission:post.create'
+        ]
+    ]);
 
-Route::get('/users/posts',['uses' => 'PostController@indexAll','as' => 'user.posts']);
+    Route::post('/',[
+        'uses' => 'PostController@store',
+        'as' => 'posts.store',
+        'acl' => [
+            'User:hasPermission:post.create'
+        ]
+    ]);
+
+    //  /posts/{posts} group
+    Route::group(['prefix' => '{posts}','redirect' => 'user.posts'],function(){
+        Route::get('/',[
+            'uses' => 'PostController@show',
+            'as' => 'posts.show'
+        ]);
+
+        Route::get('/edit',[
+            'uses' => 'PostController@edit',
+            'as' => 'posts.edit',
+            'acl' => [
+                'User:hasPermission:post.update',
+                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
+            ]
+        ]);
+
+        Route::patch('/',[
+            'uses' => 'PostController@update',
+            'as' => 'posts.update',
+            'acl' => [
+                'User:hasPermission:post.update',
+                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
+            ],
+        ]);
+
+        Route::delete('/',[
+            'uses' => 'PostController@destroy',
+            'as' => 'posts.destroy',
+            'acl' => [
+                'User:hasPermission:post.destroy',
+                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
+            ]
+        ]);
+
+        Route::patch('/publish', [
+            'uses' => 'PostController@publish',
+            'as' => 'posts.publish',
+            'acl' => [
+                'User:hasPermission:post.publish'
+            ]
+        ]);
+
+        Route::patch('/unpublish', [
+            'uses' => 'PostController@unpublish',
+            'as' => 'posts.unpublish',
+            'acl' => [
+                'User:hasPermission:post.publish'
+            ]
+        ]);
+
+        Route::patch('/draft', [
+            'uses' => 'PostController@draft',
+            'as' => 'posts.draft',
+            'acl' => [
+                'User:hasPermission:post.create',
+                'posts:isCreatedBy:#User'
+            ]
+        ]);
+
+        Route::patch('/contentready',[
+            'uses' => 'PostController@contentready',
+            'as' => 'posts.contentready',
+            'acl' => [
+                'User:hasPermission:post.create',
+                'posts:isCreatedBy:#User'
+            ]
+        ]);
+    });
+});
+
+Route::get('/users/posts',[
+    'uses' => 'PostController@indexAll',
+    'as' => 'user.posts',
+    'redirect' => 'home',
+    'acl' => [
+        'User:isNotStudent'
+    ]
+]);
 
 Route::resource('users','UserController');
 
