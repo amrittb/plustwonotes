@@ -61,6 +61,7 @@ trait HasRoles {
 
     /**
      * Checks if user is student
+     *
      * @return bool
      */
     public function isStudent() {
@@ -69,6 +70,7 @@ trait HasRoles {
 
     /**
      * Checks if user is student only
+     *
      * @return bool
      */
     public function isStudentOnly() {
@@ -76,7 +78,17 @@ trait HasRoles {
     }
 
     /**
+     * Checks if the user is not a student.
+     *
+     * @return bool
+     */
+    public function isNotStudent() {
+        return ! $this->isStudent();
+    }
+
+    /**
      * Checks if user is content creator
+     *
      * @return bool
      */
     public function isContentCreator() {
@@ -85,6 +97,7 @@ trait HasRoles {
 
     /**
      * Checks if user is content creator only
+     *
      * @return bool
      */
     public function isContentCreatorOnly() {
@@ -92,7 +105,17 @@ trait HasRoles {
     }
 
     /**
+     * Checks if the user is not a ContentCreator.
+     *
+     * @return bool
+     */
+    public function isNotContentCreator() {
+        return ! $this->isContentCreator();
+    }
+
+    /**
      * Checks if user is publisher
+     *
      * @return bool
      */
     public function isPublisher() {
@@ -101,6 +124,7 @@ trait HasRoles {
 
     /**
      * Checks if user is publisher only
+     *
      * @return bool
      */
     public function isPublisherOnly() {
@@ -108,7 +132,17 @@ trait HasRoles {
     }
 
     /**
+     * Checks if the user is not a Publisher.
+     *
+     * @return bool
+     */
+    public function isNotPublisher() {
+        return ! $this->isPublisher();
+    }
+
+    /**
      * Checks if user is administrator
+     *
      * @return bool
      */
     public function isAdministrator() {
@@ -117,9 +151,19 @@ trait HasRoles {
 
     /**
      * Checks if user is administrator only
+     *
      * @return bool
      */
     public function isAdministratorOnly() {
         return $this->isAdministrator() and ($this->roles->count() == 1);
+    }
+
+    /**
+     * Checks if the user is not a Administrator.
+     *
+     * @return bool
+     */
+    public function isNotAdministrator() {
+        return ! $this->isAdministrator();
     }
 }
