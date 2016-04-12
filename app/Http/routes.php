@@ -97,16 +97,30 @@ Route::group(['prefix' => 'posts'], function(){
     });
 });
 
-Route::get('/users/posts',[
-    'uses' => 'PostController@indexAll',
-    'as' => 'user.posts',
-    'redirect' => 'home',
-    'acl' => [
-        'User:isNotStudent'
-    ]
-]);
+Route::group(['prefix' => 'users'],function(){
+    Route::get('/posts',[
+        'uses' => 'PostController@indexAll',
+        'as' => 'user.posts',
+        'redirect' => 'home',
+        'acl' => [
+            'User:isNotStudent'
+        ]
+    ]);
 
-Route::resource('users','UserController');
+    Route::get('/',[
+        'uses' => 'UserController@index',
+        'as' => 'users.index',
+        'redirect' => 'home',
+        'acl' => [
+            'User:hasPermission:user.list'
+        ]
+    ]);
+
+    Route::get('/{users}',[
+        'uses' => 'UserController@show',
+        'as' => 'users.show'
+    ]);
+});
 
 Route::controllers([
     'auth' => 'AuthController'
