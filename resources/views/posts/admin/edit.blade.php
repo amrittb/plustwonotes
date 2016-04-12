@@ -11,7 +11,7 @@
 
     @include('_partials.bags.errorbag')
 
-    {!! Form::model($post,['url' => route('posts.update',['posts' => $post->id]),'method' => 'PUT']) !!}
+    {!! Form::model($post,['url' => route('posts.update',['posts' => $post->id]),'method' => 'PATCH']) !!}
         @include('_partials.posts.save')
     {!! Form::close() !!}
 @stop
