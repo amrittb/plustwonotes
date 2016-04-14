@@ -36,6 +36,7 @@ class PostsTableSeeder extends Seeder {
                 'published_at' => \Carbon\Carbon::now(),
                 'category_id' => $category_id,
                 'subject_id' => $subject_id,
+                'imp' => $faker->boolean(20),
                 'user_id' => $faker->randomElement($users),
                 'status_id' => $faker->numberBetween(1,3)
             ]);
