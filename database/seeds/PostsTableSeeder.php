@@ -37,6 +37,7 @@ class PostsTableSeeder extends Seeder {
                 'category_id' => $category_id,
                 'subject_id' => $subject_id,
                 'imp' => $faker->boolean(20),
+                'featured' => $faker->boolean(10),
                 'user_id' => $faker->randomElement($users),
                 'status_id' => $faker->numberBetween(1,3)
             ]);
