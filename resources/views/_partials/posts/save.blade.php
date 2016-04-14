@@ -38,6 +38,14 @@
 
 <br />
 
+<!-- Imp Input -->
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="imp-checkbox">
+    {!! Form::checkbox('imp',0,null,['class' => 'mdl-checkbox__input','id' => 'imp-checkbox']) !!}
+    <span class="mdl-checkbox__label">Important?</span>
+</label>
+
+<br />
+
 <!-- Post Body Input -->
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     {!! Form::label('post_body','Post Body',['class'=>'mdl-textfield__label']) !!}

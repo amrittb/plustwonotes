@@ -22,7 +22,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function allPublished() {
-        $posts = Post::with('subject.grade','category')->published()->latest()->paginate($this->postLimit);
+        $posts = Post::with('subject.grade','category')->published()->impFirst()->latest()->paginate($this->postLimit);
 
         return $posts;
     }
@@ -81,7 +81,8 @@ class PostRepository implements PostRepositoryInterface{
         }
 
         $post->category_id = (intval($input['category_id']))?:null;
-        $post->subject_id = (intval($input['subject_id']) != 0 && $post->category_id != Category::BLOG)?intval($input['subject_id']):null;
+        $post->subject_id = (intval($input['subject_id']) && $post->category_id != Category::BLOG)?intval($input['subject_id']):null;
+        $post->imp = (isset($input['imp']))?true:false;
 
         return $post->save();
     }

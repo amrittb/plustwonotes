@@ -10,7 +10,11 @@
             {{ $post->published_at->diffForHumans() }} | {{ $post->published_at->format('M dS, Y') }}
         </span>
 
-        <h3 class="post__title">{{ $post->post_title }}</h3>
+        <h3 class="post__title">{{ $post->post_title }}
+            @if($post->imp)
+                {!! '<span class="post__imp-tag">Imp</span>' !!}
+            @endif
+        </h3>
 
         <div class="post__detail">
             <span class="post__category">

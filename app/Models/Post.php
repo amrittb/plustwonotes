@@ -78,6 +78,16 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Sorts posts by important first.
+     *
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeImpFirst(Builder $query) {
+        return $query->orderBy('imp','DESC');
+    }
+
+    /**
      * Accessor for published_at attribute.
      *
      * @param $value

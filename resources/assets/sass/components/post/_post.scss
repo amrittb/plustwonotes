@@ -10,6 +10,10 @@
     &__title{
         margin:0;
     }
+    
+    &__imp-tag{
+        @include impTag();
+    }
 
     &__detail{
         font-size: $post-detail-font-size;

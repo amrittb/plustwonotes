@@ -1,11 +1,23 @@
 @mixin transform($args) {
-  -webkit-transform: $args;
-  -moz-transform: $args;
-  -ms-transform: $args;
-  -o-transform: $args;
-  transform: $args;
+    -webkit-transform: $args;
+    -moz-transform: $args;
+    -ms-transform: $args;
+    -o-transform: $args;
+    transform: $args;
 }
 
 @mixin scale($factor:.5){
-  @include transform(scale($factor));
+    @include transform(scale($factor));
+}
+
+@mixin impTag(){
+    font-size: $imp-tag-font-size;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: color($color-primary);
+    color: #fff;
+    border-radius: $button-border-radius;
+    padding: $badge-padding $badge-padding * 2;
+    height: $imp-tag-font-size + 4 * $badge-padding;
+    margin-left: $badge-padding;
 }

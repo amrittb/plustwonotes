@@ -3,7 +3,11 @@
         <img src="/img/dog.png" width="173" height="157" border="0" alt="{{ $post->post_title }}" style="padding:10px;">
     </div>
     <div class="mdl-card__title mdl-card--border">
-        <h4 class="mdl-card__title-text">{{ $post->post_title }}</h4>
+        <h4 class="mdl-card__title-text">{{ $post->post_title }}
+            @if($post->imp)
+                {!! '<span class="post__imp-tag">IMP</span>' !!}
+            @endif
+        </h4>
     </div>
     <div class="mdl-card__supporting-text post-card__post-detail">
         {{ $post->published_at->diffForHumans() }} | {{ $post->category->category_name }}

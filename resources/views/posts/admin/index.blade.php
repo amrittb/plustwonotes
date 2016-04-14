@@ -27,7 +27,12 @@
                 <tbody>
                     @foreach($posts as $post)
                         <tr class="post-list-item">
-                            <td class="mdl-data-table__cell--non-numeric">{!! link_to_route('posts.edit',$post->post_title_truncated,['posts' => $post->post_slug]) !!}</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {{ $post->post_title_truncated }}
+                                @if($post->imp)
+                                    <span class="post__imp-tag">IMP</span>
+                                @endif
+                            </td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->category->category_name }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->grade_subject }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->created_at->diffForHumans() }}</td>
