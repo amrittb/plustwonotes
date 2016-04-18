@@ -15,6 +15,16 @@
         @include impTag();
     }
 
+    &__featured-tag{
+        font-size: $imp-tag-font-size;
+        background: color($palette-red-800);
+        color: #fff;
+        border-radius: $button-border-radius;
+        padding: $badge-padding $badge-padding * 2;
+        height: $imp-tag-font-size + 4 * $badge-padding;
+        margin-left: $badge-padding;
+    }
+
     &__detail{
         font-size: $post-detail-font-size;
         color: $post-detail-text-color;

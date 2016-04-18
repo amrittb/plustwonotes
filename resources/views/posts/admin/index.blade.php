@@ -32,6 +32,9 @@
                                 @if($post->imp)
                                     <span class="post__imp-tag">IMP</span>
                                 @endif
+                                @if($post->featured)
+                                    <span class="post__featured-tag">Featured</span>
+                                @endif
                             </td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->category->category_name }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $post->grade_subject }}</td>
