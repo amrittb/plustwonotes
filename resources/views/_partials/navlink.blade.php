@@ -33,7 +33,7 @@
             @endif
 
             @haspermission('post.destroy')
-                <a href="#" class="mdl-navigation__link">
+                <a href="{{ route('posts.trashed') }}" class="mdl-navigation__link">
                     <i class="material-icons">delete</i> Trashed Post
                 </a>
             @endhaspermission
