@@ -27,6 +27,14 @@ Route::group(['prefix' => 'posts'], function(){
         ]
     ]);
 
+    Route::get('/trashed',[
+        'uses' => 'PostController@trashed',
+        'as' => 'posts.trashed',
+        'acl' => [
+            'User:hasPermission:post.destroy'
+        ]
+    ]);
+
     //  /posts/{posts} group
     Route::group(['prefix' => '{posts}','redirect' => 'user.posts'],function(){
         Route::get('/',[

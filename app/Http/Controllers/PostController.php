@@ -75,7 +75,6 @@ class PostController extends Controller {
     public function indexAll(){
         $posts = $this->postRepo->allUntrashed();
 
-
         return view('posts.admin.index',compact('posts'));
     }
 
@@ -177,6 +176,17 @@ class PostController extends Controller {
         } else {
             return redirect()->back()->with('message','Something went wrong!');
         }
+    }
+
+    /**
+     * Gets trashed posts.
+     * 
+     * @return mixed
+     */
+    public function trashed() {
+        $posts = $this->postRepo->getTrashed();
+
+        return view('posts.admin.index',compact('posts'));
     }
 
     /**

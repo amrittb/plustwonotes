@@ -60,6 +60,17 @@ class PostRepository implements PostRepositoryInterface{
     }
 
     /**
+     * Get all trashed posts.
+     *
+     * @return mixed
+     */
+    public function getTrashed() {
+        $posts = Post::onlyTrashed()->orderBy('deleted_at','desc')->paginate($this->postLimit);
+
+        return $posts;
+    }
+
+    /**
      * Saves a post to the database.
      *
      * @param $input
