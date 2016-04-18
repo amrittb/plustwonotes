@@ -103,7 +103,7 @@ Route::group(['prefix' => 'users'],function(){
         'as' => 'user.posts',
         'redirect' => 'home',
         'acl' => [
-            'User:isNotStudent'
+            'User:isNotStudentOnly'
         ]
     ]);
 

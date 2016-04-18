@@ -87,6 +87,15 @@ trait HasRoles {
     }
 
     /**
+     * Checks if the user is not a student only.
+     *
+     * @return bool
+     */
+    public function isNotStudentOnly() {
+        return ! $this->isStudentOnly();
+    }
+
+    /**
      * Checks if user is content creator
      *
      * @return bool
