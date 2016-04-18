@@ -46,6 +46,14 @@
 
 <br />
 
+<!-- Featured Input -->
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="featured-checkbox">
+    {!! Form::checkbox('featured',0,null,['class' => 'mdl-checkbox__input','id' => 'featured-checkbox']) !!}
+    <span class="mdl-checkbox__label">Featured?</span>
+</label>
+
+<br />
+
 <!-- Post Body Input -->
 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     {!! Form::label('post_body','Post Body',['class'=>'mdl-textfield__label']) !!}

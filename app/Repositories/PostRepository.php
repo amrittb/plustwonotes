@@ -82,7 +82,8 @@ class PostRepository implements PostRepositoryInterface{
 
         $post->category_id = (intval($input['category_id']))?:null;
         $post->subject_id = (intval($input['subject_id']) && $post->category_id != Category::BLOG)?intval($input['subject_id']):null;
-        $post->imp = (isset($input['imp']))?true:false;
+        $post->imp = isset($input['imp']);
+        $post->featured = isset($input['featured']);
 
         return $post->save();
     }
@@ -190,7 +191,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function getRecommended() {
-        $posts = Post::published()->latest()->take(3)->get();
+        $posts = Post::published()->featuredFirst()->latest()->take(3)->get();
 
         return $posts;
     }

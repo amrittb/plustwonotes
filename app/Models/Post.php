@@ -88,6 +88,16 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Sorts posts to get featured posts first.
+     *
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeFeaturedFirst(Builder $query) {
+        return $query->orderBy('featured','DESC');
+    }
+
+    /**
      * Accessor for published_at attribute.
      *
      * @param $value
