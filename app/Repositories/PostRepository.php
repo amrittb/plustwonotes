@@ -22,7 +22,11 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function allPublished() {
-        $posts = Post::with('subject.grade','category')->published()->impFirst()->latest()->paginate($this->postLimit);
+        $posts = Post::with('subject.grade','category')
+                        ->published()
+                        ->impFirst()
+                        ->latest()
+                        ->paginate($this->postLimit);
 
         return $posts;
     }
@@ -34,11 +38,13 @@ class PostRepository implements PostRepositoryInterface{
      */
     public function allUntrashed() {
         $posts = Post::with('subject.grade','category','user')
-                ->where('status_id','=',Post::STATUS_PUBLISHED)
-                ->orWhere('status_id','=',Post::STATUS_CONTENT_READY)
-                ->orWhere(function($query){
-                    $query->where('status_id','=',Post::STATUS_DRAFT)
-                          ->where('user_id','=',Auth::id());
+                ->where(function($query){
+                    $query->where ('status_id','=',Post::STATUS_PUBLISHED)
+                        ->orWhere('status_id','=',Post::STATUS_CONTENT_READY)
+                        ->orWhere(function($query){
+                            $query->where('status_id','=',Post::STATUS_DRAFT)
+                                    ->where('user_id','=',Auth::id());
+                        });
                 })
                 ->orderBy('status_id','desc')
                 ->latest()
@@ -181,19 +187,17 @@ class PostRepository implements PostRepositoryInterface{
             return $post->forceDelete();
         }
 
-        // Updating post status for deleting the post.
-        Post::deleted(function($post){
-            // This ensures that the model gets updated instead of getting inserted.
-            $post->exists = true;
-
-            $post->status_id = Post::STATUS_TRASHED;
-            $post->save();
-
-            // Resets the existence.
-            $post->exists = false;
-        });
-
         return $post->delete();
+    }
+
+    /**
+     * Restores a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function restorePost(Post $post) {
+        return $post->restore();
     }
 
     /**

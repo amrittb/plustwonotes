@@ -70,7 +70,7 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		$router->bind('posts', function ($post) {
 			if(is_numeric($post)){
-				return Post::findOrFail($post);
+				return Post::onlyTrashed()->findOrFail($post);
 			}
 			return Post::where('post_slug', $post)->firstOrFail();
 		});

@@ -62,6 +62,17 @@
         @endif
     @endhaspermission
 
+    <!-- Restore Action -->
+    @haspermission('post.destroy')
+        @if($post->isRestoreableByUser(Auth::user()))
+            {!! Form::open(['url' => $post->restore_url,'method' => 'PATCH']) !!}
+            <button type="submit" class="post-list-item__action">
+                <i class="material-icons">refresh</i>
+            </button>
+            {!! Form::close() !!}
+        @endif
+    @endhaspermission
+
     <!-- Delete Action -->
     @haspermission('post.destroy')
         @if($post->isDeletableByUser(Auth::user()))

@@ -64,6 +64,10 @@ class PostPresenter extends Presenter{
      * @return string
      */
     public function presentStatusText(){
+        if($this->isDeleted()) {
+            return PostPresenter::STATUS_TRASHED_TEXT;
+        }
+
         switch(intval($this->status_id)){
             case Post::STATUS_PUBLISHED:
                 if($this->isPublished()){
@@ -77,9 +81,6 @@ class PostPresenter extends Presenter{
                 break;
             case Post::STATUS_DRAFT:
                 return PostPresenter::STATUS_DRAFT_TEXT;
-                break;
-            case Post::STATUS_TRASHED:
-                return PostPresenter::STATUS_TRASHED_TEXT;
                 break;
             default:
                 return PostPresenter::STATUS_TRASHED_TEXT;
@@ -174,6 +175,21 @@ class PostPresenter extends Presenter{
      * @return string
      */
     public function presentDeleteUrl(){
-        return route('posts.destroy',['posts' => $this->post_slug]);
+        $routeParam = ['posts' => $this->post_slug];
+
+        if($this->isDeleted()){
+            $routeParam = ['posts' => $this->id];
+        }
+
+        return route('posts.destroy',$routeParam);
+    }
+
+    /**
+     * Presents post restoring url.
+     *
+     * @return mixed
+     */
+    public function presentRestoreUrl() {
+        return route('posts.restore',['posts' => $this->id]);
     }
 }

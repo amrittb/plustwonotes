@@ -69,6 +69,15 @@ Route::group(['prefix' => 'posts'], function(){
             ]
         ]);
 
+        Route::patch('/restore',[
+           'uses' => 'PostController@restore',
+            'as' => 'posts.restore',
+            'acl' => [
+                'User:hasPermission:post.destroy',
+                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
+            ]
+        ]);
+
         Route::patch('/publish', [
             'uses' => 'PostController@publish',
             'as' => 'posts.publish',

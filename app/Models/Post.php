@@ -150,7 +150,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isDeleted(){
-        return ($this->status_id == Post::STATUS_TRASHED && $this->trashed());
+        return $this->trashed();
     }
 
     /**
@@ -159,7 +159,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isReadable(){
-        return $this->isPublished();
+        return ( ! $this->isDeleted()) && $this->isPublished();
     }
 
     /**
@@ -177,7 +177,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isDraftable(){
-        return $this->status_id == null || $this->isContentReady();
+        return ( ! $this->isDeleted()) && ($this->status_id == null || $this->isContentReady());
     }
 
     /**
@@ -186,7 +186,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isPublishable(){
-        return $this->isContentReady();
+        return ( ! $this->isDeleted()) && $this->isContentReady();
     }
 
     /**
@@ -195,7 +195,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isUnpublishable() {
-        return $this->status_id == Post::STATUS_PUBLISHED;
+        return ( ! $this->isDeleted()) && ($this->status_id == Post::STATUS_PUBLISHED);
     }
 
     /**
@@ -242,7 +242,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isContentReadyableByUser(User $user) {
-        return $this->isDraft() && $this->isCreatedBy($user);
+        return ( ! $this->isDeleted()) && $this->isDraft() && $this->isCreatedBy($user);
     }
 
     /**
@@ -263,6 +263,16 @@ class Post extends Model implements PresentableInterface{
      */
     public function isDeletableByUser(User $user) {
         return $this->isDeletable() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
+    }
+
+    /**
+     * Checks if the post is restoreable by the user.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isRestoreableByUser(User $user) {
+        return $this->isDeleted() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
     }
 
     /**

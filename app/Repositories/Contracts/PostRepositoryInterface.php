@@ -30,6 +30,13 @@ interface PostRepositoryInterface {
     public function getForCategory(Category $category);
 
     /**
+     * Returns trashed posts.
+     *
+     * @return mixed
+     */
+    public function getTrashed();
+
+    /**
      * Saves a post.
      *
      * @param $input
@@ -84,4 +91,12 @@ interface PostRepositoryInterface {
      * @return mixed
      */
     public function deletePost(Post $post);
+
+    /**
+     * Restores a post.
+     *
+     * @param $post
+     * @return mixed
+     */
+    public function restorePost(Post $post);
 }

@@ -113,6 +113,17 @@ class PostController extends Controller {
     }
 
     /**
+     * Gets trashed posts.
+     *
+     * @return mixed
+     */
+    public function trashed() {
+        $posts = $this->postRepo->getTrashed();
+
+        return view('posts.admin.index',compact('posts'));
+    }
+
+    /**
      * Stores a post to the database.
      *
      * @param SavePostRequest $request
@@ -179,14 +190,19 @@ class PostController extends Controller {
     }
 
     /**
-     * Gets trashed posts.
+     * Restores a post.
      * 
+     * @param Post $post
      * @return mixed
      */
-    public function trashed() {
-        $posts = $this->postRepo->getTrashed();
+    public function restore(Post $post) {
+        $result = $this->postRepo->restorePost($post);
 
-        return view('posts.admin.index',compact('posts'));
+        if($result){
+            return redirect()->back()->with('message','Post restored!');
+        } else {
+            return redirect()->back()->with('message','Something went wrong!');
+        }
     }
 
     /**
