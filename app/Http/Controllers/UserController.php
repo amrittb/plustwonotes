@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
@@ -71,23 +72,28 @@ class UserController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param User $user
 	 * @return Response
 	 */
-	public function edit($id)
-	{
-		//
+	public function edit(User $user) {
+		return view('users.edit',compact('user'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param User $user
+	 * @param UpdateUserRequest $userRequest
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
+	public function update(User $user, UpdateUserRequest $userRequest) {
+		$result = $this->users->updateUser($userRequest->all(),$user);
+
+		if($result) {
+			return redirect()->back()->with('message','User Updated!');
+		} else {
+			return redirect()->back()->withInput()->with('message','Something went wrong!');
+		}
 	}
 
 	/**

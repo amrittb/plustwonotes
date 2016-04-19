@@ -133,10 +133,23 @@ Route::group(['prefix' => 'users'],function(){
         ]
     ]);
 
-    Route::get('/{users}',[
-        'uses' => 'UserController@show',
-        'as' => 'users.show'
-    ]);
+    Route::group(['prefix' => '{users}'],function(){
+        Route::get('/',[
+            'uses' => 'UserController@show',
+            'as' => 'users.show'
+        ]);
+
+        Route::get('/edit',[
+            'uses' => 'UserController@edit',
+            'as' => 'users.edit'
+        ]);
+
+        Route::patch('/',[
+            'uses' => 'UserController@update',
+            'as' => 'users.update'
+        ]);
+    });
+
 });
 
 Route::controllers([
