@@ -26,7 +26,7 @@ class UserController extends Controller {
 		$this->users = $users;
 
 		$this->middleware('auth',['except' => 'show']);
-		$this->middleware('acl',['only' => 'index']);
+		$this->middleware('acl',['except' => 'show']);
 	}
 
 	/**

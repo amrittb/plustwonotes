@@ -141,12 +141,18 @@ Route::group(['prefix' => 'users'],function(){
 
         Route::get('/edit',[
             'uses' => 'UserController@edit',
-            'as' => 'users.edit'
+            'as' => 'users.edit',
+            'acl' => [
+                'users:isLoggedIn'
+            ]
         ]);
 
         Route::patch('/',[
             'uses' => 'UserController@update',
-            'as' => 'users.update'
+            'as' => 'users.update',
+            'acl' => [
+                'users:isLoggedIn'
+            ]
         ]);
     });
 
