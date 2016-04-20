@@ -72,6 +72,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
+     * Checks if the current user is active.
+     *
+     * @return bool
+     */
+    public function isActive() {
+        return $this->status_id == self::STATUS_ACTIVE;
+    }
+
+    /**
      * Return a created presenter.
      *
      * @return Robbo\Presenter\Presenter

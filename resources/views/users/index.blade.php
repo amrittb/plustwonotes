@@ -15,7 +15,6 @@
                 <thead>
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric">Full Name</th>
-                    <th class="mdl-data-table__cell--non-numeric">Username</th>
                     <th class="mdl-data-table__cell--non-numeric">Email</th>
                     <th class="mdl-data-table__cell--non-numeric">User Created At</th>
                     <th class="mdl-data-table__cell--non-numeric">Actions</th>
@@ -24,9 +23,8 @@
                 </thead>
                 <tbody>
                 @foreach($users as $user)
-                    <tr class="post-list-item">
-                        <td class="mdl-data-table__cell--non-numeric">{!! link_to_route('users.show',$user->name,['users' => $user->username]) !!}</td>
-                        <td class="mdl-data-table__cell--non-numeric">{{ $user->username }}</td>
+                    <tr class="user-list-item">
+                        <td class="mdl-data-table__cell--non-numeric">{{ $user->name }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->email }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->created_at->diffForHumans() }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{!! $user->actions !!}</td>

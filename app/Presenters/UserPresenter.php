@@ -26,7 +26,7 @@ class UserPresenter extends Presenter {
      * @return string
      */
     public function presentActions() {
-        return 'Actions';
+        return view('_partials.users.actions',['user' => $this])->render();
     }
 
     /**
