@@ -14,25 +14,19 @@ Route::group(['prefix' => 'posts'], function(){
     Route::get('/create',[
         'uses' => 'PostController@create',
         'as' => 'posts.create',
-        'acl' => [
-            'User:hasPermission:post.create'
-        ]
+        'acl' => 'PostsGuard@createPost'
     ]);
 
     Route::post('/',[
         'uses' => 'PostController@store',
         'as' => 'posts.store',
-        'acl' => [
-            'User:hasPermission:post.create'
-        ]
+        'acl' => 'PostsGuard@createPost'
     ]);
 
     Route::get('/trashed',[
         'uses' => 'PostController@trashed',
         'as' => 'posts.trashed',
-        'acl' => [
-            'User:hasPermission:post.destroy'
-        ]
+        'acl' => 'PostsGuard@readDestroyedPost'
     ]);
 
     //  /posts/{posts} group
@@ -45,71 +39,49 @@ Route::group(['prefix' => 'posts'], function(){
         Route::get('/edit',[
             'uses' => 'PostController@edit',
             'as' => 'posts.edit',
-            'acl' => [
-                'User:hasPermission:post.update',
-                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
-            ]
+            'acl' => 'PostsGuard@editPost'
         ]);
 
         Route::patch('/',[
             'uses' => 'PostController@update',
             'as' => 'posts.update',
-            'acl' => [
-                'User:hasPermission:post.update',
-                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
-            ],
+            'acl' => 'PostsGuard@editPost'
         ]);
 
         Route::delete('/',[
             'uses' => 'PostController@destroy',
             'as' => 'posts.destroy',
-            'acl' => [
-                'User:hasPermission:post.destroy',
-                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
-            ]
+            'acl' => 'PostsGuard@destroyPost'
         ]);
 
         Route::patch('/restore',[
            'uses' => 'PostController@restore',
             'as' => 'posts.restore',
-            'acl' => [
-                'User:hasPermission:post.destroy',
-                'posts:isCreatedBy:#User|User:isContentCreatorOnly'
-            ]
+            'acl' => 'PostsGuard@destroyPost'
         ]);
 
         Route::patch('/publish', [
             'uses' => 'PostController@publish',
             'as' => 'posts.publish',
-            'acl' => [
-                'User:hasPermission:post.publish'
-            ]
+            'acl' => 'PostsGuard@publishPost'
         ]);
 
         Route::patch('/unpublish', [
             'uses' => 'PostController@unpublish',
             'as' => 'posts.unpublish',
-            'acl' => [
-                'User:hasPermission:post.publish'
-            ]
+            'acl' => 'PostsGuard@publishPost'
         ]);
 
         Route::patch('/draft', [
             'uses' => 'PostController@draft',
             'as' => 'posts.draft',
-            'acl' => [
-                'User:hasPermission:post.create',
-                'posts:isCreatedBy:#User'
-            ]
+            'acl' => 'PostsGuard@draftPost'
         ]);
 
         Route::patch('/contentready',[
             'uses' => 'PostController@contentready',
             'as' => 'posts.contentready',
-            'acl' => [
-                'User:hasPermission:post.create',
-                'posts:isCreatedBy:#User'
-            ]
+            'acl' => 'PostsGuard@draftPost'
         ]);
     });
 });
@@ -119,18 +91,14 @@ Route::group(['prefix' => 'users'],function(){
         'uses' => 'PostController@indexAll',
         'as' => 'user.posts',
         'redirect' => 'home',
-        'acl' => [
-            'User:isNotStudentOnly'
-        ]
+        'acl' => 'UsersGuard@listPost'
     ]);
 
     Route::get('/',[
         'uses' => 'UserController@index',
         'as' => 'users.index',
         'redirect' => 'home',
-        'acl' => [
-            'User:hasPermission:user.list'
-        ]
+        'acl' => 'UsersGuard@listUser'
     ]);
 
     Route::group(['prefix' => '{users}'],function(){
@@ -142,20 +110,15 @@ Route::group(['prefix' => 'users'],function(){
         Route::get('/edit',[
             'uses' => 'UserController@edit',
             'as' => 'users.edit',
-            'acl' => [
-                'users:isLoggedIn'
-            ]
+            'acl' => 'UsersGuard@editUser'
         ]);
 
         Route::patch('/',[
             'uses' => 'UserController@update',
             'as' => 'users.update',
-            'acl' => [
-                'users:isLoggedIn'
-            ]
+            'acl' => 'UsersGuard@editUser'
         ]);
     });
-
 });
 
 Route::controllers([

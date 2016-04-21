@@ -6,6 +6,11 @@ use Illuminate\Container\BindingResolutionException;
 trait HandlesActionControl {
 
     /**
+     * Class Name of parent guard.
+     */
+    protected $parentGuard = "ActionGuard";
+
+    /**
      * Resolved parameters for action control.
      *
      * @var array
@@ -40,9 +45,83 @@ trait HandlesActionControl {
      * @return array
      */
     private function getRules(Request $request) {
+        $acl = $this->getAclParameter($request);
+
+        if(is_array($acl)){
+            return $acl;
+        }
+
+        list($guard, $action) = $this->getGuardAndAction($acl);
+
+        return $guard->getRules($action);
+    }
+
+    /**
+     * Returns Acl Parameter.
+     *
+     * @param Request $request
+     * @return string
+     */
+    private function getAclParameter(Request $request) {
         $actions = $request->route()->getAction();
 
-        return array_has($actions,'acl')?$actions['acl']:'';
+        return array_has($actions, 'acl') ? $actions['acl'] : '';
+    }
+
+    /**
+     * Returns guard and action.
+     *
+     * @param $acl
+     * @return array
+     * @throws \Exception
+     */
+    private function getGuardAndAction($acl) {
+        list($class, $action) = $this->getGuardAndActionNames($acl);
+
+        $guard = $this->getGuardObject($class);
+
+        return array($guard, $action);
+    }
+
+    /**
+     * Returns Guard Class name and its action.
+     *
+     * @param $acl
+     * @return array
+     */
+    private function getGuardAndActionNames($acl) {
+        list($className, $actionName) = explode("@", $acl);
+
+        $class = $this->getGuardClassFullName($className);
+
+        return array($class, $actionName);
+    }
+
+    /**
+     * Returns Guard Class Full Name.
+     *
+     * @param $className
+     * @return string
+     */
+    private function getGuardClassFullName($className) {
+        return '\App\Acl\\' . $className;
+    }
+
+    /**
+     * Returns Guard object.
+     *
+     * @param $class
+     * @return mixed
+     * @throws \Exception
+     */
+    private function getGuardObject($class) {
+        $guard = new $class();
+
+        if ( ! is_subclass_of($guard, $this->getGuardClassFullName($this->parentGuard))) {
+            throw new \Exception("[$class] must be a child of '{$this->getGuardClassFullName($this->parentGuard)}'");
+        }
+
+        return $guard;
     }
 
     /**
@@ -66,6 +145,7 @@ trait HandlesActionControl {
 
         return true;
     }
+
 
     /**
      * Checks to see if a rule passes.
@@ -95,7 +175,6 @@ trait HandlesActionControl {
 
         return $result;
     }
-
     /**
      * Returns the rule params from a rule.
      *
@@ -149,7 +228,6 @@ trait HandlesActionControl {
 
         return $this->resolveParameter($paramString);
     }
-
     /**
      * Resolves parameter object.
      *
