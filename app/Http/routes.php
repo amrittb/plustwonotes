@@ -125,4 +125,11 @@ Route::controllers([
     'auth' => 'AuthController'
 ]);
 
+Route::group(['prefix' => 'api','namespace' => 'Api'],function(){
+
+    Route::group(['prefix' => 'v1','namespace' => 'v1'],function(){
+        // API v1 routes
+    });
+});
+
 Route::get('/{category}',['uses' => 'PostController@listCategory','as' => 'posts.index.category']);
