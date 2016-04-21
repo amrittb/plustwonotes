@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Api\v1;
+<?php namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Response as IlluminateResponse;
 use League\Fractal\Manager;
