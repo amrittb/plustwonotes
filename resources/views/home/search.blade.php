@@ -1,11 +1,17 @@
 @extends('_layouts.app')
 
 @section('title')
-    {{ $query }} - Search - Plus Two Notes
+    {{ (!is_null($query))?$query." - ":'' }} Search - Plus Two Notes
 @stop
 
 @section('content')
-    <h3>Posts for: {{ $query }}</h3>
+    <h3 class="text--thin">
+        @if(is_null($query))
+            Search for...
+        @else
+            Searched for: {{ $query }}
+        @endif
+    </h3>
 
     {!! Form::open(['route' => 'search','method' => 'GET','class' => 'mdl-typography--text-center']) !!}
         <!-- Search Input -->
@@ -15,9 +21,11 @@
         </div>
 
             <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect"
-                   value="Search"
+                   value="Find me that!"
                    type="submit" />
     {!! Form::close() !!}
 
-    @include('_partials.posts.postlist')
+    @if(!is_null($query))
+        @include('_partials.posts.postlist')
+    @endif
 @stop

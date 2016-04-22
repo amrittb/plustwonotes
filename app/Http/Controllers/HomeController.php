@@ -52,15 +52,16 @@ class HomeController extends Controller {
      */
     public function search() {
         $input = \Input::all();
+
+        $query = null;
+        $posts = [];
         
         if(array_has($input,'q')) {
             $query = $input['q'];
-
             $posts = $this->postRepo->searchFor($query);
-            
-            return view('home.search',compact('posts','query'));
         }
-        
-        return view('home.search');
+
+        return view('home.search',compact('posts','query'));
+
     }
 }
