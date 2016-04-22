@@ -12,6 +12,7 @@ class AddFullTextToPostsTable extends Migration {
 	 */
 	public function up()
 	{
+		DB::statement('ALTER TABLE posts ENGINE = MyISAM');
 		DB::statement('ALTER TABLE posts ADD FULLTEXT(post_title, post_body)');
 	}
 
@@ -22,8 +23,7 @@ class AddFullTextToPostsTable extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement('ALTER TABLE posts DROP post_title');
-		DB::statement('ALTER TABLE posts DROP post_body');
+		DB::statement('ALTER TABLE posts ENGINE = InnoDB');
 	}
 
 }
