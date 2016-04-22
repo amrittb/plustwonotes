@@ -98,6 +98,16 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Matches a search query.
+     *
+     * @param Builder $query
+     * @param $searchQuery
+     */
+    public function scopeMatchesSearchQuery(Builder $query,$searchQuery) {
+        return $query->whereRaw("MATCH (post_title,post_body) AGAINST (?)",[$searchQuery]);
+    }
+
+    /**
      * Accessor for published_at attribute.
      *
      * @param $value

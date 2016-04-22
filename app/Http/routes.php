@@ -4,6 +4,8 @@ Route::get('/',['uses' => 'HomeController@index','as' => 'home']);
 
 Route::get('about',['uses' => 'HomeController@about', 'as' => 'about']);
 
+Route::get('search',['uses' => 'HomeController@search','as' => 'search']);
+
 //  /posts group
 Route::group(['prefix' => 'posts'], function(){
     Route::get('/',[

@@ -99,4 +99,12 @@ interface PostRepositoryInterface {
      * @return mixed
      */
     public function restorePost(Post $post);
+
+    /**
+     * Searches posts by a query string.
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function searchFor($query);
 }

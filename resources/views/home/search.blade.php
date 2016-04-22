@@ -1,11 +1,11 @@
 @extends('_layouts.app')
 
 @section('title')
-    Plus Two Notes - Posts
+    {{ $query }} - Search - Plus Two Notes
 @stop
 
 @section('content')
-    <h3>Posts</h3>
+    <h3>Posts for: {{ $query }}</h3>
 
     @include('_partials.posts.postlist')
 @stop

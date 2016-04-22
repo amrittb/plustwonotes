@@ -210,4 +210,21 @@ class PostRepository implements PostRepositoryInterface{
 
         return $posts;
     }
+
+    /**
+     * Searches posts by a query string.
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function searchFor($query) {
+        $posts = Post::with('subject.grade','category')
+                        ->published()
+                        ->matchesSearchQuery($query)
+                        ->impFirst()
+                        ->latest()
+                        ->paginate($this->postLimit);
+
+        return $posts;
+    }
 }

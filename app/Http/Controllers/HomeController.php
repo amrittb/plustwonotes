@@ -46,4 +46,21 @@ class HomeController extends Controller {
         return view('home.about');
     }
 
+    /**
+     * Searches the site.
+     *
+     */
+    public function search() {
+        $input = \Input::all();
+        
+        if(array_has($input,'q')) {
+            $query = $input['q'];
+
+            $posts = $this->postRepo->searchFor($query);
+            
+            return view('home.search',compact('posts','query'));
+        }
+        
+        return view('home.search');
+    }
 }
