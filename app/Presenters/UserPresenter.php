@@ -62,4 +62,13 @@ class UserPresenter extends Presenter {
     public function presentAvatarSmall() {
         return ($this->avatar != null) ? $this->avatar : '/img/empty_avatar_small.jpg';
     }
+
+    /**
+     * Returns user roles in list.
+     *
+     * @return string
+     */
+    public function presentRolesPrettified() {
+        return implode("<br />",$this->roles->lists('name'));
+    }
 }

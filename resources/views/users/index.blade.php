@@ -18,6 +18,7 @@
                     <th class="mdl-data-table__cell--non-numeric">Email</th>
                     <th class="mdl-data-table__cell--non-numeric">User Created At</th>
                     <th class="mdl-data-table__cell--non-numeric">Actions</th>
+                    <th class="mdl-data-table__cell--non-numeric">Roles</th>
                     <th class="mdl-data-table__cell--non-numeric">User Status</th>
                 </tr>
                 </thead>
@@ -28,6 +29,15 @@
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->email }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->created_at->diffForHumans() }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{!! $user->actions !!}</td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            {!! $user->rolesPrettified !!}
+                            @if(Auth::user()->isAdministrator())
+                                <br />
+                                <a href="{{ route('users.edit',['username' => $user->username]) }}">
+                                    <i class="material-icons">edit</i> Edit User Role
+                                </a>
+                            @endif
+                        </td>
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->status_text }}</td>
                     </tr>
                 @endforeach
