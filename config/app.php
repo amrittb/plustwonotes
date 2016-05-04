@@ -152,6 +152,7 @@ return [
 		 */
 		'Robbo\Presenter\PresenterServiceProvider',
 		'Laracasts\Generators\GeneratorsServiceProvider',
+		'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
 
 		/*
 		 * Application Providers...
