@@ -19,4 +19,13 @@ interface UserRepositoryInterface {
      * @return mixed
      */
     public function updateUser($input,User $user);
+
+    /**
+     * Syncs the roles for the user.
+     *
+     * @param User $user
+     * @param array $roleIds
+     * @return mixed
+     */
+    public function syncRoles(User $user,array $roleIds);
 }

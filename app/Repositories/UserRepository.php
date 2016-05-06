@@ -36,4 +36,15 @@ class UserRepository implements UserRepositoryInterface{
 
         return $user->save();
     }
+
+    /**
+     * Syncs the roles for the user.
+     *
+     * @param User $user
+     * @param array $roleIds
+     * @return mixed
+     */
+    public function syncRoles(User $user, array $roleIds) {
+        return $user->roles()->sync($roleIds);
+    }
 }
