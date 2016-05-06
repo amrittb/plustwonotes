@@ -15,6 +15,7 @@ class ViewComposerServiceProvider extends ServiceProvider{
     public function boot(){
         \View::composer('*','App\Http\ViewComposers\PostCategoryComposer');
         \View::composer('_partials.posts.save','App\Http\ViewComposers\SavePostComposer');
+        \View::composer('_partials.users.roleeditor','App\Http\ViewComposers\RolesComposer');
     }
 
     /**
