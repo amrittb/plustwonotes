@@ -34,4 +34,15 @@ class UsersGuard extends ActionGuard{
             'users:isLoggedIn'
         ];
     }
+
+    /**
+     * Returns user roles sync action control rules.
+     *
+     * @return array
+     */
+    public function getSyncRolesActionControlRules() {
+        return [
+            'User:isAdministrator'
+        ];
+    }
 }

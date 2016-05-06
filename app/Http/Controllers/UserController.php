@@ -1,12 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
-use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
@@ -38,25 +35,6 @@ class UserController extends Controller {
 		$users = $this->users->allActive();
 
 		return view('users.index',compact('users'));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create() {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
 	}
 
 	/**
@@ -95,16 +73,4 @@ class UserController extends Controller {
 			return redirect()->back()->withInput()->with('message','Something went wrong!');
 		}
 	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 }
