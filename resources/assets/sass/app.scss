@@ -16,6 +16,8 @@
 */
 @import "material-design-lite";
 
+@import "dialog-polyfill";
+
 @import "typography";
 @import "components/layouts/header";
 @import "components/layouts/hero";

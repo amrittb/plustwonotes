@@ -5,6 +5,8 @@
 @stop
 
 @section('content')
+    @include('_partials.users.role-editor')
+
     <h3>Users List</h3>
 
     @if(count($users) > 0)
@@ -30,13 +32,10 @@
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->created_at->diffForHumans() }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{!! $user->actions !!}</td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            {!! $user->rolesPrettified !!}
-                            @if(Auth::user()->isAdministrator())
-                                <br />
-                                <a href="{{ route('users.edit',['username' => $user->username]) }}">
-                                    <i class="material-icons">edit</i> Edit User Role
-                                </a>
-                            @endif
+                            <user-roles username="{{ $user->username }}"
+                                        :user-roles="[{{ implode(',',$user->roles->lists('id')) }}]"
+                                        :is-editable="{{ Auth::user()->isAdministrator()?'true':'false' }}">
+                            </user-roles>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->status_text }}</td>
                     </tr>

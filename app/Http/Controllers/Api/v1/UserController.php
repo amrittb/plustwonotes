@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ApiController;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use League\Fractal\Manager;
 use League\Fractal\TransformerAbstract;
 

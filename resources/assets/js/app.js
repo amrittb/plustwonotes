@@ -1,7 +1,25 @@
-require('material-design-lite');
+import Mdl from 'material-design-lite';
+import Vue from 'vue';
+import VueResource from 'vue-resource';
 
-var Vue = require('vue');
+import store from "./vuex/store";
 
-new Vue({
-    el : 'body'
+import MdlCheckbox from "./Components/Checkbox.vue";
+import RoleEditor from "./Components/RoleEditor.vue";
+import UserRoles from "./Components/UserRoles.vue";
+
+Vue.config.debug = true;
+
+Vue.use(VueResource);
+
+Vue.component("mdl-checkbox",MdlCheckbox);
+Vue.component("role-editor",RoleEditor);
+Vue.component("user-roles",UserRoles);
+
+/**
+ * Root Vue Instance.
+ */
+window.app = new Vue({
+    el : 'body',
+    store
 });

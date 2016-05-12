@@ -3,7 +3,8 @@ var elixir = require('laravel-elixir');
 require('laravel-elixir-vueify');
 
 var paths = {
-	mdl : './node_modules/material-design-lite'
+	mdl : './node_modules/material-design-lite',
+    dialogPolyfill : './node_modules/dialog-polyfill'
 };
 
 elixir(function(mix) {
@@ -27,6 +28,6 @@ function mixScripts(mix){
  */
 function mixCss(mix){
     mix.sass('app.scss',null,{
-        includePaths: [].concat(paths.mdl + '/src')
+        includePaths: [].concat(paths.mdl + '/src').concat(paths.dialogPolyfill)
     });
 }
