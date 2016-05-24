@@ -4,9 +4,15 @@ $form-inverse-color: color($palette-grey-100);
     color: $form-inverse-color;
 }
 
-.textfield--inverse{
-    color: $form-inverse-color;
-    border-bottom-color: $form-inverse-color;
+.textfield {
+    &--inverse {
+        color: $form-inverse-color;
+        border-bottom-color: $form-inverse-color;
+    }
+
+    &__label--non-floating {
+        position: static;
+    }
 }
 
 .checkbox--inverse{
