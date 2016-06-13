@@ -8,6 +8,10 @@
     export default {
         ready() {
             this.editor = new MediumEditor(this.$el);
+
+            this.editor.subscribe('editableInput',function(event,editable){
+                this.content = editable.innerHTML;
+            }.bind(this));
         },
         data() {
             return {
