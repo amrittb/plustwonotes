@@ -1,7 +1,6 @@
 <template>
-    <textarea name="{{ name }}" id="{{ id }}">{{ content }}</textarea>
+    <textarea name="{{ name }}" id="{{ id }}" class="editor">{{ content }}</textarea>
 </template>
-
 
 <script>
     import MediumEditor from 'medium-editor';

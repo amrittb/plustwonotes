@@ -84,6 +84,22 @@ $medium-editor-placeholder-color: #fff;
     color: $medium-editor-link-color;
 }
 
-.medium-editor-placeholder:after {
-    color: $medium-editor-border-color;
+.medium-editor-placeholder {
+
+    display: block;
+    width: 100%;
+
+    &:after{
+        color: $medium-editor-border-color;
+    }
+}
+
+.post-editor{
+    width: 100%;
+
+    .editor{
+        border: 1px solid $input-text-label-color;
+        border-radius: 10px;
+        padding: 0.5em;
+    }
 }
