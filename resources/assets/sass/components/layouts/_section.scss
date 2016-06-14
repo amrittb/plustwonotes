@@ -16,4 +16,35 @@
     &--recommendations{
         background: color($color-accent);
     }
+    
+    &--404{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        background: #6A8733;
+
+        &__table{
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        &__container{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        &__content{
+            display: inline-block;
+            text-align: center;
+        }
+        
+        a{
+            text-decoration: none;
+            font-weight:normal;
+        }
+    }
 }
