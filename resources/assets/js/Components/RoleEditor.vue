@@ -7,7 +7,8 @@
                           name="roles"
                           :value="role.id"
                           :label="role.name"
-                          :checked="user.hasRole(role)">
+                          :checked="user.hasRole(role)"
+                          :is-disabled="user.hasRole(role) && role.id == 4">
             </mdl-checkbox>
         </div>
         <div class="mdl-dialog__actions">

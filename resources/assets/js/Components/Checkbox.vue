@@ -6,7 +6,9 @@
                name="{{ name }}"
                value="{{ value }}"
                @click="onClick"
-               class="mdl-checkbox__input" />
+               class="mdl-checkbox__input"
+               :disabled="isDisabled"
+        />
         <span class="mdl-checkbox__label">{{ label }}</span>
     </label>
 </template>
@@ -65,6 +67,17 @@
              * @type {Boolean}
              */
             checked: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+
+            /**
+             * Boolean to determine if the checkbox is disabled.
+             *
+             * @type {Boolean}
+             */
+            isDisabled: {
                 type: Boolean,
                 required: false,
                 default: false
