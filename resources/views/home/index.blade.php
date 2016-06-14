@@ -36,14 +36,18 @@
                     We offer you to read...
                 </h2>
 
-                <div class="mdl-grid post-category">
-                    @foreach($postCategories as $category)
-                        <div class="mdl-cell mdl-cell--4-col post-category"><div alt="{{ $category->category_name }}" class="post-category__logo img--circular post-category--{{ strtolower($category->category_name) }}"></div>
-                            <h4 class="post-category__title section__heading">{{ $category->category_name }}</h4>
-                            <a href="{{ route('posts.index.category',['category' => $category->category_slug]) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Read 'em</a>
-                        </div>
-                    @endforeach
-                </div>
+                @if(count($postCategories))
+                    <div class="mdl-grid post-category">
+                        @foreach($postCategories as $category)
+                            <div class="mdl-cell mdl-cell--4-col post-category"><div alt="{{ $category->category_name }}" class="post-category__logo img--circular post-category--{{ strtolower($category->category_name) }}"></div>
+                                <h4 class="post-category__title section__heading">{{ $category->category_name }}</h4>
+                                <a href="{{ route('posts.index.category',['category' => $category->category_slug]) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Read 'em</a>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    @include('_partials.empty')
+                @endif
             </div>
         </section>
 
@@ -53,11 +57,15 @@
                     We recommend you to read...
                 </h2>
 
-                <div class="mdl-grid">
-                    @foreach($recomendations as $post)
-                        @include('_partials.posts.card',['post' => $post])
-                    @endforeach
-                </div>
+                @if(count($recomendations) > 0)
+                    <div class="mdl-grid">
+                        @foreach($recomendations as $post)
+                            @include('_partials.posts.card',['post' => $post])
+                        @endforeach
+                    </div>
+                @else
+                    @include('_partials.empty')
+                @endif
             </div>
         </section>
     </div>
