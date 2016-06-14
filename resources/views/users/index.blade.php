@@ -45,6 +45,6 @@
             @include('_partials.pagination',['list' => $users])
         </div>
     @else
-        No Users Found
+        @include('_partials.empty')
     @endif
 @stop

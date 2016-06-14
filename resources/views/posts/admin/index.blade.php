@@ -54,6 +54,6 @@
             @include('_partials.pagination',['list' => $posts])
         </div>
     @else
-        No Posts Found
+        @include('_partials.empty')
     @endif
 @stop
