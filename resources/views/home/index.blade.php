@@ -32,7 +32,7 @@
 
         <section class="section section--categories mdl-grid">
             <div class="mdl-cell mdl-cell--12-col section--center">
-                <h2 class="section__heading mdl-typography--text-left">
+                <h2 class="section__heading mdl-typography--text-left text--color-white"">
                     We offer you to read...
                 </h2>
 
@@ -40,7 +40,7 @@
                     <div class="mdl-grid post-category">
                         @foreach($postCategories as $category)
                             <div class="mdl-cell mdl-cell--4-col post-category"><div alt="{{ $category->category_name }}" class="post-category__logo img--circular post-category--{{ strtolower($category->category_name) }}"></div>
-                                <h4 class="post-category__title section__heading">{{ $category->category_name }}</h4>
+                                <h4 class="post-category__title section__heading text--color-white"">{{ $category->category_name }}</h4>
                                 <a href="{{ route('posts.index.category',['category' => $category->category_slug]) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Read 'em</a>
                             </div>
                         @endforeach
@@ -51,9 +51,9 @@
             </div>
         </section>
 
-        <section class="section mdl-grid">
+        <section class="section section--recommendations mdl-grid">
             <div class="mdl-cell mdl-cell--12-col section--center">
-                <h2 class="section__heading mdl-typography--text-left">
+                <h2 class="section__heading mdl-typography--text-left text--color-white">
                     We recommend you to read...
                 </h2>
 

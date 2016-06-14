@@ -5,7 +5,15 @@
         font-weight: 100;
     }
     
-    &--categories{
+    &--intro{
         background: color($palette-grey-100);
+    }
+    
+    &--categories{
+        background: color($color-primary);
+    }
+    
+    &--recommendations{
+        background: color($color-accent);
     }
 }
