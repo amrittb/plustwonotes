@@ -11,10 +11,8 @@
                 @include('_partials.posts.card')
             @endforeach
         </div>
-
         @include('_partials.pagination',['list' => $posts])
-
-        {{--@else--}}
+    @else
         @include('_partials.empty')
     @endif
 @endif
