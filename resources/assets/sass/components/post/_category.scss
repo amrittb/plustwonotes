@@ -1,0 +1,21 @@
+.post-category{
+    background-size: cover;
+
+    &--note{
+        background: url('/img/note.png') no-repeat center center;
+    }
+
+    &--syllabus{
+        background: url('/img/syllabus.png') no-repeat center center;
+    }
+
+    &--blog{
+        background: url('/img/blog.png') no-repeat center center;
+    }
+
+    &__logo{
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+    }
+}

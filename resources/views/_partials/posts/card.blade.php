@@ -1,6 +1,5 @@
 <div class="mdl-card mdl-shadow--4dp post-card mdl-cell mdl-cell--4-col">
-    <div class="mdl-card__media post-card__media">
-        <img src="/img/dog.png" width="173" height="157" border="0" alt="{{ $post->post_title }}" style="padding:10px;">
+    <div class="mdl-card__media post-card__media post-category post-category--{{ strtolower($post->category->category_name) }}">
     </div>
     <div class="mdl-card__title mdl-card--border">
         <h4 class="mdl-card__title-text">{{ $post->post_title }}

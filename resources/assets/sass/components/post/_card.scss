@@ -5,6 +5,7 @@
     &__media{
         background-color: unquote("rgb(#{$color-accent-contrast})");
         height: $post-card-media-height;
+        padding:0;
     }
 
     &__post-detail{
