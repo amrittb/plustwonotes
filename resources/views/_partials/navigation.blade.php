@@ -30,20 +30,15 @@
 
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect avatar-menu"
                         data-mdl-for="avatar-menu-button">
-                        @if(Auth::check())
                             <li class="mdl-menu__item avatar-menu__item"><a href="{{ route('users.show',['users' => Auth::user()->username]) }}"><b>{{ Auth::user()->getPresenter()->name }}</b></a></li>
                             <li class="mdl-menu__item avatar-menu__item"><a href="{{ route('users.edit',['users' => Auth::user()->username]) }}">Edit your profile</a></li>
                             <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/logout') }}">Log Out</a></li>
-                        @else
-                            <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/login') }}">Login</a></li>
-                            <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/auth/register') }}">Register</a></li>
-                        @endif
                     </ul>
                 @else
-                    <a href="{{ url('/auth/login') }}"
-                       class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">
-                        Login
-                    </a>
+                    {{--<a href="{{ url('/auth/login') }}"--}}
+                       {{--class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">--}}
+                        {{--Login--}}
+                    {{--</a>--}}
                 @endif
             </div>
         </div>
