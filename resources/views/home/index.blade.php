@@ -12,61 +12,46 @@
                 <a href="{{ route('posts.index') }}" class="hero__btn mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">Read what we got</a>
             </div>
         </div>
-
-        <section class="section section--intro mdl-grid">
-            <div class="mdl-cell mdl-cell--12-col section--center mdl-typography--text-left">
-                <h2 class="section__heading">
-                    Introducing Plus Two Notes
-                </h2>
-
-                <p class="section__briefing">
-                    <p>
-                    Plus Two Notes is a website created to help students get HSEB notes and references easily.  We provide you with rich, easy and comprehensive notes based on HSEB plus two Syllabus. Also we have other educational materials like HSEB syllabus to help you to study in systematic order.
-                    </p>
-                    <p>
-                        We also provide you with a platform for discussing any questions that you have with fellow students.
-                    </p>
-                </p>
-            </div>
-        </section>
-
-        <section class="section section--categories mdl-grid">
-            <div class="mdl-cell mdl-cell--12-col section--center">
-                <h2 class="section__heading mdl-typography--text-left text--color-white"">
-                    We offer you to read...
-                </h2>
-
-                @if(count($postCategories))
-                    <div class="mdl-grid post-category">
-                        @foreach($postCategories as $category)
-                            <div class="mdl-cell mdl-cell--4-col post-category"><div alt="{{ $category->category_name }}" class="post-category__logo img--circular post-category--{{ strtolower($category->category_name) }}"></div>
-                                <h4 class="post-category__title section__heading text--color-white"">{{ $category->category_name }}</h4>
-                                <a href="{{ route('posts.index.category',['category' => $category->category_slug]) }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Read 'em</a>
-                            </div>
-                        @endforeach
-                    </div>
-                @else
-                    @include('_partials.empty')
-                @endif
-            </div>
-        </section>
-
-        <section class="section section--recommendations mdl-grid">
-            <div class="mdl-cell mdl-cell--12-col section--center">
-                <h2 class="section__heading mdl-typography--text-left text--color-white">
-                    We recommend you to read...
-                </h2>
-
-                @if(count($recomendations) > 0)
-                    <div class="mdl-grid">
-                        @foreach($recomendations as $post)
-                            @include('_partials.posts.card',['post' => $post])
-                        @endforeach
-                    </div>
-                @else
-                    @include('_partials.empty')
-                @endif
-            </div>
-        </section>
     </div>
+
+    <section class="section section--intro mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col section--center mdl-typography--text-left">
+            <h2 class="text--thin">
+                Introducing Plus Two Notes
+                <small> - not just another HSEB guide</small>
+            </h2>
+
+            <p class="section__briefing">
+                <p>
+                    <b>Plus Two Notes</b> is an application created to help students get HSEB notes and references easily.  We provide you with rich, easy and comprehensive notes based on HSEB plus two Syllabus. Also we have other educational materials like HSEB syllabus to help you to study in systematic order.
+                </p>
+
+                <p>
+                    We also post HSEB related news on this site on blog section so that you can get updates about Exam routines and HSEB Board exam results.
+                </p>
+            </p>
+        </div>
+    </section>
+
+    @foreach($postCategories as $category)
+       @include('_partials.categories.section',compact('category'))
+    @endforeach
+
+    <section class="section section--recommendations mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col section--center">
+            <h2 class="section__heading mdl-typography--text-left text--color-white">
+                We recommend you to read...
+            </h2>
+
+            @if(count($recomendations) > 0)
+                <div class="mdl-grid mdl-typography--text-center">
+                    @foreach($recomendations as $post)
+                        @include('_partials.posts.card',['post' => $post])
+                    @endforeach
+                </div>
+            @else
+                @include('_partials.empty')
+            @endif
+        </div>
+    </section>
 @stop

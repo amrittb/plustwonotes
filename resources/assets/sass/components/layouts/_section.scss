@@ -1,20 +1,30 @@
 .section{
-    padding:2% 0;
+    padding:4% 0;
 
     &__heading{
         font-weight: 100;
     }
     
     &--intro{
-        background: color($palette-grey-100);
+        background: color($palette-blue-grey-50);
     }
     
-    &--categories{
-        background: color($color-primary);
+    &-category{
+        &--note{
+            background: color($palette-red-600);
+        }
+        
+        &--syllabus{
+            background: color($palette-deep-orange-600);
+        }
+        
+        &--blog{
+            background: color($palette-green-800);
+        }
     }
     
     &--recommendations{
-        background: color($color-accent);
+        background: color($palette-blue-grey-800);
     }
     
     &--404{
