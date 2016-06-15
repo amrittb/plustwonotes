@@ -11,6 +11,10 @@
                 <div class="section--404__content">
                     <h1 class="text--thin text--color-white mdl-typography--text-center">
                         404 Page Not Found
+                        <br />
+                        <small class="text--thin">
+                            Don't Look at me. I didn't do it.
+                        </small>
                     </h1>
 
                     <img src="{{ asset('img/404.png') }}" class="img--responsive" alt="Plus Two Notes - 404">
