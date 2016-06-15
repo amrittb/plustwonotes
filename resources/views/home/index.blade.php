@@ -1,7 +1,7 @@
 @extends ('_layouts.home')
 
 @section('title')
-    Plus Two Notes
+    Plus Two Notes - not just another HSEB Plus Two (+2) guide
 @stop
 
 @section('content')

@@ -5,13 +5,14 @@
 @stop
 
 @section('content')
-    <h3 class="text--thin">
+    <h3 class="text--thin mdl-typography--text-center">
         @if(is_null($query))
             Search for...
         @else
             Searched for: {{ $query }}
         @endif
     </h3>
+    <br /><br />
 
     {!! Form::open(['route' => 'search','method' => 'GET','class' => 'mdl-typography--text-center']) !!}
         <!-- Search Input -->
@@ -20,12 +21,16 @@
             {!! Form::text('q',$query,['class' => 'mdl-textfield__input']) !!}
         </div>
 
-            <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect"
-                   value="Find me that!"
-                   type="submit" />
+        <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect"
+               value="Find me that!"
+               type="submit" />
     {!! Form::close() !!}
+
+    <br /><br />
 
     @if(!is_null($query))
         @include('_partials.posts.postlist')
     @endif
+
+    <br /><br />
 @stop
