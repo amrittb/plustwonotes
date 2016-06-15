@@ -78,13 +78,13 @@
 
                 <br />
 
-                Or,
+                {{--Or,--}}
 
-                <br />
+                {{--<br />--}}
 
-                @include('_partials.auth.social',['text' => 'Register'])
+                {{--@include('_partials.auth.social',['text' => 'Register'])--}}
 
-                <br /><br />
+                {{--<br /><br />--}}
 
                 <a href="{{ url('/auth/login') }}" class="text--color-white">Already Have an Account?</a>
             </div>

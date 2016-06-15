@@ -45,15 +45,15 @@
 
                 {!! Form::close() !!}
 
-                <br />
+                {{--<br />--}}
 
-                Or,
+                {{--Or,--}}
 
-                <br />
+                {{--<br />--}}
 
-                @include('_partials.auth.social',['text' => 'Login'])
+                {{--@include('_partials.auth.social',['text' => 'Login'])--}}
 
-                <br /><br />
+                {{--<br /><br />--}}
 
                 <a href="#" class="text--color-white">Forgot password?</a>   <a href="{{ url('/auth/register') }}" class="text--color-white">Don't have an account?</a>
             </div>
