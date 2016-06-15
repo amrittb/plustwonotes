@@ -98,6 +98,16 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Sorts posts to get latest published first.
+     *
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeLatestPublished(Builder $query) {
+        return $query->orderBy('published_at','DESC');
+    }
+
+    /**
      * Matches a search query.
      *
      * @param Builder $query

@@ -25,7 +25,7 @@ class PostRepository implements PostRepositoryInterface{
         $posts = Post::with('subject.grade','category')
                         ->published()
                         ->impFirst()
-                        ->latest()
+                        ->latestPublished()
                         ->paginate($this->postLimit);
 
         return $posts;
@@ -60,7 +60,7 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function getForCategory(Category $category) {
-        $posts = Post::where('category_id',$category->id)->published()->latest()->paginate($this->postLimit);
+        $posts = Post::where('category_id',$category->id)->published()->latestPublished()->paginate($this->postLimit);
 
         return $posts;
     }
