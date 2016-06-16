@@ -14,6 +14,18 @@
     color: color($color-accent);
 }
 
+.text--color-default{
+    color: $text-color-primary;
+}
+
 .text--color-white{
     color: #fff;
+}
+
+.text--decoration-none{
+    text-decoration: none;
+}
+
+.text--decoration-underline{
+    text-decoration: underline;
 }
