@@ -4,13 +4,8 @@
     &__date{
         text-transform: uppercase;
         color: $post-detail-text-color;
-        font-weight: bold;
     }
 
-    &__title{
-        margin:0;
-    }
-    
     &__imp-tag{
         @include impTag();
     }
@@ -36,6 +31,50 @@
     }
     
     &__body{
+        margin: $post-body-gutter-size * 2 0;
+        font-size: $post-body-font-size;
         text-align: justify;
+
+        h1,h2,h3,h4,h5,h6{
+            //font-weight: 100;
+        }
+
+        h2{
+            font-size: $post-body-h2-size;
+        }
+
+        h3{
+            font-size: $post-body-h3-size;
+        }
+
+        h4{
+            font-size: $post-body-h4-size;
+        }
+
+        h5{
+            font-size: $post-body-h5-size;
+        }
+
+        h6{
+            font-size: $post-body-h6-size;
+        }
+
+        div,p{
+            margin: $post-body-p-margin 0;
+            font-size: $post-body-p-size;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+        
+        a:hover{
+            text-decoration: underline;
+        }
+
+        img{
+            max-width: 100%;
+            height: auto;
+        }
     }
 }
