@@ -55,7 +55,7 @@
 <br />
 
 <!-- Post Body Input -->
-<post-editor content="@if(isset($post)) {!! $post->post_body !!} @endif"></post-editor>
+<post-editor content="@if(isset($post)) {{ $post->post_body }} @endif"></post-editor>
 
 <br />
 
