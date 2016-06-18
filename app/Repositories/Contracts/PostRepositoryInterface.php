@@ -40,6 +40,13 @@ interface PostRepositoryInterface {
     public function allUntrashed();
 
     /**
+    * Returns recent posts.
+    *
+    * @return mixed
+    */
+    public function getRecentPosts();
+
+    /**
      * Returns posts of the given category.
      *
      * @param Category $category

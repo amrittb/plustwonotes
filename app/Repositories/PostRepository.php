@@ -80,6 +80,20 @@ class PostRepository implements PostRepositoryInterface{
     }
 
     /**
+     * Returns recent posts.
+     *
+     * @return mixed
+     */
+    public function getRecentPosts() {
+        $posts = Post::published()
+                    ->latestPublished()
+                    ->take(5)
+                    ->get();
+
+        return $posts;
+    }
+
+    /**
      * Get all posts for certain category;
      *
      * @param Category $category
