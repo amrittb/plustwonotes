@@ -50,6 +50,19 @@ class PostPresenter extends Presenter{
     }
 
     /**
+    * Presents grade for the post.
+    *
+    * @return string
+    */
+    public function presentGrade() {
+        if($this->subject != null) {
+            return $this->subject->grade->grade_name;
+        }
+
+        return '';
+    }
+
+    /**
      * Presents truncated post title.
      *
      * @return string

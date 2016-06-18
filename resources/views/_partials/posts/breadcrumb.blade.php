@@ -6,9 +6,10 @@
 
         @if(isset($post))
             @if($post->isNotBlog())
-                / <a href="#" class="breadcrumb__link">{{ $post->grade_subject }}</a>
+                / <a href="{{ route('posts.index.grade',['grade' => $post->grade]) }}" class="breadcrumb__link">{{ "Grade ".$post->grade }}</a>
+                / <a href="{{ route('posts.index.subject',['grade' => $post->grade,'subject' => strtolower($post->subject->subject_name)]) }}" class="breadcrumb__link">{{ $post->subject->subject_name }}</a>
             @endif
-            
+
             / <a class="breadcrumb__link" href="{{ route('posts.show',['posts' => $post->post_slug]) }}">{{ $post->post_title }}</a>
         @endif
     @endif
