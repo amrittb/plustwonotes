@@ -39,7 +39,9 @@
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet">
-             @include('_partials.posts.recent-posts')
+            @include('_partials.posts.recent-posts')
+
+            @include('_partials.posts.post-counts')
         </div>
     </div>
 
