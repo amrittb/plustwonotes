@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Grade;
+use App\Models\Subject;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use Auth;
@@ -39,6 +40,20 @@ class PostRepository implements PostRepositoryInterface{
         $posts = $this->getPublishedPosts()
                     ->ofGrade($grade)
                     ->paginate($this->postLimit);
+        return $posts;
+    }
+
+    /**
+    * Returns all published posts that is of the subject.
+    *
+    * @param Subject $subject
+    * @return mixed
+    */
+    public function allPublishedBySubject(Subject $subject) {
+        $posts = $this->getPublishedPosts()
+                    ->ofSubject($subject)
+                    ->paginate($this->postLimit);
+
         return $posts;
     }
 

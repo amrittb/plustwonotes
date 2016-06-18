@@ -4,6 +4,7 @@ namespace App\Repositories\Contracts;
 
 use App\Models\Category;
 use App\Models\Grade;
+use App\Models\Subject;
 use App\Models\Post;
 
 interface PostRepositoryInterface {
@@ -22,6 +23,14 @@ interface PostRepositoryInterface {
      * @return mixed
      */
     public function allPublishedByGrade(Grade $grade);
+
+    /**
+     * Returns all published posts by subject.
+     *
+     * @param $subject
+     * @return mixed
+     */
+    public function allPublishedBySubject(Subject $subject);
 
     /**
      * Returns all untrashed posts.

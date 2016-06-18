@@ -3,7 +3,9 @@
 use App\Models\Category;
 use App\Models\Grade;
 use App\Models\Post;
+use App\Models\Subject;
 use App\Models\User;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -33,6 +35,8 @@ class RouteServiceProvider extends ServiceProvider {
 		$this->bindPost($router);
 
 		$this->bindGrade($router);
+
+		$this->bindSubject($router);
 
 		$this->bindUser($router);
 	}
@@ -86,6 +90,20 @@ class RouteServiceProvider extends ServiceProvider {
 	private function bindGrade(Router $router) {
 		$router->bind('grade',function($grade) {
 			return Grade::where('grade_name',$grade)->firstOrFail();
+		});
+	}
+
+	/**
+	 * Binds a \App\Models\Subject Model to the route.
+	 *
+	 * @param Router $router
+	 */
+	private function bindSubject(Router $router) {
+		$router->bind('subject',function($subject,Route $route) {
+			return Subject::where('subject_name',$subject)
+							->where('grade_id',$route->getParameter('grade')->id)
+							->firstOrFail();
+
 		});
 	}
 

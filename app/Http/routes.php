@@ -19,7 +19,12 @@ Route::group(['prefix' => 'posts'], function(){
         'uses' => 'PostController@indexByGrade',
         'as' => 'posts.index.grade'
     ]);
-    
+
+    Route::get('/grade/{grade}/subject/{subject}',[
+        'uses' => 'PostController@indexBySubject',
+        'as' => 'posts.index.subject'
+    ]);
+
     Route::get('/create',[
         'uses' => 'PostController@create',
         'as' => 'posts.create',

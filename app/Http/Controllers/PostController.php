@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Grade;
 use App\Models\Post;
+use App\Models\Subject;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use App\Repositories\Contracts\SubjectRepositoryInterface;
@@ -53,8 +54,8 @@ class PostController extends Controller {
         $this->categoryRepo = $categoryRepo;
         $this->subjectRepo = $subjectRepo;
 
-        $this->middleware('auth',['except' => ['index','show','listCategory','indexByGrade']]);
-        $this->middleware('acl',['except' => ['index','show','listCategory','indexByGrade']]);
+        $this->middleware('auth',['except' => ['index','show','listCategory','indexByGrade','indexBySubject']]);
+        $this->middleware('acl',['except' => ['index','show','listCategory','indexByGrade','indexBySubject']]);
     }
 
     /**
@@ -89,6 +90,18 @@ class PostController extends Controller {
         $posts = $this->postRepo->allPublishedByGrade($grade);
 
         return view('posts.index',compact('posts'));
+    }
+
+    /**
+     * Displays a list of all posts which are of the specified subject.
+     *
+     * @param Subject $subject
+     * @return \Illuminate\View\View
+     */
+    public function indexBySubject(Grade $grade,Subject $subject) {
+       $posts = $this->postRepo->allPublishedBySubject($subject);
+
+       return view('posts.index',compact('posts'));
     }
 
     /**
@@ -204,7 +217,7 @@ class PostController extends Controller {
 
     /**
      * Restores a post.
-     * 
+     *
      * @param Post $post
      * @return mixed
      */
