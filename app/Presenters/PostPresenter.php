@@ -9,7 +9,7 @@ class PostPresenter extends Presenter{
     /**
      * Length of truncated text for post title.
      */
-    const TITLE_TRUNCATE_LIMIT = 30;
+    const TITLE_TRUNCATE_LIMIT = 20;
 
     /**
      * Status Text of post when post is published.
