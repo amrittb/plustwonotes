@@ -5,6 +5,7 @@ use App\Http\Requests\SavePostRequest;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 
+use App\Models\Grade;
 use App\Models\Post;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\PostRepositoryInterface;
@@ -52,8 +53,8 @@ class PostController extends Controller {
         $this->categoryRepo = $categoryRepo;
         $this->subjectRepo = $subjectRepo;
 
-        $this->middleware('auth',['except' => ['index','show','listCategory']]);
-        $this->middleware('acl',['except' => ['index','show','listCategory']]);
+        $this->middleware('auth',['except' => ['index','show','listCategory','indexByGrade']]);
+        $this->middleware('acl',['except' => ['index','show','listCategory','indexByGrade']]);
     }
 
     /**
@@ -76,6 +77,18 @@ class PostController extends Controller {
         $posts = $this->postRepo->allUntrashed();
 
         return view('posts.admin.index',compact('posts'));
+    }
+
+    /**
+     * Displays a list of all posts which are of the specified grade.
+     *
+     * @param \App\Models\Grade $grade
+     * @return \Illuminate\View\View
+     */
+    public function indexByGrade(Grade $grade) {
+        $posts = $this->postRepo->allPublishedByGrade($grade);
+
+        return view('posts.index',compact('posts'));
     }
 
     /**

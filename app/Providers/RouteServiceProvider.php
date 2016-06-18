@@ -1,11 +1,11 @@
 <?php namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Grade;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -31,6 +31,8 @@ class RouteServiceProvider extends ServiceProvider {
 		$this->bindCategory($router);
 
 		$this->bindPost($router);
+
+		$this->bindGrade($router);
 
 		$this->bindUser($router);
 	}
@@ -77,6 +79,17 @@ class RouteServiceProvider extends ServiceProvider {
 	}
 
 	/**
+	 * Binds a \App\Models\Grade Model to the route.
+	 *
+	 * @param Router $router
+	 */
+	private function bindGrade(Router $router) {
+		$router->bind('grade',function($grade) {
+			return Grade::where('grade_name',$grade)->firstOrFail();
+		});
+	}
+
+	/**
 	 * Bind a \App\Models\User Model to the route.
 	 *
 	 * @param Router $router
@@ -86,5 +99,4 @@ class RouteServiceProvider extends ServiceProvider {
 			return User::where('username',$user)->firstOrFail();
 		});
 	}
-
 }

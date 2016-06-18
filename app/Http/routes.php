@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Grade;
+
 Route::get('/',['uses' => 'HomeController@index','as' => 'home']);
 
 Route::get('about',['uses' => 'HomeController@about', 'as' => 'about']);
@@ -13,6 +15,11 @@ Route::group(['prefix' => 'posts'], function(){
         'as' => 'posts.index'
     ]);
 
+    Route::get('/grade/{grade}',[
+        'uses' => 'PostController@indexByGrade',
+        'as' => 'posts.index.grade'
+    ]);
+    
     Route::get('/create',[
         'uses' => 'PostController@create',
         'as' => 'posts.create',

@@ -3,6 +3,7 @@
 namespace App\Repositories\Contracts;
 
 use App\Models\Category;
+use App\Models\Grade;
 use App\Models\Post;
 
 interface PostRepositoryInterface {
@@ -13,6 +14,14 @@ interface PostRepositoryInterface {
      * @return mixed
      */
     public function allPublished();
+
+    /**
+     * Returns all published posts by grade.
+     *
+     * @param $grade
+     * @return mixed
+     */
+    public function allPublishedByGrade(Grade $grade);
 
     /**
      * Returns all untrashed posts.

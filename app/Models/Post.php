@@ -118,6 +118,17 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Matches posts of a grade.
+     *
+     * @param Builder $query
+     * @param Grade $grade
+     * @return mixed
+     */
+    public function scopeOfGrade(Builder $query,Grade $grade){
+        return $query->whereIn('subject_id',$grade->subjects->lists('id'));
+    }
+
+    /**
      * Accessor for published_at attribute.
      *
      * @param $value

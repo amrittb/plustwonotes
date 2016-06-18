@@ -1,6 +1,7 @@
 <?php namespace App\Repositories;
 
 use App\Models\Category;
+use App\Models\Grade;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use Auth;
@@ -22,12 +23,22 @@ class PostRepository implements PostRepositoryInterface{
      * @return mixed
      */
     public function allPublished() {
-        $posts = Post::with('subject.grade','category')
-                        ->published()
-                        ->impFirst()
-                        ->latestPublished()
+        $posts = $this->getPublishedPosts()
                         ->paginate($this->postLimit);
 
+        return $posts;
+    }
+
+    /**
+     * Returns all published posts that has the grade.
+     *
+     * @param Grade $grade
+     * @return mixed
+     */
+    public function allPublishedByGrade(Grade $grade) {
+        $posts = $this->getPublishedPosts()
+                    ->ofGrade($grade)
+                    ->paginate($this->postLimit);
         return $posts;
     }
 
@@ -226,5 +237,17 @@ class PostRepository implements PostRepositoryInterface{
                         ->paginate($this->postLimit);
 
         return $posts;
+    }
+
+    /**
+     * Returns published posts.
+     *
+     * @return mixed
+     */
+    protected function getPublishedPosts() {
+        return Post::with('subject.grade', 'category')
+            ->published()
+            ->impFirst()
+            ->latestPublished();
     }
 }
