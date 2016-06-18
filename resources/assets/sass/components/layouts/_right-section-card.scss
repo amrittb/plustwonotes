@@ -1,12 +1,17 @@
-.recent-posts {
+.right-section-card {
     width: 100%;
+    margin-bottom: 16px;
+
+    :last-child {
+        margin-bottom: 0;
+    }
 
     &__list {
         margin: 0;
     }
 }
 
-.recent-post {
+.right-section-list {
     padding: 0;
 
     &__thumbnail {
@@ -27,11 +32,11 @@
         margin: 5px 0;
 
         &-link {
-            color: color($color-accent);
+            color: color($color-primary);
             text-decoration: none;
 
             &:hover {
-                color: color($color-accent-dark);
+                color: color($color-primary-dark);
             }
         }
     }
