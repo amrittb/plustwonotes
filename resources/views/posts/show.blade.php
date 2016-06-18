@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--9-col">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet">
             <div class="post mdl-shadow--4dp">
                 <span class="post__date">
                     {{ $post->published_at->diffForHumans() }} | {{ $post->published_at->format('M dS, Y') }}
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet">
              @include('_partials.posts.recent-posts')
         </div>
     </div>

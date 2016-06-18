@@ -1,5 +1,9 @@
-.recent-posts-list {
-    margin: 0;
+.recent-posts {
+    width: 100%;
+
+    &__list {
+        margin: 0;
+    }
 }
 
 .recent-post {
@@ -8,23 +12,32 @@
     &__thumbnail {
         width: 100%;
         height: auto;
+
+        &-container {
+            max-width: 45px;
+        }
+    }
+
+    &__container {
+        margin: 0;
+        padding: 0;
     }
 
     &__title {
-        margin: 0;
+        margin: 5px 0;
 
         &-link {
-            color: color($palette-grey-700);
+            color: color($color-accent);
             text-decoration: none;
 
             &:hover {
-                color: color($color-black);
+                color: color($color-accent-dark);
             }
         }
     }
 
     &__detail {
-        font-size: 12px;
+        font-size: 11px;
         color: color($palette-grey-500);
         text-transform: uppercase;
     }
