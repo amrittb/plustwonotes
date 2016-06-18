@@ -1,0 +1,31 @@
+.recent-posts-list {
+    margin: 0;
+}
+
+.recent-post {
+    padding: 0;
+
+    &__thumbnail {
+        width: 100%;
+        height: auto;
+    }
+
+    &__title {
+        margin: 0;
+
+        &-link {
+            color: color($palette-grey-700);
+            text-decoration: none;
+
+            &:hover {
+                color: color($color-black);
+            }
+        }
+    }
+
+    &__detail {
+        font-size: 12px;
+        color: color($palette-grey-500);
+        text-transform: uppercase;
+    }
+}
