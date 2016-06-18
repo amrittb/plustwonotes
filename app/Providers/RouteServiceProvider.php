@@ -100,7 +100,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	private function bindSubject(Router $router) {
 		$router->bind('subject',function($subject,Route $route) {
-			return Subject::where('subject_name',$subject)
+			return Subject::where('subject_slug',$subject)
 							->where('grade_id',$route->getParameter('grade')->id)
 							->firstOrFail();
 

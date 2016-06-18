@@ -63,6 +63,19 @@ class PostPresenter extends Presenter{
     }
 
     /**
+    * Presents subject slug for the post.
+    *
+    * @return string
+    */
+    public function presentSubjectSlug() {
+        if($this->subject != null) {
+            return $this->subject->subject_slug;
+        }
+
+        return '';
+    }
+
+    /**
      * Presents truncated post title.
      *
      * @return string
