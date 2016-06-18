@@ -14,7 +14,7 @@
     font-size: $imp-tag-font-size;
     text-transform: uppercase;
     font-weight: bold;
-    background: color($color-primary);
+    background: $imp-tag-bg-color;
     color: #fff;
     border-radius: $button-border-radius;
     padding: $badge-padding $badge-padding * 2;

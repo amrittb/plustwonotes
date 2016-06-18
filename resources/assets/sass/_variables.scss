@@ -20,7 +20,7 @@ $post-detail-text-color: rgba(#000,0.5);
 *   Post Stat
 */
 $post-stat-gutter-size: 20px;
-$post-stat-bg-color: color($color-accent);
+$post-stat-bg-color: color($color-primary);
 $post-stat-text-color: color($color-white);
 $post-stat-numeric-color: color-alpha($color-white,0.6);
 
@@ -40,6 +40,12 @@ $breadcrumb-text-color-hover: color-alpha($color-accent,1);
 *   Img Tag
 */
 $imp-tag-font-size: 14px;
+$imp-tag-bg-color: color($color-accent-dark);
+
+/*
+* Featured Tag
+*/
+$featured-tag-bg-color: color($palette-red-800);
 
 /*
 *   Post Body styles

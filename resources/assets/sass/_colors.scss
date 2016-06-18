@@ -1,13 +1,13 @@
-$color-primary: $palette-orange-700;
-$color-primary-dark: $palette-orange-900;
-$color-accent: $palette-teal-700;
-$color-accent-dark: $palette-teal-900;
+$color-primary: $palette-teal-500;
+$color-primary-dark: $palette-teal-700;
+$color-accent: $palette-orange-500;
+$color-accent-dark: $palette-orange-700;
 $color-primary-contrast:$palette-grey-100;
 $color-accent-contrast: $palette-grey-200;
 
 $layout-header-text-color: color($palette-grey-200);
 $layout-header-tab-text-color: color($palette-grey-200);
-$layout-header-bg-color: color($palette-teal-600);
+$layout-header-bg-color: color($color-primary-dark);
 
 $layout-drawer-bg-color: color($palette-blue-grey-800);
 $layout-drawer-border-color: color($palette-blue-grey-900);

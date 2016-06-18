@@ -12,7 +12,7 @@
 
     &__featured-tag{
         font-size: $imp-tag-font-size;
-        background: color($palette-red-800);
+        background: $featured-tag-bg-color;
         color: #fff;
         border-radius: $button-border-radius;
         padding: $badge-padding $badge-padding * 2;
@@ -29,7 +29,7 @@
     &__breadcrumb{
         margin: $post-body-gutter-size/2 0;
     }
-    
+
     &__body{
         margin: $post-body-gutter-size * 2 0;
         font-size: $post-body-font-size;
@@ -63,11 +63,11 @@
             margin: $post-body-p-margin 0;
             font-size: $post-body-p-size;
         }
-        
+
         a{
             text-decoration: none;
         }
-        
+
         a:hover{
             text-decoration: underline;
         }
