@@ -4,7 +4,7 @@ $medium-editor-border-color: transparent;
 $medium-editor-button-size: 50px;
 $medium-editor-button-active-text-color: #fff;
 $medium-editor-link-color: #fff;
-$medium-editor-placeholder-color: #fff;
+$medium-editor-placeholder-color: #AAA;
 
 // theme rules
 .medium-toolbar-arrow-under:after {
@@ -90,18 +90,21 @@ $medium-editor-placeholder-color: #fff;
     width: 100%;
 
     &:after{
-        color: $medium-editor-border-color;
+        font-weight: 100;
+        font-style: normal;
+        color: $medium-editor-placeholder-color;
     }
 }
 
 .post-editor{
     width: 100%;
 
+    div:focus {
+        outline: none;
+    }
+
     .editor{
-        border: 1px solid $input-text-label-color;
-        border-radius: 2px;
-        height: 400px;
-        overflow-y: scroll;
-        padding: 0.5em;
+        padding: 25px 50px;
+        min-height: 150px;
     }
 }
