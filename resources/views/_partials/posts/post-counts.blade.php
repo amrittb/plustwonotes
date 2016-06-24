@@ -1,4 +1,4 @@
-<div class="right-section-card mdl-card mdl-shadow--4dp">
+<div class="right-section-card mdl-card">
     <div class="mdl-card__title">
         <h2 class="mdl-card__title-text">Posts Stats</h2>
     </div>
@@ -30,9 +30,6 @@
                                     </a>
                                 </h6>
                             </div>
-                        </span>
-                        <span class="mdl-list__item-secondary-content">
-
                         </span>
                     </li>
                 @endforeach

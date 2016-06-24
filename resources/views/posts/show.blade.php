@@ -7,7 +7,7 @@
 @section('content')
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet">
-            <div class="post mdl-shadow--4dp">
+            <div class="post">
                 <span class="post__date">
                     {{ $post->published_at->diffForHumans() }} | {{ $post->published_at->format('M dS, Y') }}
                 </span>

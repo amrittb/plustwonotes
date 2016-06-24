@@ -1,4 +1,4 @@
-<div class="right-section-card mdl-card mdl-shadow--4dp">
+<div class="right-section-card mdl-card">
     <div class="mdl-card__title">
         <h2 class="mdl-card__title-text">Recent Posts</h2>
     </div>
@@ -35,7 +35,7 @@
             @include('_partials.empty')
         @endif
     </div>
-    <div class="mdl-card__actions mdl-card--border">
+    <div class="mdl-card__actions">
         <a href="{{ route('posts.index') }}" class="mdl-button mdl-js-buttom mdl-js-ripple-effect mdl-button--colored">See More</a>
     </div>
 </div>

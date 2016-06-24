@@ -35,10 +35,6 @@
         font-size: $post-body-font-size;
         text-align: justify;
 
-        h1,h2,h3,h4,h5,h6{
-            //font-weight: 100;
-        }
-
         h2{
             font-size: $post-body-h2-size;
         }
@@ -60,8 +56,12 @@
         }
 
         div,p{
-            margin: $post-body-p-margin 0;
+            margin-bottom: $post-body-p-margin;
             font-size: $post-body-p-size;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
 
         a{
@@ -75,6 +75,18 @@
         img{
             max-width: 100%;
             height: auto;
+        }
+
+        ul, ol {
+            font-size: $post-body-p-size;
+
+            li {
+                margin-bottom: 5px;
+
+                :last-child {
+                    margin-bottom: 0;
+                }
+            }
         }
     }
 }
