@@ -14,11 +14,7 @@
 
 <br />
 
-<!-- Published At Input -->
-<div class="mdl-textfield">
-    {!! Form::label('published_at','Published At',['class'=>'mdl-textfield__label textfield__label--non-floating']) !!}
-    {!! Form::input('date','published_at',null,['class' => 'mdl-textfield__input']) !!}
-</div>
+<form-date-picker @if(isset($post)) date-time="{{ $post->published_at->format('M d, Y H:i') }}" @endif name="published_at" id="published_at" label="Published At"></form-date-picker>
 
 <br />
 

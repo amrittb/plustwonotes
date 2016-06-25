@@ -1,0 +1,79 @@
+<script>
+    import Moment from "moment";
+    import VueDatePicker from "./VueDatePicker.vue";
+
+    const DEFAULT_FORMAT = 'MMM DD, YYYY HH:mm';
+
+    export default {
+        data() {
+            return {
+                /**
+                 * Options to pass to VueDatePicker
+                 */
+                options : {
+                    type: 'min',
+                    week: ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    format: this.dateTimeFormat,
+                    placeholder: this.placeHolder
+                }
+            }
+        },
+        props: {
+            /**
+             * Id for label and input
+             */
+            id: {
+                required: false,
+                type: String
+            },
+            /**
+             * Name for the input
+             */
+            name: {
+                type: String,
+                required: true
+            },
+            /**
+             * Label for the date picker
+             */
+            label: {
+                type: String,
+                required: true
+            },
+            /**
+             * Date Time format
+             */
+            dateTimeFormat: {
+                type: String,
+                required: false,
+                default: DEFAULT_FORMAT
+            },
+            /**
+             * Date Time passed as prop
+             */
+            dateTime: {
+                type: String,
+                required: false,
+                default: Moment().format(DEFAULT_FORMAT)
+            },
+            /**
+             * Place Holder string
+             */
+            placeHolder : {
+                type: String,
+                required: false,
+                default: 'When?'
+            }
+        },
+        components : {
+            "datepicker" : VueDatePicker
+        }
+    }
+</script>
+
+<template>
+    <label :for="id" class="mdl-textfield__label textfield__label--non-floating">{{ label }}</label>
+    <input type="datetime" :id="id" :placeholder="placeHolder" :value.sync="dateTime" :name="name" style="display:none;">
+    <datepicker :option="options" :time.sync="dateTime"></datepicker>
+</template>
