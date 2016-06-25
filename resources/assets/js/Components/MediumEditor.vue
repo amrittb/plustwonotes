@@ -5,6 +5,7 @@
 <script>
     import MediumEditor from 'medium-editor';
     import MediumEditorAutoList from './MediumEditor/AutoList';
+    import AttributeModifier from './MediumEditor/AttributeModifier';
 
     export default {
         ready() {
@@ -23,14 +24,16 @@
                         "justifyLeft",
                         "justifyCenter",
                         "justifyRight",
-                        "justifyFull"
+                        "justifyFull",
+                        "attributeModifier"
                     ]
                 },
                 placeholder: {
                     text: 'Write Here...'
                 },
                 extensions: {
-                    'autolist' : new MediumEditorAutoList()
+                    'autolist' : new MediumEditorAutoList(),
+                    'attributeModifier' : new AttributeModifier()
                 }
             });
 
