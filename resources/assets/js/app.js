@@ -4,6 +4,7 @@ import VueResource from 'vue-resource';
 
 import store from "./vuex/store";
 
+import VueDatePicker from "./Components/VueDatePicker.vue";
 import MediumEditor from "./Components/MediumEditor.vue"
 import RoleEditor from "./Components/RoleEditor.vue";
 import PostEditor from "./Components/PostEditor.vue";
@@ -14,6 +15,7 @@ Vue.config.debug = true;
 
 Vue.use(VueResource);
 
+Vue.component("date-picker",VueDatePicker);
 Vue.component("medium-editor",MediumEditor);
 Vue.component("mdl-checkbox",MdlCheckbox);
 Vue.component("post-editor",PostEditor);
