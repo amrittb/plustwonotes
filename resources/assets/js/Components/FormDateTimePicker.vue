@@ -15,7 +15,21 @@
                     week: ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
                     month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     format: this.dateTimeFormat,
-                    placeholder: this.placeHolder
+                    placeholder: this.placeHolder,
+                    color: {
+                        header: '#00796b',
+                        headerText: '#fff'
+                    },
+                    inputStyle: {
+                        'display': 'inline-block',
+                        'padding': '6px',
+                        'line-height': '22px',
+                        'font-size': '16px',
+                        'border': 'none',
+                        'box-shadow': 'none',
+                        'border-radius': '0',
+                        'color': '#5F5F5F'
+                    },
                 }
             }
         },
