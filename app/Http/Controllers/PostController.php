@@ -89,7 +89,7 @@ class PostController extends Controller {
     public function indexByGrade(Grade $grade) {
         $posts = $this->postRepo->allPublishedByGrade($grade);
 
-        return view('posts.index',compact('posts'));
+        return view('posts.index',compact('posts','grade'));
     }
 
     /**
@@ -101,7 +101,7 @@ class PostController extends Controller {
     public function indexBySubject(Grade $grade,Subject $subject) {
        $posts = $this->postRepo->allPublishedBySubject($subject);
 
-       return view('posts.index',compact('posts'));
+       return view('posts.index',compact('posts','subject'));
     }
 
     /**

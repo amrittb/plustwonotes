@@ -1,11 +1,26 @@
 @extends('_layouts.app')
 
+<?php
+    $title = [];
+    if(isset($grade)) {
+        array_push($title,"Grade ".$grade->grade_name);
+    }
+    if(isset($subject)) {
+        array_push($title,"Grade ".$subject->grade->grade_name." ".$subject->subject_name);
+    }
+    if(isset($category)) {
+        array_push($title,$category->category_name);
+    }
+    array_push($title,"Post List");
+    $title = join(" - ",$title);
+?>
+
 @section('title')
-    Plus Two Notes - {{ (isset($category)?$category->category_name:"Posts list") }}
+    {{ $title }} - Plus Two Notes
 @stop
 
 @section('content')
-    <h2 class="text--thin mdl-typography--text-center">{{ (isset($category)?$category->category_name:"Posts list") }}</h2>
+    <h2 class="text--thin mdl-typography--text-center">{{ $title }}</h2>
 
     @include('_partials.posts.postlist')
 @stop
