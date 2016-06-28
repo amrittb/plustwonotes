@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00796b">
     <title>@yield('title')</title>
     <link rel="shortcut icon" sizes="16x16 32x32" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/favicons/favicon-57.png">
@@ -14,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="152x152" href="/img/favicons/favicon-152.png">
     <meta name="application-name" content="Plus Two Notes">
     <meta name="msapplication-TileImage" content=/img/favicons/favicon-144.png">
-    <meta name="msapplication-TileColor" content="#2A2A2A">
+    <meta name="msapplication-TileColor" content="#2c3e50">
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
