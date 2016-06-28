@@ -1,0 +1,15 @@
+.form-group{
+    margin: 16px 0;
+
+    &--large {
+        margin: 48px 0;
+    }
+
+    &__info {
+        color: #888;
+
+        .material-icons {
+            font-size: 18px;
+        }
+    }
+}
