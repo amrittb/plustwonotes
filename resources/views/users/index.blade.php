@@ -33,7 +33,7 @@
                         <td class="mdl-data-table__cell--non-numeric">{!! $user->actions !!}</td>
                         <td class="mdl-data-table__cell--non-numeric">
                             <user-roles username="{{ $user->username }}"
-                                        :user-roles="[{{ implode(',',$user->roles->lists('id')) }}]"
+                                        :user-roles="[{{ implode(',',$user->roles->lists('id')->all()) }}]"
                                         :is-editable="{{ Auth::user()->isAdministrator()?'true':'false' }}">
                             </user-roles>
                         </td>

@@ -125,7 +125,7 @@ class Post extends Model implements PresentableInterface{
      * @return mixed
      */
     public function scopeOfGrade(Builder $query,Grade $grade){
-        return $query->whereIn('subject_id',$grade->subjects->lists('id'));
+        return $query->whereIn('subject_id',$grade->subjects->lists('id')->all());
     }
 
     /**

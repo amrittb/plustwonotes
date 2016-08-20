@@ -12,16 +12,12 @@ class BladeServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot() {
-		Blade::extend(function($value,$compiler){
-			$pattern = $compiler->createOpenMatcher('haspermission');
-
-			return preg_replace($pattern,"$1<?php if(Auth::check() and Auth::user()->hasPermission$2)): ?>",$value);
+		Blade::directive('haspermission',function($expression) {
+			return "<?php if(Auth::check() and Auth::user()->hasPermission({$expression})): ?>";
 		});
 
-		Blade::extend(function($value,$compiler){
-			$pattern = $compiler->createPlainMatcher('endhaspermission');
-
-			return preg_replace($pattern,"$1<?php endif; ?>",$value);
+		Blade::directive('endhaspermission',function() {
+			return "<?php endif; ?>";
 		});
 	}
 

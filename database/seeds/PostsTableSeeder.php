@@ -15,9 +15,9 @@ class PostsTableSeeder extends Seeder {
     public function run() {
         $faker = Faker\Factory::create();
 
-        $categories = Category::lists('id');
-        $subjects = Subject::lists('id');
-        $users = User::lists('id');
+        $categories = Category::lists('id')->all();
+        $subjects = Subject::lists('id')->all();
+        $users = User::lists('id')->all();
 
         for($i = 0;$i < 60;$i++){
             $subject_id = null;

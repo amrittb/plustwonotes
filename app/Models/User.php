@@ -3,17 +3,22 @@
 use App\Acl\HasRoles;
 use App\Presenters\UserPresenter;
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Robbo\Presenter\PresentableInterface;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, PresentableInterface {
+class User extends Model implements AuthenticatableContract,
+                                    CanResetPasswordContract,
+                                    AuthorizableContract,
+                                    PresentableInterface {
 
-    use Authenticatable, CanResetPassword, HasRoles;
+    use Authenticatable, CanResetPassword, Authorizable, HasRoles;
 
     /**
      * Active status of the user.
