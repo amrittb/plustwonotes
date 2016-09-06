@@ -67,7 +67,7 @@ Route::group(['prefix' => 'posts'], function(){
         ]);
 
         Route::patch('/restore',[
-           'uses' => 'PostController@restore',
+            'uses' => 'PostController@restore',
             'as' => 'posts.restore',
             'acl' => 'PostsGuard@destroyPost'
         ]);
@@ -133,21 +133,6 @@ Route::group(['prefix' => 'users'],function(){
     });
 });
 
-Route::auth();
-
-Route::group(['prefix' => 'api','namespace' => 'Api'],function(){
-
-    Route::group(['prefix' => 'v1','namespace' => 'v1'],function(){
-        // API v1 routes
-        Route::group(['prefix' => 'users'],function(){
-
-            Route::put('{users}/roles',[
-                'uses' => 'UserController@syncRoles',
-                'as' => 'api.v1.users.roles.update',
-                'acl' => 'UsersGuard@syncRoles'
-            ]);
-        });
-    });
-});
+Auth::routes();
 
 Route::get('/{category}',['uses' => 'PostController@listCategory','as' => 'posts.index.category']);

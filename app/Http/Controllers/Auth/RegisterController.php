@@ -1,48 +1,53 @@
-<?php namespace App\Http\Controllers\Auth;
+<?php
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Auth;
 
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\Registrar;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
-class AuthController extends Controller {
+class RegisterController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use RegistersUsers;
 
     /**
-     * Path to redirect after the user is logged in.
+     * Where to redirect users after login / registration.
      *
      * @var string
      */
-    protected $redirectPath = "/";
+    protected $redirectTo = '/';
 
     /**
-     * Path to redirect to if the user is already logged in and try to access login page.
+     * Create a new controller instance.
      *
-     * @var string
+     * @return void
      */
-    protected $redirectTo = "/";
-
-    /**
-     * Create a new AuthController instance.
-     */
-    public function __construct(){
-        $this->middleware('guest', ['except' => ['logout','getLogout']]);
+    public function __construct()
+    {
+        $this->middleware('guest');
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function validator(array $data) {
+    protected function validator(array $data)
+    {
         return Validator::make($data, [
             'first_name' => 'required|min:3,max:20',
             'last_name' => 'required|min:3,max:20',
@@ -55,10 +60,11 @@ class AuthController extends Controller {
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return User
      */
-    public function create(array $data) {
+    protected function create(array $data)
+    {
         $user = User::create([
             'first_name' => $data['first_name'],
             'middle_name' => (trim($data['middle_name']) != "")?$data['middle_name']:null,

@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Api\V1;
+<?php namespace App\Http\Controllers\Api\v1;
 
 use App\Api\Transformers\UsersApiTransformer;
 use App\Http\Controllers\Api\ApiController;

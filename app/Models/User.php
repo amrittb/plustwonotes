@@ -3,6 +3,7 @@
 use App\Acl\HasRoles;
 use App\Presenters\UserPresenter;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,7 +19,7 @@ class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     PresentableInterface {
 
-    use Authenticatable, CanResetPassword, Authorizable, HasRoles;
+    use Authenticatable, CanResetPassword, Authorizable, HasRoles, Notifiable;
 
     /**
      * Active status of the user.

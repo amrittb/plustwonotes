@@ -5,9 +5,8 @@ use App\Models\Grade;
 use App\Models\Post;
 use App\Models\Subject;
 use App\Models\User;
-use Illuminate\Routing\Route;
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -23,58 +22,88 @@ class RouteServiceProvider extends ServiceProvider {
 	/**
 	 * Define your route model bindings, pattern filters, etc.
 	 *
-	 * @param  \Illuminate\Routing\Router  $router
 	 * @return void
 	 */
-	public function boot(Router $router)
+	public function boot()
 	{
-		parent::boot($router);
+		parent::boot();
 
-		$this->bindCategory($router);
+		$this->bindCategory();
 
-		$this->bindPost($router);
+		$this->bindPost();
 
-		$this->bindGrade($router);
+		$this->bindGrade();
 
-		$this->bindSubject($router);
+		$this->bindSubject();
 
-		$this->bindUser($router);
+		$this->bindUser();
 	}
 
-	/**
-	 * Define the routes for the application.
-	 *
-	 * @param  \Illuminate\Routing\Router  $router
-	 * @return void
-	 */
-	public function map(Router $router)
-	{
-		$router->group(['namespace' => $this->namespace], function($router)
-		{
-			require app_path('Http/routes.php');
-		});
-	}
+    /**
+     * Define the routes for the application.
+     *
+     * @return void
+     */
+    public function map()
+    {
+        $this->mapWebRoutes();
+
+        $this->mapApiRoutes();
+
+        //
+    }
+
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebRoutes()
+    {
+        Route::group([
+            'middleware' => 'web',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/web.php');
+        });
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRoutes()
+    {
+        Route::group([
+            'middleware' => 'api',
+            'namespace' => $this->namespace,
+            'prefix' => 'api',
+        ], function ($router) {
+            require base_path('routes/api.php');
+        });
+    }
 
 	/**
 	 * Bind a \App\Models\Category Model to the route.
-	 *
-	 * @param Router $router
 	 */
-	public function bindCategory(Router $router)
+	public function bindCategory()
 	{
-		$router->bind('category', function ($category) {
+		Route::bind('category', function ($category) {
 			return Category::where('category_slug', $category)->firstOrFail();;
 		});
 	}
 
 	/**
 	 * Bind a \App\Models\Post Model to the route.
-	 *
-	 * @param Router $router
 	 */
-	public function bindPost(Router $router)
+	public function bindPost()
 	{
-		$router->bind('posts', function ($post) {
+		Route::bind('posts', function ($post) {
 			if(is_numeric($post)){
 				return Post::onlyTrashed()->findOrFail($post);
 			}
@@ -84,22 +113,18 @@ class RouteServiceProvider extends ServiceProvider {
 
 	/**
 	 * Binds a \App\Models\Grade Model to the route.
-	 *
-	 * @param Router $router
 	 */
-	private function bindGrade(Router $router) {
-		$router->bind('grade',function($grade) {
+	private function bindGrade() {
+		Route::bind('grade',function($grade) {
 			return Grade::where('grade_name',$grade)->firstOrFail();
 		});
 	}
 
 	/**
 	 * Binds a \App\Models\Subject Model to the route.
-	 *
-	 * @param Router $router
 	 */
-	private function bindSubject(Router $router) {
-		$router->bind('subject',function($subject,Route $route) {
+	private function bindSubject() {
+		Route::bind('subject',function($subject,Route $route) {
 			return Subject::where('subject_slug',$subject)
 							->where('grade_id',$route->getParameter('grade')->id)
 							->firstOrFail();
@@ -109,11 +134,9 @@ class RouteServiceProvider extends ServiceProvider {
 
 	/**
 	 * Bind a \App\Models\User Model to the route.
-	 *
-	 * @param Router $router
      */
-	private function bindUser(Router $router) {
-		$router->bind('users',function($user){
+	private function bindUser() {
+		Route::bind('users',function($user){
 			return User::where('username',$user)->firstOrFail();
 		});
 	}

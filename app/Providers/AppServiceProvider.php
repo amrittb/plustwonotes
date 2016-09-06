@@ -1,5 +1,6 @@
 <?php namespace App\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -11,8 +12,9 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
-	}
+        // After Laravel 5.3, Route::resource would generate singular route parameters.
+        Route::singularResourceParameters(false);
+    }
 
 	/**
 	 * Register any application services.

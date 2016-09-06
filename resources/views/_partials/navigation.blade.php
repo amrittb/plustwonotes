@@ -32,7 +32,14 @@
                         data-mdl-for="avatar-menu-button">
                             <li class="mdl-menu__item avatar-menu__item"><a href="{{ route('users.show',['users' => Auth::user()->username]) }}"><b>{{ Auth::user()->getPresenter()->name }}</b></a></li>
                             <li class="mdl-menu__item avatar-menu__item"><a href="{{ route('users.edit',['users' => Auth::user()->username]) }}">Edit your profile</a></li>
-                            <li class="mdl-menu__item avatar-menu__item"><a href="{{ url('/logout') }}">Log Out</a></li>
+                            <li>
+                                <form action="{{ url('/logout') }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <button type="submit" style="width: 100%;" class="mdl-menu__item avatar-menu__item">
+                                        Log Out
+                                    </button>
+                                </form>
+                            </li>
                     </ul>
                 @else
                     {{--<a href="{{ url('/auth/login') }}"--}}
