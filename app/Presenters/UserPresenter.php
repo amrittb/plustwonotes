@@ -69,6 +69,6 @@ class UserPresenter extends Presenter {
      * @return string
      */
     public function presentRolesPrettified() {
-        return implode("<br />",$this->roles->lists('name')->all());
+        return implode("<br />",$this->roles->pluck('name')->all());
     }
 }

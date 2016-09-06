@@ -26,7 +26,7 @@
                             </small>
                         </h3>
                         <div class="user-profile__details">
-                            Member Type: <span class="user-profile__role">{{ implode(', ',$user->roles->lists('name')->all()) }}</span><br />
+                            Member Type: <span class="user-profile__role">{{ implode(', ',$user->roles->pluck('name')->all()) }}</span><br />
                             Email: <span class="user-profile__email">{{ $user->email }}</span><br />
                             Joined: <span class="user-profile__created_at">{{ $user->created_at->diffForHumans() }}</span><br />
                             Status: <span class="user-profile__status">{{ $user->status_text }}</span><br /><br />

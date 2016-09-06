@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -7,12 +7,13 @@ use App\Models\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Validator;
 
 class AuthController extends Controller {
 
-    use AuthenticatesAndRegistersUsers;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
      * Path to redirect after the user is logged in.
@@ -32,7 +33,7 @@ class AuthController extends Controller {
      * Create a new AuthController instance.
      */
     public function __construct(){
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['logout','getLogout']]);
     }
 
     /**

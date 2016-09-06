@@ -14,7 +14,7 @@
             @include('_partials.bags.errorbag')
 
             <div class="auth-form__container">
-                {!! Form::open(['url' => '/auth/login','method' => 'POST']) !!}
+                {!! Form::open(['url' => '/login','method' => 'POST']) !!}
 
                     <!-- Email Input -->
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -55,7 +55,7 @@
 
                 {{--<br /><br />--}}
 
-                <a href="#" class="text--color-white">Forgot password?</a>   <a href="{{ url('/auth/register') }}" class="text--color-white">Don't have an account?</a>
+                <a href="#" class="text--color-white">Forgot password?</a>   <a href="{{ url('/register') }}" class="text--color-white">Don't have an account?</a>
             </div>
         </div>
     </div>

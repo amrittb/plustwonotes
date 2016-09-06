@@ -2,18 +2,28 @@
 
 return [
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Debug Mode
-	|--------------------------------------------------------------------------
-	|
-	| When your application is in debug mode, detailed error messages with
-	| stack traces will be shown on every error that occurs within your
-	| application. If disabled, a simple generic error page is shown.
-	|
-	*/
-
-	'debug' => env('APP_DEBUG'),
+    /*
+    |--------------------------------------------------------------------------
+    | Application Environment
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "environment" your application is currently
+    | running in. This may determine how you prefer to configure various
+    | services your application utilizes. Set this in your ".env" file.
+    |
+    */
+    'env' => env('APP_ENV', 'production'),
+    /*
+    |--------------------------------------------------------------------------
+    | Application Debug Mode
+    |--------------------------------------------------------------------------
+    |
+    | When your application is in debug mode, detailed error messages with
+    | stack traces will be shown on every error that occurs within your
+    | application. If disabled, a simple generic error page is shown.
+    |
+    */
+    'debug' => env('APP_DEBUG', false),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,12 +123,10 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
-		Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
 		Illuminate\Auth\AuthServiceProvider::class,
 		Illuminate\Bus\BusServiceProvider::class,
 		Illuminate\Cache\CacheServiceProvider::class,
 		Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-		Illuminate\Routing\ControllerServiceProvider::class,
 		Illuminate\Cookie\CookieServiceProvider::class,
 		Illuminate\Database\DatabaseServiceProvider::class,
 		Illuminate\Encryption\EncryptionServiceProvider::class,
@@ -135,7 +143,6 @@ return [
 		Illuminate\Translation\TranslationServiceProvider::class,
 		Illuminate\Validation\ValidationServiceProvider::class,
 		Illuminate\View\ViewServiceProvider::class,
-		Illuminate\Html\HtmlServiceProvider::class,
 		Illuminate\Broadcasting\BroadcastServiceProvider::class,
 
 		/*
@@ -143,7 +150,6 @@ return [
 		 */
 		App\Providers\AppServiceProvider::class,
 		App\Providers\AuthServiceProvider::class,
-		App\Providers\BusServiceProvider::class,
 		App\Providers\ConfigServiceProvider::class,
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
@@ -153,7 +159,8 @@ return [
 		/*
 		 * Third-party Service Providers...
 		 */
-		Robbo\Presenter\PresenterServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Robbo\Presenter\PresenterServiceProvider::class,
 		Laracasts\Generators\GeneratorsServiceProvider::class,
 		Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
 
@@ -212,8 +219,9 @@ return [
 		'URL'       => Illuminate\Support\Facades\URL::class,
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View'      => Illuminate\Support\Facades\View::class,
-		'Form'		=> Illuminate\Html\FormFacade::class,
-		'Html'		=> Illuminate\Html\HtmlFacade::class,
+
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 	],
 
 ];

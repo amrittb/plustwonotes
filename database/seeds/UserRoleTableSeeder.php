@@ -13,7 +13,7 @@ class UserRoleTableSeeder extends Seeder {
         $faker = Faker\Factory::create();
 
         $users = User::all();
-        $roles = Role::lists('id')->all();
+        $roles = Role::pluck('id')->all();
 
         foreach($users as $user){
             $rolesToSave = [];

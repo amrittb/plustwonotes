@@ -133,9 +133,7 @@ Route::group(['prefix' => 'users'],function(){
     });
 });
 
-Route::controllers([
-    'auth' => 'AuthController'
-]);
+Route::auth();
 
 Route::group(['prefix' => 'api','namespace' => 'Api'],function(){
 

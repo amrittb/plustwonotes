@@ -48,9 +48,9 @@ class RolePermissionTableSeeder extends Seeder {
      */
     public function run()
     {
-        $this->roles = Role::lists('id', 'name')->all();
-        $this->entities = Entity::lists('name', 'id')->all();
-        $this->actions = Action::lists('name', 'id')->all();
+        $this->roles = Role::pluck('id', 'name')->all();
+        $this->entities = Entity::pluck('name', 'id')->all();
+        $this->actions = Action::pluck('name', 'id')->all();
         $this->permissions = DB::table('permissions')->get();
 
         foreach ($this->roles as $role => $role_id) {
