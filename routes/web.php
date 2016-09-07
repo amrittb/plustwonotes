@@ -48,40 +48,12 @@ Route::get('/posts/grade/{grade}/subject/{subject}',[
     'as' => 'posts.index.subject'
 ]);
 
-Route::group(['prefix' => 'users'],function(){
-    Route::get('/posts',[
-        'uses' => 'PostController@indexAll',
-        'as' => 'user.posts',
-        'redirect' => 'home',
-        'acl' => 'UsersGuard@listPost'
-    ]);
+Route::get('/users/posts',[
+    'uses' => 'PostController@indexAll',
+    'as' => 'user.posts'
+]);
 
-    Route::get('/',[
-        'uses' => 'UserController@index',
-        'as' => 'users.index',
-        'redirect' => 'home',
-        'acl' => 'UsersGuard@listUser'
-    ]);
-
-    Route::group(['prefix' => '{users}'],function(){
-        Route::get('/',[
-            'uses' => 'UserController@show',
-            'as' => 'users.show'
-        ]);
-
-        Route::get('/edit',[
-            'uses' => 'UserController@edit',
-            'as' => 'users.edit',
-            'acl' => 'UsersGuard@editUser'
-        ]);
-
-        Route::patch('/',[
-            'uses' => 'UserController@update',
-            'as' => 'users.update',
-            'acl' => 'UsersGuard@editUser'
-        ]);
-    });
-});
+Route::resource('users','UserController',['only' => ['index','show','edit','update']]);
 
 Auth::routes();
 

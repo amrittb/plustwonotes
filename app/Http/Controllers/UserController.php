@@ -23,10 +23,22 @@ class UserController extends Controller {
 		$this->users = $users;
 
 		$this->middleware('auth',['except' => 'show']);
-		$this->middleware('acl',['except' => 'show']);
+
+        $this->bindAuthorizationMiddlewares();
 	}
 
-	/**
+    /**
+     * Binds Authorization middlewares.
+     *
+     * @return void
+     */
+    private function bindAuthorizationMiddlewares() {
+        $this->middleware('can:view,users', ['only' => 'show']);
+        $this->middleware('can:update,users', ['only' => ['edit', 'update']]);
+        $this->middleware('can:viewList,App\Models\User', ['only' => 'index']);
+    }
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -37,7 +49,7 @@ class UserController extends Controller {
 		return view('users.index',compact('users'));
 	}
 
-	/**
+    /**
 	 * Display the specified resource.
 	 *
 	 * @param User $user
@@ -47,7 +59,7 @@ class UserController extends Controller {
 		return view('users.show',compact('user'));
 	}
 
-	/**
+    /**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param User $user
@@ -57,7 +69,7 @@ class UserController extends Controller {
 		return view('users.edit',compact('user'));
 	}
 
-	/**
+    /**
 	 * Update the specified resource in storage.
 	 *
 	 * @param User $user

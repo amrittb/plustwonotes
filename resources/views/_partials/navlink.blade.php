@@ -37,11 +37,11 @@
             </a>
         @endcan
 
-        @haspermission('user.list')
+        @can('viewList',App\Models\User::class)
             <a href="{{ route('users.index') }}" class="mdl-navigation__link">
                 <i class="material-icons">people</i> Users
             </a>
-        @endhaspermission
+        @endcan
     </div>
 
     <a class="mdl-navigation__link" href="{{ route('about') }}">
