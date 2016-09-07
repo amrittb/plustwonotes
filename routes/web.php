@@ -6,97 +6,47 @@ Route::get('about',['uses' => 'HomeController@about', 'as' => 'about']);
 
 Route::get('search',['uses' => 'HomeController@search','as' => 'search']);
 
-//  /posts group
-Route::group(['prefix' => 'posts'], function(){
-    Route::get('/',[
-        'uses' => 'PostController@index',
-        'as' => 'posts.index'
-    ]);
+Route::get('/posts/trashed',[
+    'uses' => 'PostController@trashed',
+    'as' => 'posts.trashed',
+]);
 
-    Route::get('/grade/{grade}',[
-        'uses' => 'PostController@indexByGrade',
-        'as' => 'posts.index.grade'
-    ]);
+Route::patch('/posts/{posts}/restore',[
+    'uses' => 'PostController@restore',
+    'as' => 'posts.restore',
+]);
 
-    Route::get('/grade/{grade}/subject/{subject}',[
-        'uses' => 'PostController@indexBySubject',
-        'as' => 'posts.index.subject'
-    ]);
+Route::patch('/posts/{posts}/publish', [
+    'uses' => 'PostController@publish',
+    'as' => 'posts.publish',
+]);
 
-    Route::get('/create',[
-        'uses' => 'PostController@create',
-        'as' => 'posts.create',
-        'acl' => 'PostsGuard@createPost'
-    ]);
+Route::patch('/posts/{posts}/unpublish', [
+    'uses' => 'PostController@unpublish',
+    'as' => 'posts.unpublish',
+]);
 
-    Route::post('/',[
-        'uses' => 'PostController@store',
-        'as' => 'posts.store',
-        'acl' => 'PostsGuard@createPost'
-    ]);
+Route::patch('/posts/{posts}/draft', [
+    'uses' => 'PostController@draft',
+    'as' => 'posts.draft',
+]);
 
-    Route::get('/trashed',[
-        'uses' => 'PostController@trashed',
-        'as' => 'posts.trashed',
-        'acl' => 'PostsGuard@readDestroyedPost'
-    ]);
+Route::patch('/posts/{posts}/contentready',[
+    'uses' => 'PostController@contentready',
+    'as' => 'posts.contentready',
+]);
 
-    //  /posts/{posts} group
-    Route::group(['prefix' => '{posts}','redirect' => 'user.posts'],function(){
-        Route::get('/',[
-            'uses' => 'PostController@show',
-            'as' => 'posts.show'
-        ]);
+Route::resource('posts','PostController');
 
-        Route::get('/edit',[
-            'uses' => 'PostController@edit',
-            'as' => 'posts.edit',
-            'acl' => 'PostsGuard@editPost'
-        ]);
+Route::get('/posts/grade/{grade}',[
+    'uses' => 'PostController@indexByGrade',
+    'as' => 'posts.index.grade'
+]);
 
-        Route::patch('/',[
-            'uses' => 'PostController@update',
-            'as' => 'posts.update',
-            'acl' => 'PostsGuard@editPost'
-        ]);
-
-        Route::delete('/',[
-            'uses' => 'PostController@destroy',
-            'as' => 'posts.destroy',
-            'acl' => 'PostsGuard@destroyPost'
-        ]);
-
-        Route::patch('/restore',[
-            'uses' => 'PostController@restore',
-            'as' => 'posts.restore',
-            'acl' => 'PostsGuard@destroyPost'
-        ]);
-
-        Route::patch('/publish', [
-            'uses' => 'PostController@publish',
-            'as' => 'posts.publish',
-            'acl' => 'PostsGuard@publishPost'
-        ]);
-
-        Route::patch('/unpublish', [
-            'uses' => 'PostController@unpublish',
-            'as' => 'posts.unpublish',
-            'acl' => 'PostsGuard@publishPost'
-        ]);
-
-        Route::patch('/draft', [
-            'uses' => 'PostController@draft',
-            'as' => 'posts.draft',
-            'acl' => 'PostsGuard@draftPost'
-        ]);
-
-        Route::patch('/contentready',[
-            'uses' => 'PostController@contentready',
-            'as' => 'posts.contentready',
-            'acl' => 'PostsGuard@draftPost'
-        ]);
-    });
-});
+Route::get('/posts/grade/{grade}/subject/{subject}',[
+    'uses' => 'PostController@indexBySubject',
+    'as' => 'posts.index.subject'
+]);
 
 Route::group(['prefix' => 'users'],function(){
     Route::get('/posts',[

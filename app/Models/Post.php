@@ -274,7 +274,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isEditableByUser(User $user) {
-        return $this->isEditable() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
+        return $this->isEditable() && ($user->isPublisher()?:($user->isContentCreator()?$this->isCreatedBy($user):false));
     }
 
     /**
@@ -294,7 +294,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isDraftableByUser(User $user) {
-        return $this->isDraftable() && ($user->isContentCreator()?$this->isCreatedBy($user):true);
+        return $this->isDraftable() and $this->isCreatedBy($user);
     }
 
     /**
@@ -304,7 +304,7 @@ class Post extends Model implements PresentableInterface{
      * @return bool
      */
     public function isDeletableByUser(User $user) {
-        return $this->isDeletable() && ($user->isContentCreatorOnly()?$this->isCreatedBy($user):true);
+        return $this->isDeletable() && (!$user->isPublisher()?$this->isCreatedBy($user):true);
     }
 
     /**

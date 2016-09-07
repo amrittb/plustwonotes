@@ -14,6 +14,7 @@ use App\Repositories\Contracts\SubjectRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * Class PostController
@@ -49,13 +50,43 @@ class PostController extends Controller {
      * @param CategoryRepositoryInterface $categoryRepo
      * @param SubjectRepositoryInterface $subjectRepo
      */
-    public function __construct(PostRepositoryInterface $postRepo,CategoryRepositoryInterface $categoryRepo,SubjectRepositoryInterface $subjectRepo){
+    public function __construct(PostRepositoryInterface $postRepo,
+                                CategoryRepositoryInterface $categoryRepo,
+                                SubjectRepositoryInterface $subjectRepo)
+    {
         $this->postRepo = $postRepo;
         $this->categoryRepo = $categoryRepo;
         $this->subjectRepo = $subjectRepo;
 
-        $this->middleware('auth',['except' => ['index','show','listCategory','indexByGrade','indexBySubject']]);
-        $this->middleware('acl',['except' => ['index','show','listCategory','indexByGrade','indexBySubject']]);
+        $this->middleware('auth',['except' => [
+                                                'index',
+                                                'show',
+                                                'listCategory',
+                                                'indexByGrade',
+                                                'indexBySubject'
+        ]]);
+
+
+        $this->bindAuthorizationMiddlewares();
+    }
+
+    /**
+     * Binds authorization middlwares to controller actions.
+     *
+     * @return void
+     */
+    private function bindAuthorizationMiddlewares() {
+        $this->middleware('can:view,posts', ['only' => 'show']);
+        $this->middleware('can:draft,posts', ['only' => 'draft']);
+        $this->middleware('can:publish,posts', ['only' => 'publish']);
+        $this->middleware('can:destroy,posts', ['only' => 'destroy']);
+        $this->middleware('can:restore,posts', ['only' => 'restore']);
+        $this->middleware('can:unpublish,posts', ['only' => 'unpublish']);
+        $this->middleware('can:update,posts', ['only' => ['edit', 'update']]);
+        $this->middleware('can:contentready,posts', ['only' => 'contentready']);
+        $this->middleware('can:create,App\Models\Post', ['only' => ['create', 'store']]);
+        $this->middleware('can:viewDeletedList,App\Models\Post', ['only' => 'trashed']);
+        $this->middleware('can:viewListInBackend,App\Models\Post', ['only' => 'indexAll']);
     }
 
     /**

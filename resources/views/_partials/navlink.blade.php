@@ -19,25 +19,23 @@
     @endforeach
 
     <div class="extra-navigation @if(Auth::check() && !Auth::user()->isStudentOnly()) divider--top divider--bottom @endif">
-        @haspermission('post.create')
+        @can('create',App\Models\Post::class)
             <a href="{{ route('posts.create') }}" class="mdl-navigation__link">
                 <i class="material-icons">create</i> Create Post
             </a>
-        @endhaspermission
+        @endcan
 
-        @haspermission('post.list')
-            @if(!Auth::user()->isStudentOnly())
-                <a href="{{ route('user.posts') }}" class="mdl-navigation__link">
-                    <i class="material-icons">list</i> Posts
-                </a>
-            @endif
+        @can('viewListInBackend',App\Models\Post::class)
+            <a href="{{ route('user.posts') }}" class="mdl-navigation__link">
+                <i class="material-icons">list</i> Posts
+            </a>
+        @endcan
 
-            @haspermission('post.destroy')
-                <a href="{{ route('posts.trashed') }}" class="mdl-navigation__link">
-                    <i class="material-icons">delete</i> Trashed Post
-                </a>
-            @endhaspermission
-        @endhaspermission
+        @can('viewDeletedList',App\Models\Post::class)
+            <a href="{{ route('posts.trashed') }}" class="mdl-navigation__link">
+                <i class="material-icons">delete</i> Trashed Post
+            </a>
+        @endcan
 
         @haspermission('user.list')
             <a href="{{ route('users.index') }}" class="mdl-navigation__link">
