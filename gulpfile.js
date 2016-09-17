@@ -1,6 +1,6 @@
 var elixir = require('laravel-elixir');
 
-require('laravel-elixir-vueify');
+require('laravel-elixir-vue');
 
 var paths = {
 	mdl : './node_modules/material-design-lite',
@@ -20,7 +20,7 @@ elixir(function(mix) {
  * @param mix
  */
 function mixScripts(mix){
-    mix.browserify('app.js');
+    mix.webpack('app.js');
 }
 
 /**
@@ -28,7 +28,7 @@ function mixScripts(mix){
  * @param mix
  */
 function mixCss(mix){
-    mix.sass('app.scss',null,{
+    mix.sass('app.scss',null,null,{
         includePaths: [].concat(paths.mdl + '/src')
                         .concat(paths.dialogPolyfill)
                         .concat(paths.mediumEditor)
