@@ -26,5 +26,9 @@ class UserRoleTableSeeder extends Seeder {
 
             $user->roles()->saveMany($rolesToSave);
         }
+
+        $users->first(function($value,$key) {
+            return $value->username == 'admin';
+        })->roles()->sync([Role::whereName('Administrator')->first()->id]);
     }
 }

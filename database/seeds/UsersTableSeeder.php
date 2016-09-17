@@ -12,19 +12,14 @@ class UsersTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        $faker = Faker\Factory::create();
+        factory(App\Models\User::class,5)->create();
 
-        for($i = 0; $i < 5; $i++){
-            User::create([
-                'username' => $faker->userName,
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'email' => $faker->email,
-                'avatar' => $faker->imageUrl(),
-                'password' => bcrypt('password'),
-                'status_id' => 1
-            ]);
-        }
+        factory(App\Models\User::class)->create([
+            'username' => 'admin',
+            'first_name' => 'Admin',
+            'last_name' => 'Admin',
+            'email' => 'admin@example.com'
+        ]);
     }
 
 }

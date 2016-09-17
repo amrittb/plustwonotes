@@ -13,35 +13,6 @@ class PostsTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        $faker = Faker\Factory::create();
-
-        $categories = Category::pluck('id')->all();
-        $subjects = Subject::pluck('id')->all();
-        $users = User::pluck('id')->all();
-
-        for($i = 0;$i < 60;$i++){
-            $subject_id = null;
-            $category_id = $faker->randomElement($categories);
-
-            if($category_id != 3){
-                $subject_id = $faker->randomElement($subjects);
-            }
-
-            $title = $faker->text(50);
-
-            Post::create([
-                'post_title' => $title,
-                'post_body' => $faker->text(10000),
-                'post_slug' => str_slug($title),
-                'published_at' => \Carbon\Carbon::now(),
-                'category_id' => $category_id,
-                'subject_id' => $subject_id,
-                'imp' => $faker->boolean(20),
-                'featured' => $faker->boolean(10),
-                'user_id' => $faker->randomElement($users),
-                'status_id' => $faker->numberBetween(1,3)
-            ]);
-        }
+        factory(App\Models\Post::class,50)->create();
     }
-
 }

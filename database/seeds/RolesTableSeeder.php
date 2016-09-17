@@ -11,11 +11,11 @@ class RolesTableSeeder extends Seeder {
     public function run() {
         $roleNames = ['Student','Content Creator','Publisher','Administrator'];
 
-        $roles = array_build($roleNames,function($key,$value){
-            return [
-                $key, ['name' => $value]
-            ];
-        });
+        $roles = [];
+
+        foreach($roleNames as $key => $value){
+            $roles[] = ['name' => $value];
+        }
 
         DB::table('roles')->insert($roles);
     }

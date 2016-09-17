@@ -11,11 +11,11 @@ class ActionsTableSeeder extends Seeder {
     public function run() {
         $actionNames = ['Create','Read','Update','List','Destroy','Publish'];
 
-        $actions = array_build($actionNames,function($key,$value){
-            return [
-                $key, ['name' => $value]
-            ];
-        });
+        $actions = [];
+
+        foreach($actionNames as $key => $value){
+            $actions[] = ['name' => $value];
+        }
 
         DB::table('actions')->insert($actions);
     }

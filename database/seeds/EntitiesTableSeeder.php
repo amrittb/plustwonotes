@@ -11,11 +11,10 @@ class EntitiesTableSeeder extends Seeder {
     public function run() {
         $entityNames = ['Post','User','Comment','Discussion'];
 
-        $entities = array_build($entityNames,function($key,$value){
-            return [
-                $key, ['name' => $value]
-            ];
-        });
+        $entities = [];
+        foreach($entityNames as $key => $value){
+            $entities[] = ['name' => $value];
+        }
 
         DB::table('entities')->insert($entities);
     }
