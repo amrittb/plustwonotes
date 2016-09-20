@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h3>Create a new Post</h3>
+    <h3 class="text--thin">Create a new Post</h3>
 
     @include('_partials.bags.messagebag')
 

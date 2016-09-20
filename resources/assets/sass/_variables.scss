@@ -66,3 +66,13 @@ $media-attachment-max-width: 815px;
 
 $media-thumbnail-margin-size: 4px;
 $media-image-thumbnail-size: 150px;
+
+/*
+*   Alerts
+*/
+$alert-text-color: #fff;
+$alert-bg-color: color($palette-blue-grey-900);
+$alert-success-bg-color: color($palette-teal-500);
+$alert-error-bg-color: color($palette-red-500);
+
+$alert-gutter-size: 20px;

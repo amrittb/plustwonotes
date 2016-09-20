@@ -1,11 +1,11 @@
 @if(!$errors->isEmpty())
-    <div class="mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">
-                Error!
-            </h2>
+    <div class="alert alert--error mdl-shadow--2dp">
+        <div class="alert__title">
+            <h3 class="mdl-typography--text-center text--thin">
+                <i class="material-icons">error</i> Error.
+            </h3>
         </div>
-        <div class="mdl-card__supporting-text">
+        <div class="alert__supporting-text">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>

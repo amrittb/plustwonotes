@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h3>Edit a Post</h3>
+    <h3 class="text--thin">Edit a Post</h3>
 
     @include('_partials.bags.messagebag')
 

@@ -1,0 +1,27 @@
+.alert {
+    background-color: $alert-bg-color;
+    padding: $alert-gutter-size;
+    margin: $alert-gutter-size 0;
+    color: $alert-text-color;
+
+    &__title {
+        padding: $alert-gutter-size / 2 0;
+        text-align: center;
+    }
+
+    &__supporting-text {
+        text-align: center;
+
+        ul {
+            list-style-type: none;
+        }
+    }
+
+    &--success {
+        background-color: $alert-success-bg-color;
+    }
+
+    &--error {
+        background-color: $alert-error-bg-color;
+    }
+}

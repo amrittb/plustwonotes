@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h3>Post List</h3>
+    <h3 class="text--thin">Post List</h3>
 
     @if(count($posts) > 0)
         @include('_partials.liststat',['list' => $posts,'entity' => 'posts'])

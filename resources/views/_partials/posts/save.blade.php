@@ -99,4 +99,25 @@
 <media-attacher image-resource-url="{{ route('api.v1.media.images.index') }}" image-upload-url="{{ route('api.v1.media.images.upload') }}"></media-attacher>
 
 <!-- Save Input -->
-{!! Form::button('Save',['type' => 'submit','class' => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent']) !!}
+{!!
+    Form::button('<i class="material-icons">save</i>'.(isset($post)?'Save':'Save to Drafts'),[
+        'type' => 'submit',
+        'class' => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'
+    ])
+!!}
+
+
+@if(isset($post) and $post->isPublished())
+    <!-- View Post -->
+    <a href="{{ route('posts.show',['posts' => $post->post_slug]) }}"
+       target="_blank"
+       class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
+        <i class="material-icons">visibility</i> View Post
+    </a>
+@endif
+
+<!-- Cancel Button -->
+<a href="{{ route('user.posts') }}"
+   class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
+    <i class="material-icons">cancel</i> Cancel
+</a>

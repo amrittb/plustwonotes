@@ -8,6 +8,8 @@
     <div class="mdl-typography--text-left">
         <h3 class="text--thin">Edit Your Profile</h3>
 
+        @include('_partials.bags.messagebag')
+
         @include('_partials.bags.errorbag')
 
         <div>

@@ -35,16 +35,18 @@
         font-size: $post-body-font-size;
         text-align: justify;
 
-        h1,h2,h3,h4 {
+        h1,h2,h3,h4,h5,h6 {
             color: color($color-primary);
         }
 
         h2{
             font-size: $post-body-h2-size;
+            font-weight: lighter;
         }
 
         h3{
             font-size: $post-body-h3-size;
+            font-weight: lighter;
         }
 
         h4{
