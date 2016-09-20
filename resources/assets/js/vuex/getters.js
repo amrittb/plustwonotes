@@ -19,6 +19,16 @@ export function getUsers(state) {
 }
 
 /**
+ * Returns images store.
+ *
+ * @param state
+ * @returns {RegExp|*|string|Object}
+ */
+export function getImages(state) {
+    return state.media.images;
+}
+
+/**
  * Returns a DialogPolyFill instance.
  *
  * @param state
@@ -27,3 +37,4 @@ export function getUsers(state) {
 export function getDialogPolyFill(state) {
     return state.defaults.dialogPolyfill;
 }
+

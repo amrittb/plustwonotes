@@ -1,0 +1,19 @@
+.media-attachment {
+    width: 80%;
+    height: 80%;
+    max-width: $media-attachment-max-width;
+
+    &__content{
+        position: absolute;
+        top: 70px;
+        bottom: 48px;
+        left: 0;
+        right: 0;
+    }
+
+    &__actions{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}

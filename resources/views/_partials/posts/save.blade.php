@@ -1,3 +1,6 @@
+@section('assets')
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+@endsection
 <!-- Post Title Input -->
 <div class="form-group--large">
     <div class="form-group__info">
@@ -92,6 +95,8 @@
     </div>
     <post-editor content="@if(isset($post)) {{ $post->post_body }} @endif"></post-editor>
 </div>
+
+<media-attacher image-resource-url="{{ route('api.v1.media.images.index') }}" image-upload-url="{{ route('api.v1.media.images.upload') }}"></media-attacher>
 
 <!-- Save Input -->
 {!! Form::button('Save',['type' => 'submit','class' => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent']) !!}

@@ -16,9 +16,12 @@
     <meta name="application-name" content="Plus Two Notes">
     <meta name="msapplication-TileImage" content=/img/favicons/favicon-144.png">
     <meta name="msapplication-TileColor" content="#2c3e50">
+    <meta name="_token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    @yield('assets')
 </head>
 <body>
     @yield('prenav')

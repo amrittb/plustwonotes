@@ -1,6 +1,22 @@
 import MediumEditor from 'medium-editor';
 
 export default MediumEditor.extensions.form.extend({
+
+    /**
+     * Name of the extension
+     */
+    name: 'attribute-modifier',
+
+    /**
+     * Default content
+     */
+    contentDefault: '<b>Attributes</b>',
+
+    /**
+     * Font awesome content.
+     */
+    contentFA: '<i class="fa fa-plus"></i>',
+
     /**
      * Attribute Place holder text
      */
@@ -10,16 +26,6 @@ export default MediumEditor.extensions.form.extend({
      * Value Place Holder text
      */
     valuePlaceHolderText: 'Value goes here...',
-
-    /**
-     * Name of the extension
-     */
-    name: 'attributeModifier',
-
-    /**
-     * Default content
-     */
-    contentDefault: '<b>Attr</b>',
 
     /**
      * Initializes the extension

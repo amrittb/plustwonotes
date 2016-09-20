@@ -15,7 +15,7 @@ return [
 	|
 	*/
 
-	'default' => 'local',
+	'default' => 'public',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -47,6 +47,11 @@ return [
 			'driver' => 'local',
 			'root'   => storage_path().'/app',
 		],
+
+        'public' => [
+            'driver' => 'local',
+            'root' => public_path().'/uploads',
+        ],
 
 		's3' => [
 			'driver' => 's3',

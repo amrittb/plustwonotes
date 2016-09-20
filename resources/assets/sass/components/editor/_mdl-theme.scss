@@ -19,6 +19,7 @@ $medium-editor-placeholder-color: #AAA;
 
 .medium-editor-toolbar {
     background-color: $medium-editor-bgcolor;
+    z-index: 2;
 
     li {
         padding: 0;

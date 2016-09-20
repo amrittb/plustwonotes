@@ -11,3 +11,17 @@ export const SYNC_USERS = "SYNC_USERS";
  * @type {string}
  */
 export const SYNC_USER_ROLES = "SYNC_USER_ROLES";
+
+/**
+ * Mutation Type Constant for Syncing Images.
+ *
+ * @type {string}
+ */
+export const SYNC_IMAGES = "SYNC_IMAGES";
+
+/**
+ * Mutation Type Constant for Removing an image.
+ *
+ * @type {string}
+ */
+export const REMOVE_IMAGE = "REMOVE_IMAGE";
