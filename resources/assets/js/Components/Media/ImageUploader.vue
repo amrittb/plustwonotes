@@ -106,6 +106,9 @@
                 this.updateProgressBar(0);
 
                 this.$http.post(this.imageUploadUrl,data, {
+                    before(request) {
+                        self.request = request;
+                    },
                     progress(e) {
                         if (e.lengthComputable) {
                             let completed = e.loaded / e.total * 100;
@@ -183,15 +186,9 @@
              * Cancels Last request.
              */
             cancelLastRequest() {
-                this.$http.get('/api/ping',{
-                    before(request) {
-                        if (this.previousRequest) {
-                            this.previousRequest.abort();
-                        }
-
-                        this.previousRequest = request;
-                    }
-                });
+                if(this.request) {
+                    this.request.abort();
+                }
             }
         },
         vuex: {
