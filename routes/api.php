@@ -6,14 +6,24 @@ Route::group(['namespace' => 'Api','as' => 'api.'],function() {
         return \Response::json(['ping'=> 1]);
     });
 
-    Route::group(['prefix' => 'v1','namespace' => 'v1','as' => 'v1.'],function(){
+    Route::get('me/token',[
+        'as' => 'me.token',
+        'uses' => 'Auth\TokenController@getAuthToken'
+    ]);
+
+    Route::group([
+                    'prefix' => 'v1',
+                    'namespace' => 'v1',
+                    'as' => 'v1.',
+                    'middleware' => 'jwt.auth'
+    ],function(){
         // API v1 routes
         Route::group(['prefix' => 'users'],function(){
 
             Route::put('{users}/roles',[
                 'uses' => 'UserController@syncRoles',
                 'as' => 'users.roles.update',
-                'acl' => 'UsersGuard@syncRoles'
+                'middleware' => 'can:updateRoles,App\Models\User',
             ]);
         });
 

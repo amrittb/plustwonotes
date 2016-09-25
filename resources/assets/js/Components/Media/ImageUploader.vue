@@ -33,12 +33,11 @@
                 <mdl-progress-bar v-show="isUploading"></mdl-progress-bar>
             </div>
         </div>
-        <mdl-snackbar></mdl-snackbar>
     </form>
 </template>
 
 <script>
-    import { syncImages } from "../../vuex/actions";
+    import { syncImages, showSuccessSnackbar, showErrorSnackbar } from "../../vuex/actions";
 
     export default {
         ready() {
@@ -156,7 +155,7 @@
              * @param numUploaded
              */
             showUploadSuccess(numUploaded) {
-                this.$broadcast("Snackbar.ShowSuccess",numUploaded + " out of " + this.numFiles + " files uploaded successfully.");
+                this.showSuccessSnackbar(numUploaded + " out of " + this.numFiles + " files uploaded successfully.");
             },
 
             /**
@@ -171,7 +170,7 @@
                     errorMessage.push("File type not supported or file size exceeded limit.");
                 }
 
-                this.$broadcast("Snackbar.ShowError",errorMessage.join(""));
+                this.showErrorSnackbar(errorMessage.join(""));
             },
 
             /**
@@ -194,6 +193,8 @@
         vuex: {
             actions: {
                 syncImages,
+                showSuccessSnackbar,
+                showErrorSnackbar,
             }
         }
     }

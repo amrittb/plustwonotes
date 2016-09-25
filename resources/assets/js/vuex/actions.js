@@ -20,6 +20,26 @@ export const openRoleEditor = function(Vuex,username) {
 };
 
 /**
+ * Broadcasts a Snackbar.ShowSuccess Event.
+ *
+ * @param Vuex
+ * @param message
+ */
+export const showSuccessSnackbar = function (Vuex,message) {
+    window.app.$broadcast("Snackbar.ShowSuccess",message);
+};
+
+/**
+ * Broadcasts a Snackbar.ShowError Event.
+ *
+ * @param Vuex
+ * @param message
+ */
+export const showErrorSnackbar = function (Vuex,message) {
+    window.app.$broadcast("Snackbar.ShowError",message);
+};
+
+/**
  * Syncs Users to users Store
  *
  * @param dispatch

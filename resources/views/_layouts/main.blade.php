@@ -17,6 +17,7 @@
     <meta name="msapplication-TileImage" content=/img/favicons/favicon-144.png">
     <meta name="msapplication-TileColor" content="#2c3e50">
     <meta name="_token" content="{{ csrf_token() }}">
+    <meta name="_jwt_token_url" content="{{ route('api.me.token') }}">
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,6 +38,8 @@
             @yield('footer')
         </main>
     </div>
+
+    <mdl-snackbar></mdl-snackbar>
 
     <script type="text/javascript" src="{{ elixir('js/app.js') }}"></script>
 </body>

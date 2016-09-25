@@ -12,7 +12,10 @@
             </mdl-checkbox>
         </div>
         <div class="mdl-dialog__actions">
-            <button type="button" class="mdl-button" @click.prevent="syncRoles()">Save</button>
+            <button type="button" class="mdl-button" @click.prevent="syncRoles()" :disabled="isSyncing">
+                Save
+                <span class="mdl-spinner mdl-js-spinner is-active" v-show="isSyncing"></span>
+            </button>
             <button type="button" class="mdl-button" @click="closeDialog()">Cancel</button>
         </div>
     </dialog>
@@ -21,7 +24,7 @@
 <script>
     import User from "../Models/User";
 
-    import { syncUserRoles } from "../vuex/actions";
+    import { syncUserRoles, showSuccessSnackbar, showErrorSnackbar } from "../vuex/actions";
     import { getRoles, getUsers, getDialogPolyFill } from "../vuex/getters";
 
     export default {
@@ -30,7 +33,12 @@
                 this.dialogPolyFill.registerDialog(this.$el);
             }
 
-            this.resource = this.$resource(this.resourceUrl);
+            let self = this;
+            this.resource = this.$resource(this.resourceUrl,{},{},{
+                before(request) {
+                    self.isSyncing = true;
+                }
+            });
         },
         props: {
 
@@ -67,7 +75,14 @@
                  *
                  * @type {Object}
                  */
-                resource: {}
+                resource: {},
+
+                /**
+                 * Flag to determine if roles are being synced.
+                 *
+                 * @type {Boolean}
+                 */
+                isSyncing: false,
             }
         },
         vuex: {
@@ -77,7 +92,9 @@
                 users: getUsers
             },
             actions: {
-                syncUserRoles
+                syncUserRoles,
+                showSuccessSnackbar,
+                showErrorSnackbar,
             }
         },
         methods : {
@@ -123,23 +140,38 @@
             },
 
             /**
+             * Resets Role Editor.
+             */
+            resetRoleEditor() {
+                this.isSyncing = false;
+                this.closeDialog();
+            },
+
+            /**
              * Syncs the roles with the server.
              */
             syncRoles() {
+                let self = this;
+
                 this.resource.update({
                     users : this.user.username,
                     _token : this.csrfToken
                 },{
                     roleIds: this.user.roles
-                }).then(function(response){
-                    if(response.data.message) {
-                        this.closeDialog();
+                }).then((response) => {
+                    this.resetRoleEditor();
 
+                    if(response.data.message) {
                         this.syncUserRoles(this.user);
+
+                        this.showSuccessSnackbar("User Roles Synced.");
+                    } else {
+                        this.showErrorSnackbar("Try syncing roles again later.");
                     }
-                    // Unsuccessful response
-                },function(response){
-                    // On Error Response
+                },(response) => {
+                    this.resetRoleEditor();
+
+                    this.showErrorSnackbar("Try syncing roles again later.");
                 });
             }
         },
