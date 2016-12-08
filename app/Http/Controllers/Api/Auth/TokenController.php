@@ -1,34 +1,36 @@
 <?php namespace App\Http\Controllers\Api\Auth;
 
-use League\Fractal\Manager;
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use League\Fractal\TransformerAbstract;
 use App\Http\Controllers\Api\ApiController;
+use Illuminate\Http\Response as IlluminateResponse;
 
 class TokenController extends ApiController {
 
     /**
-     * AuthTokenController constructor.
+     * Authenticates a user via API.
      *
-     * @param Manager $fractal
-     */
-    public function __construct(Manager $fractal){
-        parent::__construct($fractal);
-
-        $this->middleware('web',['only' => 'getAuthToken']);
-        $this->middleware('auth:web',['only' => 'getAuthToken']);
-    }
-
-    /**
-     * Returns JWT Auth Token.
-     *
+     * @param Request $request
      * @return mixed
      */
-    public function getAuthToken() {
-        $token = JWTAuth::fromUser(\Auth::user());
+    public function authenticate(Request $request) {
+        try {
+            if( ! $token = JWTAuth::attempt([
+                    'email' => $request->input('identifier'),
+                    'password' => $request->input('secret')
+            ])) {
+                return $this->setStatusCode(IlluminateResponse::HTTP_UNAUTHORIZED)
+                            ->respondWithError("Invalid Credentials.");
+            }
+        } catch (JWTException $e) {
+            return $this->setStatusCode(IlluminateResponse::HTTP_INTERNAL_SERVER_ERROR)
+                        ->respondWithError("Couldn't create token.");
+        }
 
         return $this->respond([
-            '_token' => $token,
+            'token' => $token
         ]);
     }
 

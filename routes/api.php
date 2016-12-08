@@ -6,9 +6,9 @@ Route::group(['namespace' => 'Api','as' => 'api.'],function() {
         return \Response::json(['ping'=> 1]);
     });
 
-    Route::get('me/token',[
-        'as' => 'me.token',
-        'uses' => 'Auth\TokenController@getAuthToken'
+    Route::post('authenticate',[
+      'as' => 'authenticate',
+      'uses' => 'Auth\TokenController@authenticate'
     ]);
 
     Route::group([
@@ -35,5 +35,15 @@ Route::group(['namespace' => 'Api','as' => 'api.'],function() {
                 'as' => 'images.upload'
             ]);
         });
+
+        Route::get('grades',[
+            'uses' => 'GradesController@index',
+            'as' => 'grades.index'
+        ]);
+
+        Route::get('categories',[
+            'uses' => 'CategoriesController@index',
+            'as' => 'categories.index'
+        ]);
     });
 });

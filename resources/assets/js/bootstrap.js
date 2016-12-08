@@ -1,18 +1,21 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 
-import Auth from "./Auth/Auth";
+import AuthManager from "./Auth/Auth";
 
 Vue.config.debug = true;
 
 Vue.use(VueResource);
 
+window.authManager = new AuthManager();
+
 Vue.http.interceptors.push((request,next) => {
-	if(request.url !== Auth.JWTTokenUrl) {
-    	Auth.attachAuthenticationHeader(request,next);
-	} else {
-	    next();
-	}
+    authManager.attachAuthenticationHeader(request,next);
+    next((response) => {
+        if(response.headers.get("Authorization")) {
+            authManager.refreshTokenFromResponse(response);
+        }
+    });
 });
 
 import FormDateTimePicker from "./Components/FormDateTimePicker.vue";

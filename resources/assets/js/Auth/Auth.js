@@ -2,17 +2,12 @@ import { showErrorSnackbar } from "../vuex/actions";
 
 export default class AuthManager {
 
-    /**
-     * Creates AuthManager Object.
-     */
     constructor() {
-        document.addEventListener("DOMContentLoaded", (e) => {
-            var tokenMeta = document.querySelector('meta[name="_jwt_token"]');
+        var tokenMeta = document.querySelector('meta[name="_jwt_token"]');
 
-            if(tokenMeta) {
-                this._token = tokenMeta.getAttribute('content');
-            }
-        });
+        if(tokenMeta) {
+            this._token = tokenMeta.getAttribute('content');
+        }
     }
 
     /**
@@ -43,6 +38,25 @@ export default class AuthManager {
      */
     addAuthenticationHeader(request) {
         request.headers.set('Authorization','Bearer ' + this._token);
+    }
+
+    /**
+     * Refreshes JWT Token from response.
+     *
+     * @param response
+     */
+    refreshTokenFromResponse(response) {
+        let refreshedToken = response.headers.get("Authorization").split(" ")[1];
+        this.refreshToken(refreshedToken);
+    }
+
+    /**
+     * Refreshes token in auth manager.
+     *
+     * @param token
+     */
+    refreshToken(token) {
+        this._token = token;
     }
 
     /**

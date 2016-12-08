@@ -100,7 +100,7 @@ abstract class ApiController extends Controller{
     protected function transformCollection(IlluminateCollection $items) {
         $resource = $this->createCollectionResource($items);
 
-        return $this->fractal->createData($resource)->toJson();
+        return $this->fractal->createData($resource)->toArray();
     }
 
     /**
@@ -112,7 +112,7 @@ abstract class ApiController extends Controller{
     protected function transform($item) {
         $resource = $this->createItemResource($item);
 
-        return $this->fractal->createData($resource)->toJson();
+        return $this->fractal->createData($resource)->toArray();
     }
 
     /**

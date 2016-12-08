@@ -172,6 +172,7 @@ return [
 		App\Repositories\Providers\PostRepositoryProvider::class,
 		App\Repositories\Providers\CategoryRepositoryProvider::class,
 		App\Repositories\Providers\SubjectRepositoryProvider::class,
+        App\Repositories\Providers\GradeRepositoryProvider::class,
 		App\Repositories\Providers\UserRepositoryProvider::class,
 	],
 
