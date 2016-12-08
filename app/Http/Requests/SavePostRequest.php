@@ -29,7 +29,8 @@ class SavePostRequest extends Request {
 
 		//	subject_id is only required and must have non zero value
 		// 	when the category_id in the request does not match that of a blog
-		if($this->request->getInt('category_id') != Category::BLOG){
+        $category = Category::find($this->request->getInt('category_id'));
+		if($category->has_subject){
 			$rules['subject_id'] = 'required|integer|min:1';
 		}
 

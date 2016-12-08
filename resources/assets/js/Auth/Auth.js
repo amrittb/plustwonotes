@@ -1,37 +1,19 @@
-import Vue from "vue";
 import { showErrorSnackbar } from "../vuex/actions";
 
-export default {
+export default class AuthManager {
 
     /**
-     * JWT Auth Token retrived from server.
+     * Creates AuthManager Object.
      */
-    _token: null,
+    constructor() {
+        document.addEventListener("DOMContentLoaded", (e) => {
+            var tokenMeta = document.querySelector('meta[name="_jwt_token"]');
 
-    /**
-     * Flag to determine if the token retriving process has errors.
-     */
-    hasTokenException: false,
-
-    /**
-     * URL to get JWT Token from server.
-     */
-    JWTTokenUrl: document.querySelector('meta[name="_jwt_token_url"]').getAttribute('content'),
-
-    /**
-     * Requests Token from server.
-     *
-     * @param onTokenObtained
-     */
-    requestToken(onTokenObtained) {
-        Vue.http.get(this.JWTTokenUrl).then((response) => {
-            this._token = response.body._token;
-            onTokenObtained();
-        },(response) => {
-            this.hasTokenException = true;
-            this.showAuthError();
+            if(tokenMeta) {
+                this._token = tokenMeta.getAttribute('content');
+            }
         });
-    },
+    }
 
     /**
      * Attaches Authentication Header.
@@ -39,18 +21,10 @@ export default {
      * @param next
      */
     attachAuthenticationHeader(request, next) {
-        if(this.hasTokenException) {
-            this.showAuthError();
-        } else {
-            if (this._token) {
-                this.processRequest(request,next);
-            } else {
-                this.requestToken(() => {
-                    this.processRequest(request,next);        
-                });
-            }   
+        if (this._token) {
+            this.processRequest(request,next);
         }
-    },
+    }
 
     /**
      * Processes Request for correct authentication headers.
@@ -60,8 +34,7 @@ export default {
      */
     processRequest(request,next) {
         this.addAuthenticationHeader(request);
-        next();
-    },
+    }
 
     /**
      * Adds Authentication header to the request.
@@ -70,7 +43,7 @@ export default {
      */
     addAuthenticationHeader(request) {
         request.headers.set('Authorization','Bearer ' + this._token);
-    },
+    }
 
     /**
      * Show authentication error.

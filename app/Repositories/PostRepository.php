@@ -138,7 +138,10 @@ class PostRepository implements PostRepositoryInterface{
         }
 
         $post->category_id = (intval($input['category_id']))?:null;
-        $post->subject_id = (intval($input['subject_id']) && $post->category_id != Category::BLOG)?intval($input['subject_id']):null;
+
+        $category = Category::find($input['category_id']);
+
+        $post->subject_id = ($category->has_subject)?intval($input['subject_id']):null;
         $post->imp = isset($input['imp']);
         $post->featured = isset($input['featured']);
 

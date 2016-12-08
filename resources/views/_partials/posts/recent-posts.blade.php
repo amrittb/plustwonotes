@@ -22,7 +22,7 @@
                                 </h6>
                                 <div class="right-section-list__detail">
                                     {{ $post->published_at->diffForHumans() }} | {{ $post->category->category_name }}
-                                    @if($post->isNotBlog())
+                                    @if($post->category->has_subject)
                                         | {{ $post->grade_subject }}
                                     @endif
                                 </div>

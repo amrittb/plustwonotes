@@ -3,8 +3,13 @@
 namespace App\Repositories\Contracts;
 
 interface SubjectRepositoryInterface{
+
     /*
      *  Getters for subjects
      */
-    public function allForSelect();
+    /**
+     * @param bool $hasNA
+     * @return mixed
+     */
+    public function allForSelect($hasNA = false);
 }

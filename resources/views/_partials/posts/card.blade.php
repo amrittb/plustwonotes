@@ -10,7 +10,7 @@
     </div>
     <div class="mdl-card__supporting-text post-card__post-detail">
         {{ $post->published_at->diffForHumans() }} | {{ $post->category->category_name }}
-        @if($post->isNotBlog())
+        @if($post->category->has_subject)
             | {{ $post->grade_subject }}
         @endif
     </div>

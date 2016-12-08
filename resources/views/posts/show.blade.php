@@ -22,7 +22,7 @@
                     <span class="post__category">
                         {{ $post->category->category_name }}
                     </span>
-                    @if($post->isNotBlog())
+                    @if($post->category->has_subject)
                         | <span class="post__grade-subject">
                             {{ $post->grade_subject }}
                         </span>

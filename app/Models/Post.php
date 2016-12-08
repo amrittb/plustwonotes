@@ -151,15 +151,6 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
-     * Checks if the post is not a blog.
-     *
-     * @return bool
-     */
-    public function isNotBlog() {
-        return ($this->category_id != Category::BLOG);
-    }
-
-    /**
      * Checks if the post is a draft.
      *
      * @return bool
