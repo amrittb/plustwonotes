@@ -132,4 +132,21 @@ interface PostRepositoryInterface {
      * @return mixed
      */
     public function searchFor($query);
+
+    /**
+     * Collection of items from options.
+     *
+     * @param $options
+     * @return mixed
+     */
+    public function allFromOptions($options);
+
+    /**
+     * Item from options.
+     *
+     * @param $id
+     * @param $options
+     * @return mixed
+     */
+    public function itemFromOptions($id, $options);
 }

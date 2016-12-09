@@ -118,6 +118,61 @@ class Post extends Model implements PresentableInterface{
     }
 
     /**
+     * Matches posts which are published before.
+     *
+     * @param Builder $query
+     * @param Carbon $before
+     * @return mixed
+     */
+    public function scopePublishedBefore(Builder $query, Carbon $before) {
+        return $query->where('published_at', '<', $before);
+    }
+
+    /**
+     * Matches posts which are published after.
+     *
+     * @param Builder $query
+     * @param Carbon $after
+     * @return mixed
+     */
+    public function scopePublishedAfter(Builder $query, Carbon $after) {
+        return $query->where('published_at', '>', $after);
+    }
+
+    /**
+     * Matches posts which are updated before.
+     *
+     * @param Builder $query
+     * @param Carbon $before
+     * @return mixed
+     */
+    public function scopeUpdatedBefore(Builder $query, Carbon $before) {
+        return $query->where('updated_at', '<', $before);
+    }
+
+    /**
+     * Matches posts which are updated after.
+     *
+     * @param Builder $query
+     * @param Carbon $after
+     * @return mixed
+     */
+    public function scopeUpdatedAfter(Builder $query, Carbon $after) {
+        return $query->where('updated_at', '>', $after);
+    }
+
+    /**
+     * Matches post of category.
+     *
+     * @param Builder $query
+     * @param Category $category
+     * @return mixed
+     */
+    public function scopeOfCategory(Builder $query, Category $category) {
+        return $query->where('category_id', $category->id);
+    }
+
+    /**
      * Matches posts of a grade.
      *
      * @param Builder $query
@@ -137,6 +192,37 @@ class Post extends Model implements PresentableInterface{
      */
     public function scopeOfSubject(Builder $query,Subject $subject){
         return $query->where('subject_id',$subject->id);
+    }
+
+    /**
+     * Matches posts of a given status.
+     *
+     * @param Builder $query
+     * @param $status
+     * @return mixed
+     */
+    public function scopeOfStatus(Builder $query, $status){
+        return $query->where('status_id',$status);
+    }
+
+    /**
+     * Matches posts which are important.
+     *
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeIsImportant(Builder $query) {
+        return $query->where('imp', true);
+    }
+
+    /**
+     * Matches posts which are featured.
+     *
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeIsFeatured(Builder $query) {
+        return $query->where('featured', true);
     }
 
     /**

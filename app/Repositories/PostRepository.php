@@ -9,7 +9,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
-class PostRepository implements PostRepositoryInterface{
+class PostRepository implements PostRepositoryInterface {
 
     /**
      * Limit to posts for pagination.
@@ -17,6 +17,20 @@ class PostRepository implements PostRepositoryInterface{
      * @var int
      */
     protected $postLimit = 25;
+
+    /**
+     * PostQueryBuilder instance.
+     *
+     * @var PostQueryBuilder
+     */
+    protected $postQueryBuilder;
+
+    /**
+     * PostRepository constructor.
+     */
+    public function __construct(){
+        $this->postQueryBuilder = new PostQueryBuilder();
+    }
 
     /**
      * Get all published posts.
@@ -281,5 +295,31 @@ class PostRepository implements PostRepositoryInterface{
             ->published()
             ->impFirst()
             ->latestPublished();
+    }
+
+    /**
+     * Collection of items from options.
+     *
+     * @param $options
+     * @return mixed
+     */
+    public function allFromOptions($options) {
+        return $this->postQueryBuilder->createForOptions($options)->get();
+    }
+
+    /**
+     * Item from options.
+     *
+     * @param $id
+     * @param $options
+     * @return mixed
+     */
+    public function itemFromOptions($id, $options) {
+        $validOptions = ['status'];
+
+        return $this->postQueryBuilder
+                    ->createForOptions(array_only($options, $validOptions))
+                    ->where('id', $id)
+                    ->first();
     }
 }

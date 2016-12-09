@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Item;
@@ -53,6 +54,19 @@ abstract class ApiController extends Controller{
         $this->statusCode = $statusCode;
 
         return $this;
+    }
+
+    /**
+     * Parses includes.
+     *
+     * @param Request $request
+     */
+    protected function parseIncludes(Request $request) {
+        if ($request->has('include')) {
+            $includes = $request->get('include');
+
+            $this->fractal->parseIncludes($includes);
+        }
     }
 
     /**

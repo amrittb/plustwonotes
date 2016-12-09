@@ -45,5 +45,15 @@ Route::group(['namespace' => 'Api','as' => 'api.'],function() {
             'uses' => 'CategoriesController@index',
             'as' => 'categories.index'
         ]);
+
+        Route::get('posts',[
+            'uses'  => 'PostsController@index',
+            'as'    => 'posts.index',
+        ]);
+
+        Route::get('posts/{id}',[
+            'uses'  => 'PostsController@show',
+            'as'    => 'posts.show'
+        ]);
     });
 });

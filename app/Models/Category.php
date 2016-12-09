@@ -15,6 +15,15 @@ class Category extends Model implements PresentableInterface{
     const BLOG = 3;
 
     /**
+     * Finds Category by slug.
+     * @param $value
+     * @return mixed
+     */
+    public static function findBySlug($value) {
+        return static::where('category_slug',$value)->first();
+    }
+
+    /**
      * Defines a relationship with Post Model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
