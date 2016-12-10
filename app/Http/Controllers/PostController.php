@@ -76,7 +76,6 @@ class PostController extends Controller {
      * @return void
      */
     private function bindAuthorizationMiddlewares() {
-        $this->middleware('can:view,posts', ['only' => 'show']);
         $this->middleware('can:draft,posts', ['only' => 'draft']);
         $this->middleware('can:publish,posts', ['only' => 'publish']);
         $this->middleware('can:destroy,posts', ['only' => 'destroy']);
