@@ -53,7 +53,12 @@ Route::get('/users/posts',[
     'as' => 'user.posts'
 ]);
 
-Route::resource('users','UserController',['only' => ['index','show','edit','update']]);
+Route::resource('users','UserController',['only' => ['index','edit','update']]);
+
+Route::get('@{users}', [
+    'as' => 'users.show',
+    'uses' => 'UserController@show'
+]);
 
 Auth::routes();
 
