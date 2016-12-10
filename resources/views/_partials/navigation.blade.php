@@ -3,7 +3,7 @@
     <div class="mdl-layout__header-row">
         <!-- Title -->
         <span class="mdl-layout-title">
-            <h1 class="header-logo">Plus Two Notes</h1>
+            <h1 class="header-logo">Plus Two Notes <small>HSEB Notes and Syllabus</small></h1>
         </span>
         <div class="mdl-layout-spacer"></div>
 
