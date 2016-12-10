@@ -11,6 +11,7 @@
     "medium-editor-custom-html": "^1.1.0",
     "medium-editor-tables": "^0.5.2",
     "moment": "^2.13.0",
+    "scrollreveal": "^3.3.2",
     "vue": "^1.0.18",
     "vue-resource": "^1.0.2",
     "vuex": "^1.0.0-rc.2"
