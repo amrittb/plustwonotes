@@ -11,11 +11,11 @@
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--3-col">
                         <div class="user-profile__avatar-container mdl-typography--text-center">
-                            <img src="{{ $user->avatar_large }}" alt="{{ $user->name }}" class="user-profile__avatar-img img--circular" />
+                            <img src="{{ $user->avatar_large }}" alt="{{ $user->name }}" class="user-profile__avatar-img img--circular reveal-left" />
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--9-col">
-                        <h3 class="user-profile__name text--thin">
+                        <h3 class="user-profile__name text--light reveal-right">
                             {{ $user->name }}
                             <small>
                                 {
@@ -25,7 +25,7 @@
                                 }
                             </small>
                         </h3>
-                        <div class="user-profile__details">
+                        <div class="user-profile__details reveal-right-delay-250">
                             Member Type: <span class="user-profile__role">{{ implode(', ',$user->roles->pluck('name')->all()) }}</span><br />
                             Email: <span class="user-profile__email">{{ $user->email }}</span><br />
                             Joined: <span class="user-profile__created_at">{{ $user->created_at->diffForHumans() }}</span><br />
@@ -45,7 +45,7 @@
 
     <div class="mdl-grid section--center">
         <div class="mdl-cell mdl-cell--12-col">
-            <h3 class="text--thin">User Contributions</h3>
+            <h3 class="text--thin reveal-top">User Contributions</h3>
         </div>
     </div>
 @stop

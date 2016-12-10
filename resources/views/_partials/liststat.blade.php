@@ -1,4 +1,4 @@
-<div class="list-stat mdl-shadow--2dp">
+<div class="list-stat mdl-shadow--2dp reveal-bottom-delay-250">
     <div class="list-stat__page">
         Page <span class="post-stat__numeric">{{ $list->currentPage() }}</span>
     </div>

@@ -1,30 +1,53 @@
 .section{
     padding:4% 0;
 
-    &__heading{
-        font-weight: 100;
+    &__heading {
+        font-weight: 300;
+        font-size: 2.5rem;
+    }
+
+    &__body {
+        justify-content: center;
     }
     
     &--intro{
-        background: color($palette-blue-grey-50);
+        background-color: color($palette-blue-grey-50);
+        position: relative;
+
+        &:after {
+            content: ' ';
+            position: absolute;
+            bottom: -75px;
+            right: 25px;
+            background-image: url('../../img/book_degree_ruler_globe.svg');
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            width: 150px;
+            height: 150px;
+            display: block;
+        }
     }
     
     &-category{
-        &--note{
-            background: color($palette-red-600);
-        }
-        
-        &--syllabus{
-            background: color($palette-deep-orange-600);
-        }
-        
-        &--blog{
-            background: color($palette-green-800);
-        }
+        background: color($palette-blue-grey-100);
     }
     
     &--recommendations{
-        background: color($palette-blue-grey-800);
+        background: color($palette-blue-grey-200);
+    }
+
+    &--future {
+        padding-bottom: 0;
+        background: color($palette-blue-grey-100);
+
+        &__browser-mockup {
+            max-width: 95%;
+        }
+
+        &__description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
     }
     
     &--404{
@@ -55,6 +78,18 @@
         a{
             text-decoration: none;
             font-weight:normal;
+        }
+    }
+}
+
+@media only screen and (min-width: 48rem) {
+    .section {
+
+        &--future {
+
+            &__browser-mockup {
+                max-width: 80%;
+            }
         }
     }
 }

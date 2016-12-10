@@ -1,5 +1,5 @@
 .post{
-    padding: $post-body-gutter-size/2 $post-body-gutter-size;
+    padding: $post-body-gutter-size/2 0;
 
     &__date{
         text-transform: uppercase;
@@ -97,5 +97,9 @@
                 }
             }
         }
+    }
+
+    &-preview-container {
+        justify-content: center;
     }
 }

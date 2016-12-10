@@ -5,14 +5,14 @@
 @stop
 
 @section('content')
-    <h3 class="text--thin">Post List</h3>
+    <h3 class="text--light reveal-top">Post List</h3>
 
     @if(count($posts) > 0)
         @include('_partials.liststat',['list' => $posts,'entity' => 'posts'])
 
         <div class="mdl-typography__text-left">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp post-list">
-                <thead>
+                <thead class="reveal-top">
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Post Title</th>
                         <th class="mdl-data-table__cell--non-numeric">Category</th>
@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
-                        <tr class="post-list-item">
+                        <tr class="post-list-item reveal-bottom-staggered-250">
                             <td class="mdl-data-table__cell--non-numeric">
                                 {{ $post->post_title_truncated }}
                                 @if($post->imp)

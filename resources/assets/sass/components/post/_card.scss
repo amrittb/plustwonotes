@@ -1,6 +1,7 @@
 .post-card{
     max-width: $post-card-width;
     position: relative;
+    transition: all 0.5s;
 
     &__media{
         background-color: unquote("rgb(#{$color-accent-contrast})");
@@ -18,5 +19,9 @@
         position: absolute;
         right:20px;
         top: $post-card-media-height - $button-fab-size-mini / 2;
+    }
+
+    &:hover {
+        transform: scale(1.05);
     }
 }
