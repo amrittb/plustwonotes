@@ -64,4 +64,8 @@ class HomeController extends Controller {
         return view('home.search',compact('posts','query'));
 
     }
+
+    public function sitemap() {
+        return view('home.sitemap');
+    }
 }

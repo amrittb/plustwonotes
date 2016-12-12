@@ -6,6 +6,8 @@ Route::get('about',['uses' => 'HomeController@about', 'as' => 'about']);
 
 Route::get('search',['uses' => 'HomeController@search','as' => 'search']);
 
+Route::get('sitemap',['uses' => 'HomeController@sitemap', 'as' => 'sitemap']);
+
 Route::get('/posts/trashed',[
     'uses' => 'PostController@trashed',
     'as' => 'posts.trashed',

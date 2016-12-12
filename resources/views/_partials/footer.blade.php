@@ -6,6 +6,12 @@
         <h6 class="mdl-typography--text-center reveal-bottom">
             Designed & Developed with &heartsuit; by <a href="http://amrittwanabasu.com.np" target="_blank" class="text--color-white text--decoration-none">Amrit Twanabasu</a>
         </h6>
+
+        <br />
+
+        <p class="mdl-typography--text-center reveal-bottom-delay-250">
+            &compfn; <a href="{{ route('sitemap') }}" class="text--color-light text--decoration-none">Site Map</a> &compfn;
+        </p>
     </div>
     <div class="mdl-mega-footer__bottom-section mdl-typography--text-center">
         <h6 class="reveal-right-delay-500">
