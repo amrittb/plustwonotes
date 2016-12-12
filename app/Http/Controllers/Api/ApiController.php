@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use League\Fractal\Resource\Collection;
 use League\Fractal\TransformerAbstract;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Database\Eloquent\Collection as IlluminateCollection;
+use Illuminate\Support\Collection as IlluminateCollection;
 
 abstract class ApiController extends Controller{
 
