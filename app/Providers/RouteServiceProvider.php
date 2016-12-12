@@ -6,7 +6,8 @@ use App\Models\Post;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route as RouteFacade;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -62,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider {
      */
     protected function mapWebRoutes()
     {
-        Route::group([
+        RouteFacade::group([
             'middleware' => 'web',
             'namespace' => $this->namespace,
         ], function ($router) {
@@ -79,7 +80,7 @@ class RouteServiceProvider extends ServiceProvider {
      */
     protected function mapApiRoutes()
     {
-        Route::group([
+        RouteFacade::group([
             'middleware' => 'api',
             'namespace' => $this->namespace,
             'prefix' => 'api',
@@ -93,7 +94,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function bindCategory()
 	{
-		Route::bind('category', function ($category) {
+        RouteFacade::bind('category', function ($category) {
 			return Category::where('category_slug', $category)->firstOrFail();;
 		});
 	}
@@ -103,7 +104,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function bindPost()
 	{
-		Route::bind('posts', function ($post) {
+        RouteFacade::bind('posts', function ($post) {
 			if(is_numeric($post)){
 				return Post::onlyTrashed()->findOrFail($post);
 			}
@@ -115,7 +116,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 * Binds a \App\Models\Grade Model to the route.
 	 */
 	private function bindGrade() {
-		Route::bind('grade',function($grade) {
+        RouteFacade::bind('grade',function($grade) {
 			return Grade::where('grade_name',$grade)->firstOrFail();
 		});
 	}
@@ -124,7 +125,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 * Binds a \App\Models\Subject Model to the route.
 	 */
 	private function bindSubject() {
-		Route::bind('subject',function($subject,Route $route) {
+        RouteFacade::bind('subject',function($subject,Route $route) {
 			return Subject::where('subject_slug',$subject)
 							->where('grade_id',$route->getParameter('grade')->id)
 							->firstOrFail();
@@ -136,7 +137,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 * Bind a \App\Models\User Model to the route.
      */
 	private function bindUser() {
-		Route::bind('users',function($user){
+        RouteFacade::bind('users',function($user){
 			return User::where('username',$user)->firstOrFail();
 		});
 	}
