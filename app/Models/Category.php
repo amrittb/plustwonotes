@@ -10,8 +10,10 @@ class Category extends Model implements PresentableInterface{
     public $timestamps = false;
 
     /**
-     * A constant to define blog's index in database.
+     * A constant to define post categories index in database.
      */
+    const NOTES = 1;
+    const SYLLABUS = 2;
     const BLOG = 3;
 
     /**

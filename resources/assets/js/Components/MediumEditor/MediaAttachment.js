@@ -1,5 +1,6 @@
 import MediumEditor from 'medium-editor';
 import { openMediaAttachment } from "../../vuex/actions";
+import { ATTACHMENT_MODE_EDITOR } from "../../constants";
 
 export default MediumEditor.extensions.button.extend({
 
@@ -35,7 +36,10 @@ export default MediumEditor.extensions.button.extend({
 
         this.selection.addEventListener("MediaAttacher.attachImage",this.updateDOM.bind(this));
 
-        openMediaAttachment(window.app,this.selection);
+        openMediaAttachment(window.app,{
+            mode: ATTACHMENT_MODE_EDITOR,
+            selection: this.selection,
+        });
 
         return false;
     },
@@ -46,7 +50,7 @@ export default MediumEditor.extensions.button.extend({
      * @param e
      */
     updateDOM(e) {
-        e.target.innerHTML = "<img src='" + event.detail.publicUrl + "' >";
+        e.target.innerHTML = "<img src='" + event.detail.getFullUrl() + "' >";
 
         this.trigger('editableInput',{},e.target);
 

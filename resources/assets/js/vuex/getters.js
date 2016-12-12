@@ -29,6 +29,22 @@ export function getImages(state) {
 }
 
 /**
+ * Returns a Image instance.
+ *
+ * @param state
+ * @returns {*|null}
+ */
+export function getFeaturedImage(state) {
+    if(state.media.featuredImage) {
+        return state.media.images.filter((image) => {
+            return image.name == state.media.featuredImage;
+        })[0];
+    }
+
+    return undefined;
+}
+
+/**
  * Returns a DialogPolyFill instance.
  *
  * @param state
@@ -37,4 +53,3 @@ export function getImages(state) {
 export function getDialogPolyFill(state) {
     return state.defaults.dialogPolyfill;
 }
-

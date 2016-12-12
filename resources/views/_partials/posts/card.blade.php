@@ -10,7 +10,8 @@
         text--decoration-none
         reveal-bottom-staggered-250
 ">
-    <div class="mdl-card__media post-card__media post-category post-category--{{ strtolower($post->category->category_name) }}">
+    <div class="mdl-card__media post-card__media">
+        <img src="{{ $post->featured_img_thumbnail_url }}" alt="{{ $post->post_title }}">
     </div>
     <div class="mdl-card__title mdl-card--border">
         <h4 class="mdl-card__title-text mdl-typography--text-center">{{ $post->post_title }}

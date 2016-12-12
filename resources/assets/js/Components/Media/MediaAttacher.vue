@@ -51,7 +51,8 @@
 
 <script>
     import { getImages, getDialogPolyFill } from "../../vuex/getters";
-    import { syncImages, removeImage } from "../../vuex/actions";
+    import { syncImages, removeImage, syncFeaturedImageEditor, clearFeaturedImageInEditor } from "../../vuex/actions";
+    import { ATTACHMENT_MODE_EDITOR, ATTACHMENT_MODE_FEATURED_IMAGE } from "../../constants";
 
     export default {
         ready() {
@@ -74,7 +75,8 @@
                 canRetry: false,
                 isDeleting: false,
                 selectedImage: null,
-                selection: null
+                selection: null,
+                mode: null,
             };
         },
         props: {
@@ -93,9 +95,14 @@
              * Fires an Event to attach the image.
              */
             attachMedia() {
-                this.selection.dispatchEvent(new CustomEvent("MediaAttacher.attachImage",{
-                    'detail': this.selectedImage
-                }));
+                if(this.mode === ATTACHMENT_MODE_EDITOR) {
+                    this.selection.dispatchEvent(new CustomEvent("MediaAttacher.attachImage",{
+                        'detail': this.selectedImage
+                    }));
+                } else if(this.mode === ATTACHMENT_MODE_FEATURED_IMAGE) {
+                    this.syncFeaturedImageEditor(this.selectedImage.name);
+                }
+
                 this.closeDialog();
             },
 
@@ -111,6 +118,7 @@
              */
             closeDialog() {
                 this.$el.close();
+                this.mode = null;
                 this.selection = null;
                 this.selectedImage = null;
                 this.$emit('MediaAttacher.Close');
@@ -185,6 +193,11 @@
                     self.isDeleting = false;
                     this.$broadcast("Snackbar.ShowSuccess","Image deleted successfully.");
                     this.removeImage(this.selectedImage);
+
+                    if(this.mode == ATTACHMENT_MODE_FEATURED_IMAGE) {
+                        this.clearFeaturedImageInEditor();
+                    }
+
                     this.resetSelection();
                 },() => {
                     self.isDeleting = false;
@@ -206,8 +219,13 @@
              * @param selection
              * @constructor
              */
-            'MediaAttacher.Open' : function(selection) {
-                this.selection = selection;
+            'MediaAttacher.Open' : function(options) {
+                this.mode = options.mode;
+
+                if(this.mode == ATTACHMENT_MODE_EDITOR) {
+                    this.selection = options.selection;
+                }
+
                 this.openDialog();
             }
         },
@@ -219,6 +237,8 @@
             actions: {
                 syncImages,
                 removeImage,
+                syncFeaturedImageEditor,
+                clearFeaturedImageInEditor,
             },
         },
     }

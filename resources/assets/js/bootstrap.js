@@ -25,6 +25,8 @@ import MediaAttacher from "./Components/Media/MediaAttacher.vue";
 import RoleEditor from "./Components/RoleEditor.vue";
 import PostEditor from "./Components/PostEditor.vue";
 import UserRoles from "./Components/UserRoles.vue";
+import FeaturedImageEditor from "./Components/FeaturedImageEditor.vue";
+import FeaturedImage from "./Components/FeaturedImage.vue";
 
 import MdlSnackbar from "./Components/Material/Snackbar.vue";
 import MdlCheckbox from "./Components/Material/Checkbox.vue";
@@ -37,6 +39,8 @@ Vue.component("media-thumbnail",MediaThumbnail);
 Vue.component("post-editor",PostEditor);
 Vue.component("role-editor",RoleEditor);
 Vue.component("user-roles",UserRoles);
+Vue.component("featured-image-editor", FeaturedImageEditor);
+Vue.component("featured-image", FeaturedImage);
 
 Vue.component("mdl-snackbar",MdlSnackbar);
 Vue.component("mdl-checkbox",MdlCheckbox);

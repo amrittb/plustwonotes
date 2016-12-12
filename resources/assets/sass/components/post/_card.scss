@@ -4,9 +4,14 @@
     transition: all 0.5s;
 
     &__media{
-        background-color: unquote("rgb(#{$color-accent-contrast})");
+        background-color: color($palette-blue-grey-100);
         height: $post-card-media-height;
+        overflow: hidden;
         padding:0;
+
+        img {
+            transition: all 0.5s;
+        }
     }
 
     &__post-detail{
@@ -22,6 +27,10 @@
     }
 
     &:hover {
-        transform: scale(1.05);
+        background-color: color($palette-blue-grey-50);
+    }
+
+    &:hover &__media img {
+        transform: scale(1.1);
     }
 }

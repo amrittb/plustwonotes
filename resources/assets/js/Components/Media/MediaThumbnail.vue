@@ -1,6 +1,6 @@
 <template>
     <div class="media-images__thumbnail">
-        <img :src="image.thumbUrl"
+        <img :src="image.getThumbnailUrl()"
              class="media-images__thumbnail-img"
              v-show="isLoaded"
              @load="showImage"

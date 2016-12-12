@@ -1,12 +1,19 @@
-import { SYNC_USERS, SYNC_USER_ROLES, SYNC_IMAGES, REMOVE_IMAGE } from "./mutation-types";
+import {
+            SYNC_USERS,
+            SYNC_USER_ROLES,
+            SYNC_IMAGES,
+            REMOVE_IMAGE,
+            SYNC_FEATURED_IMAGE_EDITOR,
+            CLEAR_FEATURED_IMAGE_IN_EDITOR
+} from "./mutation-types";
 
 /**
  * Opens Media Attacher dialog
  *
  * @param Vuex
  */
-export const openMediaAttachment = function(Vuex,selection) {
-    window.app.$broadcast("MediaAttacher.Open",selection);
+export const openMediaAttachment = function(Vuex,options) {
+    window.app.$broadcast("MediaAttacher.Open",options);
 };
 
 /**
@@ -78,3 +85,21 @@ export const syncUserRoles = function({dispatch},user) {
     dispatch(SYNC_USER_ROLES,user);
 };
 
+/**
+ * Syncs Featured Image editor.
+ *
+ * @param dispatch
+ * @param imageName
+ */
+export const syncFeaturedImageEditor = function({dispatch}, imageName) {
+    dispatch(SYNC_FEATURED_IMAGE_EDITOR, imageName);
+};
+
+/**
+ * Clears Featured Image in Editor.
+ *
+ * @param dispatch
+ */
+export const clearFeaturedImageInEditor = function({dispatch}) {
+    dispatch(CLEAR_FEATURED_IMAGE_IN_EDITOR);
+};

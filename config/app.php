@@ -174,6 +174,7 @@ return [
 		App\Repositories\Providers\SubjectRepositoryProvider::class,
         App\Repositories\Providers\GradeRepositoryProvider::class,
 		App\Repositories\Providers\UserRepositoryProvider::class,
+        App\Repositories\Providers\ImageRepositoryProvider::class,
 	],
 
 	/*

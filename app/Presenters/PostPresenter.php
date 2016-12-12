@@ -1,5 +1,7 @@
 <?php namespace App\Presenters;
 
+use App\Helpers\ImageHelper;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Robbo\Presenter\Presenter;
@@ -217,5 +219,43 @@ class PostPresenter extends Presenter{
      */
     public function presentRestoreUrl() {
         return route('posts.restore',['posts' => $this->id]);
+    }
+
+    /**
+     * Presents Featured Image Thumbnail URL.
+     * @return string
+     */
+    public function presentFeaturedImgThumbnailUrl() {
+        if($this->featured_img != null) {
+            return asset(ImageHelper::getFeaturedImageThumbnailPath($this->featured_img));
+        } else {
+            switch($this->category_id) {
+                case Category::NOTES:
+                    return asset("img/note.png");
+                    break;
+                case Category::SYLLABUS:
+                    return asset("img/syllabus.png");
+                    break;
+                case Category::BLOG:
+                    return asset("img/blog.png");
+                    break;
+                default:
+                    return asset("img/blog.png");
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Presents Featured image url.
+     *
+     * @return string
+     */
+    public function presentFeaturedImgUrl() {
+        if($this->featured_img != null) {
+            return asset(ImageHelper::getFeaturedImagePath($this->featured_img));
+        }
+
+        return "#";
     }
 }

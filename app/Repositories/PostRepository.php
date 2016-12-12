@@ -1,5 +1,6 @@
 <?php namespace App\Repositories;
 
+use App\Helpers\ImageHelper;
 use App\Models\Category;
 use App\Models\Grade;
 use App\Models\Subject;
@@ -7,6 +8,7 @@ use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class PostRepository implements PostRepositoryInterface {
@@ -158,6 +160,16 @@ class PostRepository implements PostRepositoryInterface {
         $post->subject_id = ($category->has_subject)?intval($input['subject_id']):null;
         $post->imp = isset($input['imp']);
         $post->featured = isset($input['featured']);
+
+        if($input['featured_img'] != '') {
+            $filename = $input['featured_img'];
+
+            if(File::exists(ImageHelper::getFullImagePath($filename))) {
+                ImageHelper::generateFeaturedImage($filename);
+            }
+
+            $post->featured_img = $filename;
+        }
 
         return $post->save();
     }

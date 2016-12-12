@@ -87,6 +87,14 @@
     </label>
 </div>
 
+<div class="form-group--large">
+    <div class="form-group__info">
+        <i class="material-icons">info</i>
+        Pick a image to describe this post and it will be shown as thumbnail in post list and as featured image on top of post view page.
+    </div>
+    <featured-image-editor name="{{ (isset($post))?$post->featured_img:"" }}"></featured-image-editor>
+</div>
+
 <!-- Post Body Input -->
 <div class="form-group--large">
     <div class="form-group__info">

@@ -30,6 +30,24 @@
         margin: $post-body-gutter-size/2 0;
     }
 
+    &__featured-img {
+        position: relative;
+        width: 100%;
+        display: block;
+        background: color($palette-blue-grey-100);
+        overflow: hidden;
+
+        &-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        &--thumbnail {
+            filter: blur(20px);
+        }
+    }
+
     &__body{
         margin: $post-body-gutter-size * 2 0;
         font-size: $post-body-font-size;
