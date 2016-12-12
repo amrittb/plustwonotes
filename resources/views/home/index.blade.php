@@ -101,7 +101,7 @@
             
             <div class="section__body">
                 <p class="section--future__description text--light mdl-typography--text-justify reveal-right">
-                    So you wanna know what we are our goals for <b>2017</b> huh. We are planning to release <b class="text--color-primary">Plus Two Notes Android app</b> in 2017's first 3 months. Also we have plans to use <b class="text--color-primary">Augmented Reality \ Virtual Reality</b> technology to innovate traditional learning methodologies. We will be the <b>first in Nepal</b> to actually use <b>AR \ VR technology</b> in education field.
+                    So you wanna know what we are our goals for <b>2017</b> huh. We are planning to release <span class="text--color-primary text--light">Plus Two Notes Android app</span> in 2017's first 3 months. Also we have plans to use <span class="text--color-primary text--light">Augmented Reality \ Virtual Reality</span> technology to innovate traditional learning methodologies. We will be the <b>first in Nepal</b> to actually use <b>AR \ VR technology</b> in education field. We will be launching an app called <span class="text--color-primary text--light">Plus Two AR Labs</span> and <span class="text--color-primary text--light">Homo Sapiens VR</span> in 2017, which is currently under development as of December 2016.
                 </p>
 
                 <div class="mdl-typography--text-center">
