@@ -7,7 +7,7 @@
 @section('content')
     @include('_partials.users.role-editor')
 
-    <h3 class="text--thin reveal-top">Users List</h3>
+    <h3 class="text--light reveal-top">Users List</h3>
 
     @if(count($users) > 0)
         @include('_partials.liststat',['list' => $users,'entity' => 'users'])

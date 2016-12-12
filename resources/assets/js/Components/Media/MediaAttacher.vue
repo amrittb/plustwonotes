@@ -1,6 +1,6 @@
 <template>
     <dialog id="media-attachment-dialog" class="mdl-dialog media-attachment">
-        <h4 class="mdl-dialog__title text--thin">Attach a media</h4>
+        <h4 class="mdl-dialog__title text--light">Attach a media</h4>
         <div class="mdl-dialog__content media-attachment__content">
             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                 <div class="mdl-tabs__tab-bar">

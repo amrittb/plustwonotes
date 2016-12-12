@@ -20,7 +20,7 @@
 @stop
 
 @section('content')
-    <h2 class="text--thin mdl-typography--text-center reveal-top">{{ $title }}</h2>
+    <h2 class="text--light mdl-typography--text-center reveal-top">{{ $title }}</h2>
 
     @include('_partials.posts.postlist')
 @stop

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="mdl-typography--text-left">
-        <h3 class="text--thin">Edit Your Profile</h3>
+        <h3 class="text--light">Edit Your Profile</h3>
 
         @include('_partials.bags.messagebag')
 

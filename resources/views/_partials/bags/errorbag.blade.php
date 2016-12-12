@@ -1,7 +1,7 @@
 @if(!$errors->isEmpty())
     <div class="alert alert--error mdl-shadow--2dp">
         <div class="alert__title">
-            <h3 class="mdl-typography--text-center text--thin">
+            <h3 class="mdl-typography--text-center text--light">
                 <i class="material-icons">error</i> Error.
             </h3>
         </div>

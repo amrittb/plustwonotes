@@ -1,6 +1,6 @@
 <template>
     <dialog id="role-editor-dialog" class="mdl-dialog">
-        <h4 class="mdl-dialog__title text--thin">Edit User Roles</h4>
+        <h4 class="mdl-dialog__title text--light">Edit User Roles</h4>
         <div class="mdl-dialog__content">
             <mdl-checkbox v-for="role in roles"
                           :id="'role-id-' + role.id + '-checkbox'"
