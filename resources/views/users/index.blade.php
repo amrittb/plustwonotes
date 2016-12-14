@@ -14,7 +14,7 @@
 
         <div class="mdl-typography__text-left">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp post-list">
-                <thead class="reveal-top">
+                <thead>
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Full Name</th>
                         <th class="mdl-data-table__cell--non-numeric">Email</th>
@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                 @foreach($users as $user)
-                    <tr class="user-list-item reveal-bottom-staggered-250">
+                    <tr class="user-list-item">
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->name }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->email }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{{ $user->created_at->diffForHumans() }}</td>

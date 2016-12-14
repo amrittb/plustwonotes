@@ -8,22 +8,22 @@
     <h3 class="text--light reveal-top">Post List</h3>
 
     <div class="mdl-typography--text-center">
-        <a href="{{ route('user.posts') }}" class="text--decoration-none">
+        <a href="{{ route('user.posts') }}" class="text--decoration-none reveal-right-staggered-250">
             All ({{ \App\Models\Post::numPosts() }})
-        </a> |
-        <a href="{{ route('user.posts')."?by=".\Auth::user()->username }}" class="text--decoration-none">
+        </a> <span class="reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?by=".\Auth::user()->username }}" class="text--decoration-none reveal-right-staggered-250">
             Mine ({{ \App\Models\Post::numPostsOfUser(\Auth::user()) }})
-        </a> |
-        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_CONTENT_READY }}" class="text--decoration-none">
+        </a> <span class="reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_CONTENT_READY }}" class="text--decoration-none reveal-right-staggered-250">
             Content Ready ({{ \App\Models\Post::numPosts(\App\Models\Post::STATUS_CONTENT_READY) }})
-        </a> |
-        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_PUBLISHED }}" class="text--decoration-none">
+        </a> <span class="reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_PUBLISHED }}" class="text--decoration-none reveal-right-staggered-250">
             Published ({{ \App\Models\Post::numPosts(\App\Models\Post::STATUS_PUBLISHED) }})
-        </a> |
-        <a href="{{ route('user.posts')."?imp" }}" class="text--decoration-none">
+        </a> <span class="reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?imp" }}" class="text--decoration-none reveal-right-staggered-250">
             Important ({{ \App\Models\Post::numImpPosts() }})
-        </a> |
-        <a href="{{ route('user.posts')."?featured" }}" class="text--decoration-none">
+        </a> <span class="reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?featured" }}" class="text--decoration-none reveal-right-staggered-250">
             Featured ({{ \App\Models\Post::numFeaturedPosts() }})
         </a>
         @include('_partials.posts.admin.search')
@@ -34,7 +34,7 @@
 
         <div class="mdl-typography__text-left">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp post-list">
-                <thead class="reveal-top">
+                <thead>
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Post Title</th>
                         <th class="mdl-data-table__cell--non-numeric">Category</th>
@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
-                        <tr class="post-list-item reveal-bottom-staggered-250">
+                        <tr class="post-list-item">
                             <td class="mdl-data-table__cell--non-numeric">
                                 {{ $post->post_title_truncated }}
                                 @if($post->imp)
