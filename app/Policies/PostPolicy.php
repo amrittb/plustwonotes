@@ -112,7 +112,7 @@ class PostPolicy {
      * @param Post|App\Models\Post $post
      * @return mixed
      */
-    public function delete(User $user, Post $post) {
+    public function destroy(User $user, Post $post) {
         return $user->hasPermission('post.destroy') and $post->isDeletableByUser($user);
     }
 
