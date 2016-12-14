@@ -16,6 +16,13 @@ class PostsController extends ApiController {
     private $posts;
 
     /**
+     * Flag to determine if body is to be included.
+     *
+     * @var bool
+     */
+    private $includeBody = false;
+
+    /**
      * PostsController constructor.
      *
      * @param Manager $fractal
@@ -61,11 +68,28 @@ class PostsController extends ApiController {
     }
 
     /**
+     * Parses includes.
+     *
+     * @param Request $request
+     */
+    protected function parseIncludes(Request $request) {
+        parent::parseIncludes($request);
+
+        // Sets include body flag if request variable has include with body value.
+        $this->includeBody = in_array('body',explode(",",$request->get('include')));
+    }
+
+    /**
      * Returns transformer for current resource.
      *
      * @return TransformerAbstract
      */
     protected function getTransformer() {
-        return new PostTransformer();
+        $transformer = new PostTransformer();
+
+        // For optional inclusion of post body.
+        $transformer->shouldIncludeBody($this->includeBody);
+
+        return $transformer;
     }
 }

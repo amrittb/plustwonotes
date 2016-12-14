@@ -34,13 +34,16 @@ class PostTransformer extends TransformerAbstract {
             'id'            => $post->id,
             'title'         => $post->post_title,
             'slug'          => $post->post_slug,
-            'body'          => $post->post_body,
             'created_at'    => $post->created_at->toDateTimeString(),
             'updated_at'    => $post->updated_at->toDateTimeString(),
             'published_at'  => $post->published_at->toDateTimeString(),
             'is_imp'        => (bool) $post->imp,
             'is_featured'   => (bool) $post->featured,
         ];
+
+        if($this->includeBody) {
+            $transformation['body'] = $post->post_body;
+        }
 
         return $this->addLinks($post, $transformation);
     }
@@ -98,7 +101,7 @@ class PostTransformer extends TransformerAbstract {
      *
      * @param $flag
      */
-    public function setIncludeBodyFlag($flag) {
+    public function shouldIncludeBody($flag) {
         $this->includeBody = $flag;
     }
 }
