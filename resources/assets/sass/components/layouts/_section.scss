@@ -49,6 +49,14 @@
             margin-bottom: 2rem;
         }
     }
+
+    &--footnote {
+        background: color($palette-blue-grey-50);
+
+        &__description {
+            font-size: 1.2rem;
+        }
+    }
     
     &--404{
         position: absolute;

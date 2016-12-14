@@ -113,4 +113,18 @@
             </div>
         </div>
     </section>
+
+    <section class="section section--footnote mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col section--center">
+            <h2 class="section__heading mdl-typography--text-left reveal reveal-top">
+                What about 'disbanding <b>HSEB</b>'?
+            </h2>
+
+            <div class="section__body">
+                <p class=" section--footnote__description reveal reveal-bottom">
+                    After <a href="http://neb.gov.np" class="text--color-primary text--decoration-none" target="_blank">National Education Board</a>, has officially released all syllabus and plans for Secondary Level (From Grade IX to XII) of Nepalese Education System we will correspondingly update our site to fit changing needs.
+                </p>
+            </div>
+        </div>
+    </section>
 @stop
