@@ -11,7 +11,7 @@ var paths = {
 elixir(function(mix) {
     mixCss(mix);
     mixScripts(mix);
-    mix.version(['css/app.css','js/preload-app.js','js/app.js']);
+    mix.version(['css/app.css','js/preload-app.js','js/app.js','js/post-editor.js']);
 });
 
 /**
@@ -22,6 +22,7 @@ elixir(function(mix) {
 function mixScripts(mix){
     mix.webpack('preload-app.js');
     mix.webpack('app.js');
+    mix.webpack('post-editor.js');
 }
 
 /**

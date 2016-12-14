@@ -132,3 +132,7 @@
    class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
     <i class="material-icons">cancel</i> Cancel
 </a>
+
+@section('scripts')
+    <script type="text/javascript" src="{{ elixir('js/post-editor.js') }}"></script>
+@endsection

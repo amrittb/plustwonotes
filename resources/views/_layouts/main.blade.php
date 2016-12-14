@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="152x152" href="/img/favicons/favicon-152.png">
     <meta name="application-name" content="Plus Two Notes">
     <meta name="msapplication-TileImage" content=/img/favicons/favicon-144.png">
-    <meta name="msapplication-TileColor" content="#2c3e50">
+    <meta name="msapplication-TileColor" content="#B0BEC5">
     <meta name="_token" content="{{ csrf_token() }}">
     @if(\Auth::user())
         <!-- Only showing JWT token when the user is logged in -->
@@ -52,5 +52,17 @@
     <mdl-snackbar></mdl-snackbar>
 
     <script type="text/javascript" src="{{ elixir('js/app.js') }}"></script>
+
+    @yield('scripts')
+
+    <script type="text/javascript">
+        /**
+         * Root Vue Instance.
+         */
+        window.app = new Vue({
+            el : 'body',
+            store: window.store,
+        });
+    </script>
 </body>
 </html>
