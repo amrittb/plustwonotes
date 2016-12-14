@@ -6,8 +6,8 @@
             <h6 class="text--light mdl-typography--text-center" v-show="!isLoadingImage">Select a featured image for this post.</h6>
         </div>
         <img class="featured-image-editor__img" :src="src" v-show="hasImage">
-        <a class="mdl-js-button mdl-js-ripple-effect featured-image-editor__img-remove-btn" @click.stop.prevent="removeFeaturedImage" v-show="hasImage">
-            <i class="material-icons">cross</i>
+        <a class="mdl-js-button mdl-js-ripple-effect featured-image-editor__img-remove-btn text--color-white" @click.stop.prevent="removeFeaturedImage" v-show="hasImage">
+            <i class="material-icons">clear</i>
         </a>
         <input type="hidden" name="featured_img" :value="featuredImageName" />
     </div>
