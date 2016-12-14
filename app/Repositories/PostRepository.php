@@ -83,6 +83,10 @@ class PostRepository implements PostRepositoryInterface {
     public function allUntrashed($options = []) {
         $posts = Post::with('subject.grade', 'category', 'user');
 
+        // Removing page option because during pagination it may exist
+        // and break the following option parsing.
+        unset($options['page']);
+
         if(count($options)) {
             foreach ($options as $key => $value) {
                 switch ($key) {
