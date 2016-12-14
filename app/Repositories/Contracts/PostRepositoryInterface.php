@@ -35,9 +35,10 @@ interface PostRepositoryInterface {
     /**
      * Returns all untrashed posts.
      *
+     * @param array $options
      * @return mixed
      */
-    public function allUntrashed();
+    public function allUntrashed($options = []);
 
     /**
     * Returns recent posts.

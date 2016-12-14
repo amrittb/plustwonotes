@@ -56,6 +56,66 @@ class Post extends Model implements PresentableInterface{
     ];
 
     /**
+     * Returns number of posts.
+     *
+     * @param int $statusId
+     * @return mixed
+     */
+    public static function numPosts($statusId = 0) {
+        if($statusId == 0) {
+            return Post::untrashed()->count();
+        }
+
+        return Post::ofStatus($statusId)->count();
+    }
+
+    /**
+     * Returns number of important posts.
+     *
+     * @param int $statusId
+     * @return mixed
+     */
+    public static function numImpPosts($statusId = 0) {
+        if($statusId == 0) {
+            return Post::untrashed()->isImportant()->count();
+        }
+
+        return Post::ofStatus($statusId)->count();
+    }
+
+    /**
+     * Returns number of featured posts.
+     *
+     * @param int $statusId
+     * @return mixed
+     */
+    public static function numFeaturedPosts($statusId = 0) {
+        if($statusId == 0) {
+            return Post::untrashed()->isFeatured()->count();
+        }
+
+        return Post::ofStatus($statusId)->count();
+    }
+
+    /**
+     * Returns Number of posts of user.
+     *
+     * @param User $user
+     * @return mixed
+     */
+    public static function numPostsOfUser(User $user) {
+        return $user->posts()->count();
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeUntrashed(Builder $query) {
+        return $query->where('status_id','!=',Post::STATUS_TRASHED);
+    }
+
+    /**
      * Get published posts.
      *
      * @param Builder $query

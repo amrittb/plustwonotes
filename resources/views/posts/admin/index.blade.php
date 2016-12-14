@@ -7,6 +7,28 @@
 @section('content')
     <h3 class="text--light reveal-top">Post List</h3>
 
+    <div class="mdl-typography--text-center">
+        <a href="{{ route('user.posts') }}" class="text--decoration-none">
+            All ({{ \App\Models\Post::numPosts() }})
+        </a> |
+        <a href="{{ route('user.posts')."?by=".\Auth::user()->username }}" class="text--decoration-none">
+            Mine ({{ \App\Models\Post::numPostsOfUser(\Auth::user()) }})
+        </a> |
+        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_CONTENT_READY }}" class="text--decoration-none">
+            Content Ready ({{ \App\Models\Post::numPosts(\App\Models\Post::STATUS_CONTENT_READY) }})
+        </a> |
+        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_PUBLISHED }}" class="text--decoration-none">
+            Published ({{ \App\Models\Post::numPosts(\App\Models\Post::STATUS_PUBLISHED) }})
+        </a> |
+        <a href="{{ route('user.posts')."?imp" }}" class="text--decoration-none">
+            Important ({{ \App\Models\Post::numImpPosts() }})
+        </a> |
+        <a href="{{ route('user.posts')."?featured" }}" class="text--decoration-none">
+            Featured ({{ \App\Models\Post::numFeaturedPosts() }})
+        </a>
+        @include('_partials.posts.admin.search')
+    </div>
+
     @if(count($posts) > 0)
         @include('_partials.liststat',['list' => $posts,'entity' => 'posts'])
 

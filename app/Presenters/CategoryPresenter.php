@@ -9,6 +9,15 @@ class CategoryPresenter extends Presenter{
      *
      * @return mixed
      */
+    public function presentNumOfPosts() {
+        return $this->posts()->count();
+    }
+
+    /**
+     * Presents number of published posts for the category.
+     *
+     * @return mixed
+     */
     public function presentNumOfPublishedPosts() {
         return $this->posts()->published()->count();
     }

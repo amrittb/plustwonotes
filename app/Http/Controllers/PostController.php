@@ -102,12 +102,18 @@ class PostController extends Controller {
     /**
      * Displays a list of all posts.
      *
+     * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function indexAll(){
-        $posts = $this->postRepo->allUntrashed();
+    public function indexAll(Request $request){
+        $posts = $this->postRepo->allUntrashed($request->all());
 
-        return view('posts.admin.index',compact('posts'));
+        $query = '';
+        if(array_key_exists('q',$request->all())) {
+            $query = $request->input('q');
+        }
+
+        return view('posts.admin.index',compact('posts', 'query'));
     }
 
     /**

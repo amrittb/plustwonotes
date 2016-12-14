@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\Grade;
 use App\Models\Subject;
 use App\Models\Post;
+use App\Models\User;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use Auth;
 use Carbon\Carbon;
@@ -76,19 +77,52 @@ class PostRepository implements PostRepositoryInterface {
     /**
      * Get all posts except trashed.
      *
+     * @param array $options
      * @return mixed
      */
-    public function allUntrashed() {
-        $posts = Post::with('subject.grade','category','user')
-                ->where(function($query){
-                    $query->where ('status_id','=',Post::STATUS_PUBLISHED)
-                        ->orWhere('status_id','=',Post::STATUS_CONTENT_READY)
-                        ->orWhere(function($query){
-                            $query->where('status_id','=',Post::STATUS_DRAFT)
-                                    ->where('user_id','=',Auth::id());
-                        });
-                })
-                ->orderBy('status_id','desc')
+    public function allUntrashed($options = []) {
+        $posts = Post::with('subject.grade', 'category', 'user');
+
+        if(count($options)) {
+            foreach ($options as $key => $value) {
+                switch ($key) {
+                    case 'by':
+                        $user = User::whereUsername($value)->first();
+
+                        $posts = ($user != null) ? $user->posts()
+                            ->with('subject.grade', 'category', 'user')
+                            : $posts;
+                        break;
+                    case 'status':
+                        $posts->ofStatus($value);
+                        break;
+                    case 'imp':
+                        $posts->isImportant();
+                        break;
+                    case 'featured':
+                        $posts->isFeatured();
+                        break;
+                    case 'q':
+                        if($value != '') {
+                            $posts->matchesSearchQuery($value);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } else {
+            $posts->where(function($query){
+                $query->where ('status_id','=',Post::STATUS_PUBLISHED)
+                    ->orWhere('status_id','=',Post::STATUS_CONTENT_READY)
+                    ->orWhere(function($query){
+                        $query->where('status_id','=',Post::STATUS_DRAFT)
+                            ->where('user_id','=',Auth::id());
+                    });
+            });
+        }
+
+        $posts = $posts->orderBy('status_id','desc')
                 ->latest()
                 ->paginate($this->postLimit);
 
