@@ -5,25 +5,25 @@
 @stop
 
 @section('content')
-    <h3 class="text--light reveal-top">Post List</h3>
+    <h3 class="text--light reveal reveal-top">Post List</h3>
 
     <div class="mdl-typography--text-center">
-        <a href="{{ route('user.posts') }}" class="text--decoration-none reveal-right-staggered-250">
+        <a href="{{ route('user.posts') }}" class="text--decoration-none reveal reveal-right-staggered-250">
             All ({{ \App\Models\Post::numPosts() }})
-        </a> <span class="reveal-bottom-staggered-250">|</span>
-        <a href="{{ route('user.posts')."?by=".\Auth::user()->username }}" class="text--decoration-none reveal-right-staggered-250">
+        </a> <span class="reveal reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?by=".\Auth::user()->username }}" class="text--decoration-none reveal reveal-right-staggered-250">
             Mine ({{ \App\Models\Post::numPostsOfUser(\Auth::user()) }})
-        </a> <span class="reveal-bottom-staggered-250">|</span>
-        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_CONTENT_READY }}" class="text--decoration-none reveal-right-staggered-250">
+        </a> <span class="reveal reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_CONTENT_READY }}" class="text--decoration-none reveal reveal-right-staggered-250">
             Content Ready ({{ \App\Models\Post::numPosts(\App\Models\Post::STATUS_CONTENT_READY) }})
-        </a> <span class="reveal-bottom-staggered-250">|</span>
-        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_PUBLISHED }}" class="text--decoration-none reveal-right-staggered-250">
+        </a> <span class="reveal reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?status=".\App\Models\Post::STATUS_PUBLISHED }}" class="text--decoration-none reveal reveal-right-staggered-250">
             Published ({{ \App\Models\Post::numPosts(\App\Models\Post::STATUS_PUBLISHED) }})
-        </a> <span class="reveal-bottom-staggered-250">|</span>
-        <a href="{{ route('user.posts')."?imp" }}" class="text--decoration-none reveal-right-staggered-250">
+        </a> <span class="reveal reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?imp" }}" class="text--decoration-none reveal reveal-right-staggered-250">
             Important ({{ \App\Models\Post::numImpPosts() }})
-        </a> <span class="reveal-bottom-staggered-250">|</span>
-        <a href="{{ route('user.posts')."?featured" }}" class="text--decoration-none reveal-right-staggered-250">
+        </a> <span class="reveal reveal-bottom-staggered-250">|</span>
+        <a href="{{ route('user.posts')."?featured" }}" class="text--decoration-none reveal reveal-right-staggered-250">
             Featured ({{ \App\Models\Post::numFeaturedPosts() }})
         </a>
         @include('_partials.posts.admin.search')

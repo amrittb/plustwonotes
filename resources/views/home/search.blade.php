@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h3 class="text--thin mdl-typography--text-center reveal-top">
+    <h3 class="text--thin mdl-typography--text-center reveal reveal-top">
         @if(is_null($query))
             Search for...
         @else

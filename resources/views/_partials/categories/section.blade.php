@@ -4,7 +4,7 @@
         mdl-cell--4-col
         mdl-js-button
         mdl-js-ripple-effect
-        reveal-bottom-staggered-250
+        reveal reveal-bottom-staggered-250
         mdl-typography--text-center
         post-category__item
         text--decoration-none"

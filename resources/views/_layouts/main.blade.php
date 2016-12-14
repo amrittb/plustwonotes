@@ -25,6 +25,13 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+    <script src="{{ elixir("js/preload-app.js") }}"></script>
+    <style>
+        .scroll-reveal .reveal {
+            visibility: hidden;
+        }
+    </style>
+
     @yield('assets')
 </head>
 <body>

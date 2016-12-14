@@ -11,7 +11,7 @@ var paths = {
 elixir(function(mix) {
     mixCss(mix);
     mixScripts(mix);
-    mix.version(['css/app.css','js/app.js']);
+    mix.version(['css/app.css','js/preload-app.js','js/app.js']);
 });
 
 /**
@@ -20,6 +20,7 @@ elixir(function(mix) {
  * @param mix
  */
 function mixScripts(mix){
+    mix.webpack('preload-app.js');
     mix.webpack('app.js');
 }
 

@@ -8,7 +8,7 @@
         mdl-js-ripple-effect
         post-card
         text--decoration-none
-        reveal-bottom-staggered-250
+        reveal reveal-bottom-staggered-250
 ">
     <div class="mdl-card__media post-card__media">
         <img src="{{ $post->featured_img_thumbnail_url }}" alt="{{ $post->post_title }}">

@@ -20,13 +20,13 @@
 @stop
 
 @section('content')
-    <h2 class="text--light mdl-typography--text-center reveal-top">{{ $title }}</h2>
+    <h2 class="text--light mdl-typography--text-center reveal reveal-top">{{ $title }}</h2>
 
     <br />
 
-    <h5 class="text--light mdl-typography--text-center reveal-bottom">Not finding what you are looking for?</h5>
+    <h5 class="text--light mdl-typography--text-center reveal reveal-bottom">Not finding what you are looking for?</h5>
 
-    <div class="mdl-typography--text-center reveal-bottom-delay-250">
+    <div class="mdl-typography--text-center reveal reveal-bottom-delay-250">
         @include('_partials.posts.search',['searchId' => 'post-list-search'])
     </div>
 

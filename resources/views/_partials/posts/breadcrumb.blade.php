@@ -1,4 +1,4 @@
-<div class="post-breadcrumb breadcrumb reveal-left-delay-250">
+<div class="post-breadcrumb breadcrumb reveal reveal-left-delay-250">
     @if(isset($category) || isset($post->category))
         <?php if(!isset($category)){ $category = $post->category; } ?>
         <a class="breadcrumb__link" href="{{ route('posts.index') }}">Posts</a>
