@@ -33,9 +33,7 @@ class GradesController extends ApiController {
      * @return mixed
      */
     public function index(Request $request) {
-        if($request->has('include')) {
-            $this->fractal->parseIncludes($request->get('include'));
-        }
+        $this->parseIncludes($request);
 
         return $this->transformCollection($this->grades->all($request->has('include')));
     }

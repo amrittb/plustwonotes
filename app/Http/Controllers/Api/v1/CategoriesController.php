@@ -3,6 +3,7 @@
 use App\Api\Transformers\CategoryTransformer;
 use App\Http\Controllers\Api\ApiController;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
+use Illuminate\Http\Request;
 use League\Fractal\Manager;
 use League\Fractal\TransformerAbstract;
 
@@ -28,9 +29,12 @@ class CategoriesController extends ApiController {
     /**
      * Returns a list of categories.
      *
+     * @param Request $request
      * @return mixed
      */
-    public function index() {
+    public function index(Request $request) {
+        $this->parseIncludes($request);
+
         return $this->respond($this->transformCollection($this->categories->all()));
     }
 
