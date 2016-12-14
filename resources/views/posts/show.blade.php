@@ -4,6 +4,12 @@
     {{ $post->post_title }} - Plus Two Notes
 @stop
 
+@section('assets')
+    <script type="text/javascript" async
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+@stop
+
 @section('content')
 <div class="post">
     <span class="post__date">
