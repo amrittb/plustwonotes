@@ -36,12 +36,12 @@
             </h4>
 
             <a href="{{ route('posts.index') }}" class="text--color-primary text--decoration-none">
-                All Posts
+                All Posts ({{ \App\Models\Post::numPosts(\App\Models\Post::STATUS_PUBLISHED) }})
             </a><br />
 
             @foreach(\App\Models\Category::all() as $category)
                 <a href="{{ route('posts.index.category',['category' => $category->category_slug]) }}" class="text--color-primary text--decoration-none">
-                    {{ $category->category_name }} posts
+                    {{ $category->category_name }} posts ({{ $category->getPresenter()->num_of_published_posts }})
                 </a><br />
             @endforeach
 
@@ -52,12 +52,15 @@
             @endforeach
 
             @foreach(\App\Models\Subject::with('grade')->get() as $subject)
-                <a href="{{ route('posts.index.subject',[
-                    'grade' => $subject->grade->grade_name,
-                    'subject' => $subject->subject_slug
-                    ]) }}" class="text--color-primary text--decoration-none">
-                    Grade {{ $subject->grade->grade_name }} {{ $subject->subject_name }} Posts
-                </a><br />
+                <?php $postsCount = $subject->posts()->published()->count(); ?>
+                @if($postsCount)
+                    <a href="{{ route('posts.index.subject',[
+                        'grade' => $subject->grade->grade_name,
+                        'subject' => $subject->subject_slug
+                        ]) }}" class="text--color-primary text--decoration-none">
+                        Grade {{ $subject->grade->grade_name }} {{ $subject->subject_name }} Posts ({{ $postsCount }})
+                    </a><br />
+                @endif
             @endforeach
         </div>
         <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
