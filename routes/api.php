@@ -2,7 +2,7 @@
 
 Route::group(['namespace' => 'Api','as' => 'api.'],function() {
 
-    Route::get('ping',['as' => 'ping'],function() {
+    Route::get('ping',function() {
         return \Response::json(['ping'=> 1]);
     });
 
