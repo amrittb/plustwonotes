@@ -1,5 +1,5 @@
 <div class="recent-posts">
-    <h4 class="recent-posts__title text--light">Recent Posts <span class="material-icons">fiber-new</span></h4>
+    <h4 class="recent-posts__title text--light">Recent Posts <span class="material-icons text--color-primary">fiber_new</span></h4>
     <div class="recent-posts__body">
         @if(count($recentPosts) > 0)
             <ul class="mdl-grid recent-posts__grid">
