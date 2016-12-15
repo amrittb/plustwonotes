@@ -3,7 +3,9 @@
     <div class="mdl-layout__header-row">
         <!-- Title -->
         <span class="mdl-layout-title">
-            <h1 class="header-logo">Plus Two Notes <small>HSEB Notes and Syllabus</small></h1>
+            <a href="{{ route('home') }}" class="text--decoration-none">
+                <h1 class="header-logo">Plus Two Notes <small>HSEB Notes and Syllabus</small></h1>
+            </a>
         </span>
         <div class="mdl-layout-spacer"></div>
 
