@@ -53,18 +53,17 @@
         font-size: $post-body-font-size;
         text-align: justify;
 
-        h1,h2,h3,h4,h5,h6 {
-            color: color($color-primary);
+        h2,h3,h4,h5,h6 {
+            font-weight: 300;
+            color: color($palette-blue-grey-900);
         }
 
         h2{
             font-size: $post-body-h2-size;
-            font-weight: lighter;
         }
 
         h3{
             font-size: $post-body-h3-size;
-            font-weight: lighter;
         }
 
         h4{
@@ -82,7 +81,7 @@
         div,p{
             margin-bottom: $post-body-p-margin;
             font-size: $post-body-p-size;
-            line-height: 30px;
+            line-height: 24px;
 
             &:last-child {
                 margin-bottom: 0;
@@ -91,10 +90,12 @@
 
         a{
             text-decoration: none;
+            color: color($color-primary);
         }
 
         a:hover{
             text-decoration: underline;
+            color: color($color-primary-dark);
         }
 
         img{

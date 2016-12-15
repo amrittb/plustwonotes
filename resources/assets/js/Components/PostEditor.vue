@@ -46,10 +46,13 @@
                             "bold",
                             "italic",
                             "anchor",
+                            "orderedlist",
+                            "unorderedlist",
                             "h2",
                             "h3",
                             "h4",
                             "quote",
+                            "pre",
                             "subscript",
                             "superscript",
                             "justifyLeft",
@@ -57,7 +60,8 @@
                             "justifyRight",
                             "justifyFull",
                             "attribute-modifier",
-                            "media-attachment"
+                            "media-attachment",
+                            "removeFormat",
                         ]
                     },
                     placeholder: {
