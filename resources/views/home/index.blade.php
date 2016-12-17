@@ -1,13 +1,13 @@
 @extends ('_layouts.home')
 
 @section('title')
-    Plus Two Notes - not just another HSEB Plus Two (+2) guide
+    Plus Two Notes - not just another NEB (HSEB) Plus Two (+2) guide
 @stop
 
 @section('content')
     <div class="hero hero--home">
         <div class="hero__content-container">
-                <h1 class="reveal reveal-top">Oh! Hi there.<br />In case you're wondering, We provide you with <span class="text--normal">HSEB Plus Two</span> <span class="text--color-accent">Notes</span>, <span class="text--color-accent">News</span> &amp; <span class="text--color-accent">References</span>.</h1>
+                <h1 class="reveal reveal-top">Oh! Hi there.<br />In case you're wondering, We provide you with <span class="text--normal">NEB (HSEB) Plus Two</span> <span class="text--color-accent">Notes</span>, <span class="text--color-accent">News</span> &amp; <span class="text--color-accent">References</span>.</h1>
                 <h2 class="reveal reveal-bottom-delay-250">Browse our rich and easy notes or go through syllabus to better manage your studying. Ready to dive in?</h2>
                 <a href="{{ route('posts.index') }}" class="hero__btn mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect reveal reveal-right-delay-500">Read what we got</a>
                 <h6 class="text--light mdl-typography--text-center reveal reveal-top">
@@ -21,7 +21,7 @@
         </div>
         <div class="hero__img-container">
             <div class="hero__img reveal reveal-bottom-delay-1000">
-                <img src="{{ asset('img/science_teacher.svg') }}" alt="Plus Two Notes, HSEB Notes, HSEB Books, Plus Two Books, Plus Two Practicals, HSEB Practicals">
+                <img src="{{ asset('img/science_teacher.svg') }}" alt="Plus Two Notes, NEB (HSEB) Notes, NEB (HSEB) Books, Plus Two Books, Plus Two Practicals, NEB (HSEB) Practicals">
             </div>
         </div>
     </div>
@@ -30,21 +30,21 @@
         <div class="mdl-cell mdl-cell--12-col section--center mdl-typography--text-left">
             <h1 class="section__heading reveal reveal-left">
                 Plus Two Notes
-                <small> - not just another HSEB guide, its the innovative way of learning.</small>
+                <small> - not just another NEB (HSEB) guide, its the innovative way of learning.</small>
             </h1>
 
             <div class="section__body mdl-grid">
                 <div class="mdl-cell mdl-cell--5-col">
                     <div class="section--intro__img reveal reveal-left-delay-500">
-                        <img src="{{ asset('img/education_desk.svg') }}" alt="Plus Two Notes Education Desk, HSEB Practicals, HSEB Chemistry Practical, HSEB Biology Practical, HSEB Books">
+                        <img src="{{ asset('img/education_desk.svg') }}" alt="Plus Two Notes Education Desk, NEB (HSEB) Practicals, NEB (HSEB) Chemistry Practical, NEB (HSEB) Biology Practical, NEB (HSEB) Books">
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--7-col mdl-typography--text-justify">
                     <p class="reveal reveal-right-delay-250">
-                        <b>Plus Two Notes</b> is an application created to help students get HSEB notes and references easily.  We provide you with rich, easy and comprehensive notes based on HSEB plus two Syllabus. Also we have other educational materials like HSEB syllabus to help you to study in systematic order.
+                        <b>Plus Two Notes</b> is an application created to help students get NEB (HSEB) notes and references easily.  We provide you with rich, easy and comprehensive notes based on NEB (HSEB) plus two Syllabus. Also we have other educational materials like NEB (HSEB) syllabus to help you to study in systematic order.
                     </p>
                     <p class="reveal reveal-bottom-delay-500">
-                        We also post HSEB related news on this site on blog section so that you can get updates about Exam routines and HSEB Board exam results.
+                        We also post NEB (HSEB) related news on this site on blog section so that you can get updates about Exam routines and NEB (HSEB) Board exam results.
                     </p>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 <div class="mdl-typography--text-center">
                     <img src="{{ asset('img/browser_mockup.png') }}"
                          class="section--future__browser-mockup reveal reveal-bottom-delay-250"
-                         alt="Plus Two Notes, HSEB Notes"
+                         alt="Plus Two Notes, NEB (HSEB) Notes"
                     >
                 </div>
             </div>
@@ -117,7 +117,7 @@
     <section class="section section--footnote mdl-grid">
         <div class="mdl-cell mdl-cell--12-col section--center">
             <h2 class="section__heading mdl-typography--text-left reveal reveal-top">
-                What about 'disbanding <b>HSEB</b>'?
+                What about 'disbanding <b>NEB (HSEB)</b>'?
             </h2>
 
             <div class="section__body">
